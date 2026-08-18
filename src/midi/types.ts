@@ -1,7 +1,7 @@
 export interface MidiOutput {
   readonly id: string
   readonly label: string
-  send(data: Uint8Array): void
+  sendControlChange(controlChange: number, value: number): void
 }
 
 export interface MidiService {

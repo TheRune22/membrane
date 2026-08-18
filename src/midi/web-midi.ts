@@ -9,12 +9,12 @@ class BrowserMidiOutput implements MidiOutput {
     return this.port.manufacturer ? `${this.port.manufacturer} — ${name}` : name
   }
 
-  send(data: Uint8Array) {
-    if (this.port.state === 'disconnected') {
-      throw new Error('The selected MIDI output is no longer connected.')
-    }
+  sendControlChange(controlChange: number, value: number) {
+    if (this.port.state === 'disconnected') throw new Error('The selected MIDI output is no longer connected.')
+    if (!Number.isInteger(controlChange) || controlChange < 0 || controlChange > 127) throw new Error('The MIDI control change must be between 0 and 127.')
+    if (!Number.isInteger(value) || value < 0 || value > 127) throw new Error('The MIDI control value must be between 0 and 127.')
 
-    this.port.send(data)
+    this.port.send([0xb0, controlChange, value])
   }
 }
 
@@ -23,9 +23,7 @@ export class WebMidiService implements MidiService {
   private readonly listeners = new Set<(outputs: readonly MidiOutput[]) => void>()
 
   async connect() {
-    if (!navigator.requestMIDIAccess) {
-      throw new Error('Web MIDI is unavailable in this browser. Please use a Chromium-based browser.')
-    }
+    if (!navigator.requestMIDIAccess) throw new Error('Web MIDI is unavailable in this browser. Please use a Chromium-based browser.')
 
     this.access ??= await navigator.requestMIDIAccess()
     this.access.onstatechange = () => this.notifyListeners()
@@ -34,10 +32,7 @@ export class WebMidiService implements MidiService {
 
   getOutputs(): readonly MidiOutput[] {
     if (!this.access) return []
-
-    return [...this.access.outputs.values()]
-      .filter((output) => output.state === 'connected')
-      .map((output) => new BrowserMidiOutput(output))
+    return [...this.access.outputs.values()].filter((output) => output.state === 'connected').map((output) => new BrowserMidiOutput(output))
   }
 
   onOutputsChanged(listener: (outputs: readonly MidiOutput[]) => void) {

@@ -51,9 +51,15 @@ select:disabled { color: #797e75; background: #171916; }
 .secondary-button:hover:not(:disabled) { border-color: #879a71; color: #e5edda; }
 .secondary-button:disabled { color: #747a70; border-color: #353a33; }
 .field-note { margin: -7px 0 0; color: #92988e; font-size: 0.76rem; line-height: 1.55; }
-.ready-panel { padding: 22px; border: 1px dashed #4b5147; border-radius: 9px; background: #171916; }
-.ready-panel h2 { margin-bottom: 8px; }
-.ready-panel p:last-child { margin: 0; color: #969c91; font-size: 0.84rem; line-height: 1.6; }
+.control-bank { display: grid; gap: 22px; }
+.control-bank-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+.control-bank-heading > p { margin: 0; color: #92988e; font: 500 0.7rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
+.fader-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 12px; }
+.fader { display: grid; justify-items: center; gap: 8px; min-height: 226px; padding: 13px 8px; border: 1px solid #3d4439; border-radius: 9px; color: #d7ddd0; background: #171916; text-align: center; }
+.fader-value { color: #c7df9e; font: 600 0.8rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; }
+.fader input { width: 138px; height: 28px; margin: 55px -55px; accent-color: #b2d576; transform: rotate(-90deg); }
+.fader-name { align-self: end; font-size: 0.75rem; line-height: 1.25; }
+.fader-cc { color: #899080; font: 500 0.64rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: 0.05em; }
 .status { gap: 9px; min-height: 48px; margin-top: 32px; padding: 12px 14px; border: 1px solid #353a33; border-radius: 9px; color: #a4aaa0; background: #181a17; font-size: 0.8rem; }
 .status p { margin: 0; }
 .status-mark { display: grid; width: 18px; height: 18px; place-items: center; border-radius: 50%; color: #c1c8b9; background: #3e443d; font-weight: 700; }
@@ -66,4 +72,5 @@ select:disabled { color: #797e75; background: #171916; }
   .page-shell { padding: 14px; place-items: start center; }
   .controller { padding: 25px 20px; border-radius: 13px; }
   .controller-header { align-items: flex-start; flex-direction: column; }
+  .control-bank-heading { align-items: flex-start; flex-direction: column; }
 }
