@@ -13,11 +13,14 @@ button:disabled { cursor: not-allowed; }
 h1, h2 { margin: 0; letter-spacing: -0.04em; }
 h1 { font-size: clamp(1.7rem, 3vw, 2.25rem); font-weight: 600; }
 h2 { font-size: 1.12rem; font-weight: 600; }
-.connection-button { flex: none; gap: 8px; min-height: 36px; padding: 0 11px; border: 1px solid #454b41; border-radius: 99px; color: #9ca09b; background: transparent; font-size: 0.78rem; }
-.connection-button:hover { border-color: #879a71; color: #e5edda; }
-.connection-button span { width: 8px; height: 8px; border-radius: 50%; background: #666c63; }
-.connection-button.connected { color: #b9cc9d; }
-.connection-button.connected span { background: #b2d576; box-shadow: 0 0 12px rgba(178, 213, 118, 0.7); }
+.midi-device-button { display: grid; grid-template-columns: auto auto; grid-template-areas: 'label change' 'name change'; flex: none; column-gap: 12px; align-items: center; min-height: 46px; padding: 6px 9px 6px 13px; border: 1px solid #454b41; border-radius: 10px; color: #9ca09b; background: transparent; text-align: left; }
+.midi-device-button:hover { border-color: #879a71; color: #e5edda; }
+.midi-device-label { display: flex; grid-area: label; gap: 6px; align-items: center; color: #aab99a; font: 500 0.62rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: 0.1em; text-transform: uppercase; }
+.midi-device-label span { width: 7px; height: 7px; border-radius: 50%; background: #666c63; }
+.midi-device-name { grid-area: name; max-width: min(26vw, 280px); overflow: hidden; font-size: 0.88rem; font-weight: 650; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+.midi-device-change { grid-area: change; padding: 5px 8px; border: 1px solid currentColor; border-radius: 99px; font-size: 0.68rem; font-weight: 700; line-height: 1; }
+.midi-device-button.connected { color: #b9cc9d; border-color: #657951; background: rgba(178, 213, 118, 0.06); }
+.midi-device-button.connected .midi-device-label span { background: #b2d576; box-shadow: 0 0 12px rgba(178, 213, 118, 0.7); }
 .header-actions { display: flex; align-items: center; gap: 10px; }
 .preset-button { display: grid; grid-template-columns: auto auto; grid-template-areas: 'label change' 'name change'; column-gap: 12px; align-items: center; min-height: 46px; padding: 6px 9px 6px 13px; border: 1px solid #657951; border-radius: 10px; color: #d9e8c4; background: rgba(178, 213, 118, 0.1); text-align: left; }
 .preset-button:hover:not(:disabled) { border-color: #b2d576; background: rgba(178, 213, 118, 0.18); }

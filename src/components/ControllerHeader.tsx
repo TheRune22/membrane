@@ -4,6 +4,7 @@ interface ControllerHeaderProps {
   connected: boolean
   presetSelectionEnabled: boolean
   selectedPreset: OsmosePreset | undefined
+  selectedMidiDevice: string | undefined
   onOpenMidiSetup: () => void
   onOpenPresetBrowser: () => void
 }
@@ -26,9 +27,15 @@ export function ControllerHeader(props: ControllerHeaderProps) {
           <span class="preset-current-name">{props.selectedPreset?.name ?? 'No preset selected'}</span>
           <span class="preset-change">Change</span>
         </button>
-        <button classList={{ 'connection-button': true, connected: props.connected }} type="button" onClick={props.onOpenMidiSetup}>
-          <span aria-hidden="true" />
-          {props.connected ? 'MIDI connected' : 'Set up MIDI'}
+        <button
+          classList={{ 'midi-device-button': true, connected: props.connected }}
+          type="button"
+          onClick={props.onOpenMidiSetup}
+          aria-label={props.selectedMidiDevice ? `Change MIDI device, currently ${props.selectedMidiDevice}` : 'Set up MIDI device'}
+        >
+          <span class="midi-device-label"><span aria-hidden="true" />MIDI device</span>
+          <span class="midi-device-name">{props.selectedMidiDevice ?? 'No device selected'}</span>
+          <span class="midi-device-change">Change</span>
         </button>
       </div>
     </header>
