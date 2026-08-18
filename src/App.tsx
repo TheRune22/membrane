@@ -1,4 +1,4 @@
-import { Show, createSignal, onCleanup } from 'solid-js'
+import { Show, createSignal, onCleanup, onMount } from 'solid-js'
 import { ControllerHeader } from './components/ControllerHeader'
 import { EmptyWorkspace } from './components/EmptyWorkspace'
 import { MidiSetupDialog } from './components/MidiSetupDialog'
@@ -22,7 +22,7 @@ export default function App() {
   const [isMidiSetupOpen, setIsMidiSetupOpen] = createSignal(true)
   const [isPresetBrowserOpen, setIsPresetBrowserOpen] = createSignal(false)
   const [controlValues, setControlValues] = createSignal<Readonly<Record<number, number>>>({})
-  const [status, setStatus] = createSignal<Status>({ kind: 'neutral', message: 'Connect MIDI to discover available outputs.' })
+  const [status, setStatus] = createSignal<Status>({ kind: 'neutral', message: 'Looking for available MIDI outputs.' })
 
   const unsubscribe = midi.onOutputsChanged((nextOutputs) => {
     setOutputs(nextOutputs)
@@ -34,7 +34,7 @@ export default function App() {
   })
   onCleanup(unsubscribe)
 
-  async function connectMidi() {
+  async function refreshMidiOutputs() {
     setIsConnecting(true)
     try {
       await midi.connect()
@@ -50,6 +50,8 @@ export default function App() {
       setIsConnecting(false)
     }
   }
+
+  onMount(() => { void refreshMidiOutputs() })
 
   function selectOutput(outputId: string) {
     setSelectedOutputId(outputId)
@@ -98,7 +100,7 @@ export default function App() {
       </Show>
     </div>
   </section>
-  <Show when={isMidiSetupOpen()}><MidiSetupDialog connected={isConnected()} connecting={isConnecting()} outputs={outputs()} selectedOutputId={selectedOutputId()} status={status()} onConnect={connectMidi} onClose={() => setIsMidiSetupOpen(false)} onSelectionChange={selectOutput} /></Show>
+  <Show when={isMidiSetupOpen()}><MidiSetupDialog connected={isConnected()} connecting={isConnecting()} outputs={outputs()} selectedOutputId={selectedOutputId()} status={status()} onRefresh={refreshMidiOutputs} onClose={() => setIsMidiSetupOpen(false)} onSelectionChange={selectOutput} /></Show>
   <Show when={isPresetBrowserOpen()}><PresetBrowserDialog presets={osmosePresets} selectedPreset={selectedPreset()} onClose={() => setIsPresetBrowserOpen(false)} onSelect={selectPreset} /></Show>
   </main>
 }

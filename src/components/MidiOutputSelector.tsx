@@ -6,15 +6,12 @@ interface MidiOutputSelectorProps {
   connecting: boolean
   outputs: readonly MidiOutput[]
   selectedOutputId: string
-  onConnect: () => void
+  onRefresh: () => void
   onSelectionChange: (outputId: string) => void
 }
 
 export function MidiOutputSelector(props: MidiOutputSelectorProps) {
-  const buttonLabel = () => {
-    if (props.connecting) return 'Connecting...'
-    return props.connected ? 'Refresh outputs' : 'Connect MIDI'
-  }
+  const buttonLabel = () => props.connecting ? 'Refreshing...' : 'Refresh outputs'
 
   return (
     <section class="control-group" aria-labelledby="output-heading">
@@ -23,7 +20,7 @@ export function MidiOutputSelector(props: MidiOutputSelectorProps) {
           <p class="step">01</p>
           <h2 id="output-heading">MIDI output</h2>
         </div>
-        <button class="secondary-button" type="button" onClick={props.onConnect} disabled={props.connecting}>
+        <button class="secondary-button" type="button" onClick={props.onRefresh} disabled={props.connecting}>
           {buttonLabel()}
         </button>
       </div>
@@ -35,7 +32,7 @@ export function MidiOutputSelector(props: MidiOutputSelectorProps) {
         onChange={(event) => props.onSelectionChange(event.currentTarget.value)}
         disabled={!props.connected || props.outputs.length === 0}
       >
-        <option value="">{props.connected ? 'Select a MIDI output' : 'Connect MIDI first'}</option>
+        <option value="">{props.connected ? 'Select a MIDI output' : 'MIDI access unavailable'}</option>
         <For each={props.outputs}>{(output) => <option value={output.id}>{output.label}</option>}</For>
       </select>
       <Show when={props.connected && props.outputs.length === 0}>

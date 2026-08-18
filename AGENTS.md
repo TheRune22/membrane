@@ -16,4 +16,3 @@
 - The shipped application must not expose arbitrary MIDI-byte entry. It should offer intentional controls that produce well-defined MIDI messages.
 - Raw MIDI-byte input may be used only as a temporary development diagnostic, not as a user-facing feature.
 - Do not add SysEx, message interpretation, MPE features, device editing, or monitoring without an explicit request.
-- Preserve the explicit user action for requesting MIDI access.

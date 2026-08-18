@@ -8,7 +8,7 @@ interface MidiSetupDialogProps {
   outputs: readonly MidiOutput[]
   selectedOutputId: string
   status: { kind: StatusKind; message: string }
-  onConnect: () => void
+  onRefresh: () => void
   onClose: () => void
   onSelectionChange: (outputId: string) => void
 }
@@ -29,7 +29,7 @@ export function MidiSetupDialog(props: MidiSetupDialogProps) {
           connecting={props.connecting}
           outputs={props.outputs}
           selectedOutputId={props.selectedOutputId}
-          onConnect={props.onConnect}
+          onRefresh={props.onRefresh}
           onSelectionChange={props.onSelectionChange}
         />
         <StatusMessage kind={props.status.kind} message={props.status.message} />
