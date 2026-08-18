@@ -19,9 +19,13 @@ h2 { font-size: 1.12rem; font-weight: 600; }
 .connection-button.connected { color: #b9cc9d; }
 .connection-button.connected span { background: #b2d576; box-shadow: 0 0 12px rgba(178, 213, 118, 0.7); }
 .header-actions { display: flex; align-items: center; gap: 10px; }
-.preset-button { min-height: 36px; padding: 0 12px; border: 1px solid #657951; border-radius: 99px; color: #d9e8c4; background: rgba(178, 213, 118, 0.1); font-size: 0.78rem; font-weight: 600; }
+.preset-button { display: grid; grid-template-columns: auto auto; grid-template-areas: 'label change' 'name change'; column-gap: 12px; align-items: center; min-height: 46px; padding: 6px 9px 6px 13px; border: 1px solid #657951; border-radius: 10px; color: #d9e8c4; background: rgba(178, 213, 118, 0.1); text-align: left; }
 .preset-button:hover:not(:disabled) { border-color: #b2d576; background: rgba(178, 213, 118, 0.18); }
 .preset-button:disabled { border-color: #3b4038; color: #70766c; background: transparent; }
+.preset-label { grid-area: label; color: #aab99a; font: 500 0.62rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: 0.1em; text-transform: uppercase; }
+.preset-current-name { grid-area: name; max-width: min(26vw, 280px); overflow: hidden; font-size: 0.88rem; font-weight: 650; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+.preset-change { grid-area: change; padding: 5px 8px; border: 1px solid currentColor; border-radius: 99px; font-size: 0.68rem; font-weight: 700; line-height: 1; }
+.preset-button:disabled .preset-change { border-color: #4a5045; }
 
 .workspace { display: grid; min-height: 0; padding: clamp(20px, 3vw, 48px) 0; }
 .control-bank { display: grid; grid-template-rows: auto minmax(0, 1fr); min-height: 0; gap: 22px; width: 100%; }
