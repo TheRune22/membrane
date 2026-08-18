@@ -1,12 +1,12 @@
 :root { font-family: Inter, Aptos, Arial, sans-serif; color: #f1f2ed; background: #101110; font-synthesis: none; }
 * { box-sizing: border-box; }
-body { margin: 0; min-width: 320px; min-height: 100vh; }
+body { margin: 0; min-width: 320px; height: 100vh; overflow: hidden; }
 button, input, select { font: inherit; }
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; }
 
-.page-shell { min-height: 100vh; padding: clamp(16px, 2.4vw, 44px); background: radial-gradient(circle at 20% 0%, rgba(108, 137, 89, 0.13), transparent 42rem), linear-gradient(135deg, #151714 0%, #101110 62%); }
-.controller { display: grid; grid-template-rows: auto 1fr auto; width: 100%; min-height: calc(100vh - clamp(32px, 4.8vw, 88px)); padding: clamp(22px, 3vw, 40px); border: 1px solid #353a33; border-radius: 18px; background: rgba(23, 25, 22, 0.92); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3); }
+.page-shell { height: 100vh; padding: clamp(16px, 2.4vw, 44px); overflow: hidden; background: radial-gradient(circle at 20% 0%, rgba(108, 137, 89, 0.13), transparent 42rem), linear-gradient(135deg, #151714 0%, #101110 62%); }
+.controller { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; width: 100%; height: calc(100vh - clamp(32px, 4.8vw, 88px)); padding: clamp(22px, 3vw, 40px); overflow: hidden; border: 1px solid #353a33; border-radius: 18px; background: rgba(23, 25, 22, 0.92); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3); }
 .controller-header, .section-heading, .connection-button, .status, .dialog-header { display: flex; align-items: center; }
 .controller-header, .section-heading, .dialog-header { justify-content: space-between; gap: 20px; }
 .eyebrow, .step { margin: 0 0 8px; color: #aab99a; font: 500 0.7rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: 0.13em; text-transform: uppercase; }
@@ -19,16 +19,17 @@ h2 { font-size: 1.12rem; font-weight: 600; }
 .connection-button.connected { color: #b9cc9d; }
 .connection-button.connected span { background: #b2d576; box-shadow: 0 0 12px rgba(178, 213, 118, 0.7); }
 
-.workspace { display: grid; min-height: 0; padding: clamp(32px, 5vw, 72px) 0; }
-.control-bank { display: grid; align-content: start; gap: 26px; width: 100%; }
+.workspace { display: grid; min-height: 0; padding: clamp(20px, 3vw, 48px) 0; }
+.control-bank { display: grid; grid-template-rows: auto minmax(0, 1fr); min-height: 0; gap: 22px; width: 100%; }
 .control-bank-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
 .control-bank-heading > p { margin: 0; color: #92988e; font: 500 0.7rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
-.fader-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: clamp(10px, 1.1vw, 18px); }
-.fader { display: grid; justify-items: center; gap: 9px; min-height: clamp(250px, 35vh, 360px); padding: 16px 9px; border: 1px solid #3d4439; border-radius: 10px; color: #d7ddd0; background: linear-gradient(180deg, #1b1e1a, #171916); text-align: center; }
+.fader-grid { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); min-height: 0; gap: clamp(8px, 1vw, 16px); }
+.fader { display: grid; grid-template-rows: auto minmax(64px, 1fr) auto auto; gap: 8px; justify-items: center; min-height: 0; padding: clamp(8px, 1vw, 16px) 7px; overflow: hidden; border: 1px solid #3d4439; border-radius: 10px; color: #d7ddd0; background: linear-gradient(180deg, #1b1e1a, #171916); text-align: center; }
 .fader-value { color: #c7df9e; font: 600 0.82rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; }
-.fader input { width: clamp(160px, 21vh, 250px); height: 30px; margin: clamp(65px, 10vh, 110px) calc(clamp(65px, 10vh, 110px) * -1); accent-color: #b2d576; transform: rotate(-90deg); }
-.fader-name { align-self: end; font-size: 0.78rem; line-height: 1.25; }
-.fader-cc { color: #899080; font: 500 0.64rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: 0.05em; }
+.fader-track { display: grid; width: 100%; min-height: 0; place-items: center; overflow: hidden; }
+.fader input { width: 30px; height: 100%; min-height: 0; margin: 0; accent-color: #b2d576; appearance: slider-vertical; direction: rtl; writing-mode: vertical-lr; }
+.fader-name { align-self: end; font-size: clamp(0.78rem, 0.82vw, 0.94rem); line-height: 1.25; }
+.fader-cc { color: #899080; font: 500 clamp(0.62rem, 0.68vw, 0.72rem)/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: 0.05em; }
 .empty-workspace { display: grid; place-content: center; justify-items: center; gap: 14px; min-height: 100%; padding: 48px; border: 1px dashed #4b5147; border-radius: 14px; color: #969c91; text-align: center; }
 .empty-workspace .step { margin: 0; }
 .empty-workspace p:not(.step) { max-width: 420px; margin: 0 0 8px; font-size: 0.9rem; line-height: 1.6; }
@@ -58,10 +59,13 @@ select:disabled { color: #797e75; background: #171916; }
 
 @media (max-width: 700px) {
   .page-shell { padding: 12px; }
-  .controller { min-height: calc(100vh - 24px); padding: 22px 18px; border-radius: 13px; }
+  .controller { height: calc(100vh - 24px); padding: 22px 18px; border-radius: 13px; }
   .controller-header { align-items: flex-start; flex-direction: column; }
-  .workspace { padding: 34px 0; }
+  .workspace { padding: 24px 0; }
   .control-bank-heading { align-items: flex-start; flex-direction: column; }
-  .fader-grid { grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); }
-  .fader { min-height: 250px; }
+  .fader-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(0, 1fr)); }
+  .fader { grid-template-rows: auto minmax(36px, 1fr) auto auto; gap: 3px; padding: 6px 3px; }
+  .fader-value { font-size: 0.7rem; }
+  .fader-name { font-size: 0.62rem; }
+  .fader-cc { font-size: 0.56rem; }
 }

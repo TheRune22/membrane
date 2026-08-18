@@ -19,9 +19,11 @@ export function OsmoseControlBank(props: OsmoseControlBankProps) {
           const id = `cc-${parameter.controlChange}`
           return <label class="fader" for={id}>
             <span class="fader-value">{props.values[parameter.controlChange] ?? 0}</span>
-            <input id={id} type="range" min="0" max="127" value={props.values[parameter.controlChange] ?? 0}
-              aria-label={`${parameter.name}, CC ${parameter.controlChange}`}
-              onInput={(event) => props.onValueChange(parameter.controlChange, Number(event.currentTarget.value))} />
+            <span class="fader-track">
+              <input id={id} type="range" min="0" max="127" value={props.values[parameter.controlChange] ?? 0}
+                aria-label={`${parameter.name}, CC ${parameter.controlChange}`}
+                onInput={(event) => props.onValueChange(parameter.controlChange, Number(event.currentTarget.value))} />
+            </span>
             <span class="fader-name">{parameter.name}</span>
             <span class="fader-cc">CC {parameter.controlChange}</span>
           </label>
