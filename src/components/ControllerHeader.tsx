@@ -9,8 +9,7 @@ export function ControllerHeader(props: ControllerHeaderProps) {
   return (
     <header class="controller-header">
       <div>
-        <p class="eyebrow">MIDI utility</p>
-        <h1 id="page-title">MIDI Controller</h1>
+        <h1 id="page-title">Osmose Controller</h1>
       </div>
       <div class="header-actions">
         <button class="preset-button" type="button" onClick={props.onOpenPresetBrowser} disabled={!props.presetSelectionEnabled}>Presets</button>

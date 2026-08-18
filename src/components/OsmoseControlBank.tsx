@@ -9,11 +9,7 @@ interface OsmoseControlBankProps {
 
 export function OsmoseControlBank(props: OsmoseControlBankProps) {
   return (
-    <section class="control-bank" aria-labelledby="controls-heading">
-      <div class="control-bank-heading">
-        <div><p class="step">02</p><h2 id="controls-heading">Osmose controls</h2></div>
-        <p>MIDI channel 1</p>
-      </div>
+    <section class="control-bank" aria-label="Osmose controls">
       <div class="fader-grid">
         <For each={props.parameters}>{(parameter) => {
           const id = `cc-${parameter.controlChange}`
