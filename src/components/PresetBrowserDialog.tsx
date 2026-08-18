@@ -11,11 +11,14 @@ interface PresetBrowserDialogProps {
 export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
   const [query, setQuery] = createSignal('')
   const [type, setType] = createSignal('all')
+  const [character, setCharacter] = createSignal('all')
   const types = createMemo(() => [...new Set(props.presets.map((preset) => preset.type))].sort())
+  const characters = createMemo(() => [...new Set(props.presets.flatMap((preset) => preset.tags))].sort())
   const matchingPresets = createMemo(() => {
     const normalizedQuery = query().trim().toLowerCase()
     return props.presets.filter((preset) =>
       (type() === 'all' || preset.type === type()) &&
+      (character() === 'all' || preset.tags.includes(character())) &&
       (!normalizedQuery || [preset.name, preset.type, ...preset.tags].some((value) => value.toLowerCase().includes(normalizedQuery))),
     )
   })
@@ -28,10 +31,14 @@ export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
           <button class="icon-button" type="button" onClick={props.onClose} aria-label="Close preset browser">×</button>
         </div>
         <div class="preset-filters">
-          <input type="search" value={query()} onInput={(event) => setQuery(event.currentTarget.value)} placeholder="Search presets or tags" aria-label="Search presets" autofocus />
+          <input type="search" value={query()} onInput={(event) => setQuery(event.currentTarget.value)} placeholder="Search names, types, or characters" aria-label="Search preset names, types, or characters" autofocus />
           <select value={type()} onChange={(event) => setType(event.currentTarget.value)} aria-label="Filter presets by type">
             <option value="all">All types</option>
             <For each={types()}>{(presetType) => <option value={presetType}>{presetType}</option>}</For>
+          </select>
+          <select value={character()} onChange={(event) => setCharacter(event.currentTarget.value)} aria-label="Filter presets by character">
+            <option value="all">All characters</option>
+            <For each={characters()}>{(presetCharacter) => <option value={presetCharacter}>{presetCharacter}</option>}</For>
           </select>
         </div>
         <p class="preset-count">{matchingPresets().length} presets</p>
@@ -39,7 +46,10 @@ export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
           <For each={matchingPresets()}>{(preset) =>
             <button classList={{ 'preset-option': true, selected: props.selectedPreset?.bank === preset.bank && props.selectedPreset?.program === preset.program }} type="button" onClick={() => props.onSelect(preset)} role="listitem">
               <span class="preset-name">{preset.name}</span>
-              <span class="preset-meta">{preset.type}{preset.tags.length ? ` · ${preset.tags.join(' · ')}` : ''}</span>
+              <span class="preset-meta">
+                <span class="preset-type">{preset.type}</span>
+                <For each={preset.tags}>{(tag) => <span class="preset-character">{tag}</span>}</For>
+              </span>
             </button>
           }</For>
           <Show when={matchingPresets().length === 0}><p class="empty-results">No presets match those filters.</p></Show>
