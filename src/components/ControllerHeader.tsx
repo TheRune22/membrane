@@ -1,5 +1,6 @@
 interface ControllerHeaderProps {
   connected: boolean
+  onOpenMidiSetup: () => void
 }
 
 export function ControllerHeader(props: ControllerHeaderProps) {
@@ -9,10 +10,10 @@ export function ControllerHeader(props: ControllerHeaderProps) {
         <p class="eyebrow">MIDI utility</p>
         <h1 id="page-title">MIDI Controller</h1>
       </div>
-      <div classList={{ 'connection-indicator': true, connected: props.connected }}>
+      <button classList={{ 'connection-button': true, connected: props.connected }} type="button" onClick={props.onOpenMidiSetup}>
         <span aria-hidden="true" />
-        {props.connected ? 'MIDI connected' : 'Not connected'}
-      </div>
+        {props.connected ? 'MIDI connected' : 'Set up MIDI'}
+      </button>
     </header>
   )
 }
