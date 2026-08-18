@@ -22,7 +22,7 @@ export function ControllerHeader(props: ControllerHeaderProps) {
           disabled={!props.presetSelectionEnabled}
           aria-label={props.selectedPreset ? `Change preset, currently ${props.selectedPreset.name}` : 'Choose a preset'}
         >
-          <span class="preset-label">Current sound</span>
+          <span class="preset-label">Current preset</span>
           <span class="preset-current-name">{props.selectedPreset?.name ?? 'No preset selected'}</span>
           <span class="preset-change">Change</span>
         </button>
