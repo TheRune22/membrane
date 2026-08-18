@@ -24,12 +24,11 @@ h2 { font-size: 1.12rem; font-weight: 600; }
 .control-bank-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
 .control-bank-heading > p { margin: 0; color: #92988e; font: 500 0.7rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
 .fader-grid { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); min-height: 0; gap: clamp(8px, 1vw, 16px); }
-.fader { display: grid; grid-template-rows: auto minmax(64px, 1fr) auto auto; gap: 8px; justify-items: center; min-height: 0; padding: clamp(8px, 1vw, 16px) 7px; overflow: hidden; border: 1px solid #3d4439; border-radius: 10px; color: #d7ddd0; background: linear-gradient(180deg, #1b1e1a, #171916); text-align: center; }
+.fader { display: grid; grid-template-rows: auto minmax(64px, 1fr) auto; gap: 8px; justify-items: center; min-height: 0; padding: clamp(8px, 1vw, 16px) 7px; overflow: hidden; border: 1px solid #3d4439; border-radius: 10px; color: #d7ddd0; background: linear-gradient(180deg, #1b1e1a, #171916); text-align: center; }
 .fader-value { color: #c7df9e; font: 600 0.82rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; }
 .fader-track { display: grid; width: 100%; min-height: 0; place-items: center; overflow: hidden; }
 .fader input { width: 30px; height: 100%; min-height: 0; margin: 0; accent-color: #b2d576; appearance: slider-vertical; direction: rtl; writing-mode: vertical-lr; }
 .fader-name { align-self: end; font-size: clamp(0.78rem, 0.82vw, 0.94rem); line-height: 1.25; }
-.fader-cc { color: #899080; font: 500 clamp(0.62rem, 0.68vw, 0.72rem)/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: 0.05em; }
 .empty-workspace { display: grid; place-content: center; justify-items: center; gap: 14px; min-height: 100%; padding: 48px; border: 1px dashed #4b5147; border-radius: 14px; color: #969c91; text-align: center; }
 .empty-workspace .step { margin: 0; }
 .empty-workspace p:not(.step) { max-width: 420px; margin: 0 0 8px; font-size: 0.9rem; line-height: 1.6; }
@@ -64,8 +63,7 @@ select:disabled { color: #797e75; background: #171916; }
   .workspace { padding: 24px 0; }
   .control-bank-heading { align-items: flex-start; flex-direction: column; }
   .fader-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(0, 1fr)); }
-  .fader { grid-template-rows: auto minmax(36px, 1fr) auto auto; gap: 3px; padding: 6px 3px; }
+  .fader { grid-template-rows: auto minmax(36px, 1fr) auto; gap: 3px; padding: 6px 3px; }
   .fader-value { font-size: 0.7rem; }
   .fader-name { font-size: 0.62rem; }
-  .fader-cc { font-size: 0.56rem; }
 }

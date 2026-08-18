@@ -25,7 +25,6 @@ export function OsmoseControlBank(props: OsmoseControlBankProps) {
                 onInput={(event) => props.onValueChange(parameter.controlChange, Number(event.currentTarget.value))} />
             </span>
             <span class="fader-name">{parameter.name}</span>
-            <span class="fader-cc">CC {parameter.controlChange}</span>
           </label>
         }}</For>
       </div>
