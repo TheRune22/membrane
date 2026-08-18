@@ -59,6 +59,7 @@ select:disabled { color: #797e75; background: #171916; }
 .dialog-backdrop { position: fixed; z-index: 10; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(7, 9, 7, 0.68); backdrop-filter: blur(8px); }
 .midi-dialog { width: min(100%, 560px); padding: 28px; border: 1px solid #4a5045; border-radius: 14px; background: #1a1d19; box-shadow: 0 26px 80px rgba(0, 0, 0, 0.48); }
 .midi-dialog .control-group { margin-top: 28px; }
+.midi-dialog .status { margin-top: 22px; }
 .icon-button { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid #444a40; border-radius: 50%; color: #c5cbc0; background: transparent; font-size: 1.35rem; line-height: 1; }
 .icon-button:hover { border-color: #879a71; color: #e5edda; }
 

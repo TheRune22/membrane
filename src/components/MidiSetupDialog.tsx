@@ -1,4 +1,5 @@
 import { MidiOutputSelector } from './MidiOutputSelector'
+import { StatusMessage, type StatusKind } from './StatusMessage'
 import type { MidiOutput } from '../midi/types'
 
 interface MidiSetupDialogProps {
@@ -6,6 +7,7 @@ interface MidiSetupDialogProps {
   connecting: boolean
   outputs: readonly MidiOutput[]
   selectedOutputId: string
+  status: { kind: StatusKind; message: string }
   onConnect: () => void
   onClose: () => void
   onSelectionChange: (outputId: string) => void
@@ -30,6 +32,7 @@ export function MidiSetupDialog(props: MidiSetupDialogProps) {
           onConnect={props.onConnect}
           onSelectionChange={props.onSelectionChange}
         />
+        <StatusMessage kind={props.status.kind} message={props.status.message} />
       </section>
     </div>
   )

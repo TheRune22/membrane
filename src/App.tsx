@@ -3,7 +3,7 @@ import { ControllerHeader } from './components/ControllerHeader'
 import { EmptyWorkspace } from './components/EmptyWorkspace'
 import { MidiSetupDialog } from './components/MidiSetupDialog'
 import { OsmoseControlBank } from './components/OsmoseControlBank'
-import { StatusMessage, type StatusKind } from './components/StatusMessage'
+import type { StatusKind } from './components/StatusMessage'
 import { WebMidiService } from './midi/web-midi'
 import type { MidiOutput } from './midi/types'
 import { osmoseParameters } from './osmose/parameters'
@@ -75,10 +75,9 @@ export default function App() {
         <OsmoseControlBank parameters={osmoseParameters} values={controlValues()} onValueChange={sendControlChange} />
       </Show>
     </div>
-    <StatusMessage kind={status().kind} message={status().message} />
   </section>
   <Show when={isMidiSetupOpen()}>
-    <MidiSetupDialog connected={isConnected()} connecting={isConnecting()} outputs={outputs()} selectedOutputId={selectedOutputId()} onConnect={connectMidi} onClose={() => setIsMidiSetupOpen(false)} onSelectionChange={selectOutput} />
+    <MidiSetupDialog connected={isConnected()} connecting={isConnecting()} outputs={outputs()} selectedOutputId={selectedOutputId()} status={status()} onConnect={connectMidi} onClose={() => setIsMidiSetupOpen(false)} onSelectionChange={selectOutput} />
   </Show>
   </main>
 }
