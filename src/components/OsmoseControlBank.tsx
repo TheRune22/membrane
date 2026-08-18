@@ -17,7 +17,7 @@ export function OsmoseControlBank(props: OsmoseControlBankProps) {
       <div class="fader-grid">
         <For each={props.parameters}>{(parameter) => {
           const id = `cc-${parameter.controlChange}`
-          return <label class="fader" for={id}>
+          return <label classList={{ fader: true, [`fader-${parameter.group}`]: true }} for={id}>
             <span class="fader-value">{props.values[parameter.controlChange] ?? 0}</span>
             <span class="fader-track">
               <input id={id} type="range" min="0" max="127" value={props.values[parameter.controlChange] ?? 0}

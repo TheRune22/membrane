@@ -24,11 +24,17 @@ h2 { font-size: 1.12rem; font-weight: 600; }
 .control-bank-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
 .control-bank-heading > p { margin: 0; color: #92988e; font: 500 0.7rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
 .fader-grid { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); min-height: 0; gap: clamp(8px, 1vw, 16px); }
-.fader { display: grid; grid-template-rows: auto minmax(64px, 1fr) auto; gap: 8px; justify-items: center; min-height: 0; padding: clamp(8px, 1vw, 16px) 7px; overflow: hidden; border: 1px solid #3d4439; border-radius: 10px; color: #d7ddd0; background: linear-gradient(180deg, #1b1e1a, #171916); text-align: center; }
-.fader-value { color: #c7df9e; font: 600 0.82rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; }
+.fader { --fader-accent: #b2d576; --fader-tint: rgba(178, 213, 118, 0.08); display: grid; grid-template-rows: auto minmax(64px, 1fr) auto; gap: 8px; justify-items: center; min-height: 0; padding: clamp(8px, 1vw, 16px) 7px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--fader-accent) 38%, #3d4439); border-radius: 10px; color: #d7ddd0; background: linear-gradient(180deg, var(--fader-tint), #171916 44%); box-shadow: inset 0 3px 0 var(--fader-accent); text-align: center; }
+.fader-value { color: var(--fader-accent); font: 600 0.82rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; }
 .fader-track { display: grid; width: 100%; min-height: 0; place-items: center; overflow: hidden; }
-.fader input { width: 30px; height: 100%; min-height: 0; margin: 0; accent-color: #b2d576; appearance: slider-vertical; direction: rtl; writing-mode: vertical-lr; }
+.fader input { width: 30px; height: 100%; min-height: 0; margin: 0; accent-color: var(--fader-accent); appearance: slider-vertical; direction: rtl; writing-mode: vertical-lr; }
 .fader-name { align-self: end; font-size: clamp(0.78rem, 0.82vw, 0.94rem); line-height: 1.25; }
+.fader-macro { --fader-accent: #b2d576; --fader-tint: rgba(178, 213, 118, 0.08); }
+.fader-gain { --fader-accent: #d7a7e8; --fader-tint: rgba(215, 167, 232, 0.08); }
+.fader-effects { --fader-accent: #7bcde3; --fader-tint: rgba(123, 205, 227, 0.08); }
+.fader-performance { --fader-accent: #e6be70; --fader-tint: rgba(230, 190, 112, 0.08); }
+.fader-equalizer { --fader-accent: #7ed6b8; --fader-tint: rgba(126, 214, 184, 0.08); }
+.fader-dynamics { --fader-accent: #ee958d; --fader-tint: rgba(238, 149, 141, 0.08); }
 .empty-workspace { display: grid; place-content: center; justify-items: center; gap: 14px; min-height: 100%; padding: 48px; border: 1px dashed #4b5147; border-radius: 14px; color: #969c91; text-align: center; }
 .empty-workspace .step { margin: 0; }
 .empty-workspace p:not(.step) { max-width: 420px; margin: 0 0 8px; font-size: 0.9rem; line-height: 1.6; }
