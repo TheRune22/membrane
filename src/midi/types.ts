@@ -1,7 +1,7 @@
 export interface MidiOutput {
   readonly id: string
   readonly label: string
-  sendControlChange(controlChange: number, value: number): void
+  sendControlChange(channel: number, controlChange: number, value: number): void
   sendProgramChange(bank: number, program: number): void
 }
 

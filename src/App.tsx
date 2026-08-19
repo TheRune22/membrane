@@ -21,7 +21,7 @@ export default function App() {
   const [isConnected, setIsConnected] = createSignal(false)
   const [isMidiSetupOpen, setIsMidiSetupOpen] = createSignal(true)
   const [isPresetBrowserOpen, setIsPresetBrowserOpen] = createSignal(false)
-  const [controlValues, setControlValues] = createSignal<Readonly<Record<number, number>>>({})
+  const [controlValues, setControlValues] = createSignal<Readonly<Record<string, number>>>({})
   const [status, setStatus] = createSignal<Status>({ kind: 'neutral', message: 'Looking for available MIDI outputs.' })
 
   const unsubscribe = midi.onOutputsChanged((nextOutputs) => {
@@ -62,7 +62,7 @@ export default function App() {
     return outputs().find((candidate) => candidate.id === selectedOutputId())
   }
 
-  function sendControlChange(controlChange: number, value: number) {
+  function sendControlChange(channel: number, controlChange: number, value: number) {
     const output = selectedOutput()
     if (!output) {
       setStatus({ kind: 'error', message: 'Select an available MIDI output before using controls.' })
@@ -71,8 +71,8 @@ export default function App() {
     }
 
     try {
-      output.sendControlChange(controlChange, value)
-      setControlValues((currentValues) => ({ ...currentValues, [controlChange]: value }))
+      output.sendControlChange(channel, controlChange, value)
+      setControlValues((currentValues) => ({ ...currentValues, [`channel-${channel}-cc-${controlChange}`]: value }))
     } catch (error) {
       setStatus({ kind: 'error', message: error instanceof Error ? error.message : 'Unable to send the MIDI control change.' })
     }
