@@ -22,6 +22,8 @@ export const osmoseParameters: readonly OsmoseParameter[] = [
   {name: 'Global FX parameter 2', channel: 1, controlChange: 21, group: 'effects'},
   {name: 'Global FX parameter 3', channel: 1, controlChange: 22, group: 'effects'},
   {name: 'Global FX parameter 4', channel: 1, controlChange: 23, group: 'effects'},
+  {name: 'Global FX parameter 5', channel: 1, controlChange: 95, group: 'effects'},
+  {name: 'Global FX parameter 6', channel: 1, controlChange: 96, group: 'effects'},
   {name: 'Global FX mix', channel: 1, controlChange: 24, group: 'effects'},
   {name: 'EQ tilt value', channel: 1, controlChange: 83, group: 'equalizer'},
   {name: 'EQ frequency', channel: 1, controlChange: 84, group: 'equalizer'},
