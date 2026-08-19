@@ -2,7 +2,7 @@ export interface OsmoseParameter {
   readonly name: string
   readonly channel: number
   readonly controlChange: number
-  readonly group: 'macro' | 'gain' | 'effects' | 'performance' | 'equalizer'
+  readonly group: 'macro' | 'gain' | 'compressor' | 'effects' | 'performance' | 'equalizer'
 }
 
 export const osmoseParameters: readonly OsmoseParameter[] = [
@@ -14,7 +14,10 @@ export const osmoseParameters: readonly OsmoseParameter[] = [
   {name: 'Macro 6', channel: 1, controlChange: 17, group: 'macro'},
   {name: 'Pregain', channel: 1, controlChange: 26, group: 'gain'},
   {name: 'Postgain', channel: 1, controlChange: 18, group: 'gain'},
-  {name: 'Compressor mix', channel: 1, controlChange: 93, group: 'gain'},
+  {name: 'Compressor Threshold', channel: 1, controlChange: 90, group: 'compressor'},
+  {name: 'Compressor Attack', channel: 1, controlChange: 91, group: 'compressor'},
+  {name: 'Compressor Ratio', channel: 1, controlChange: 92, group: 'compressor'},
+  {name: 'Compressor mix', channel: 1, controlChange: 93, group: 'compressor'},
   {name: 'Global FX parameter 1', channel: 1, controlChange: 20, group: 'effects'},
   {name: 'Global FX parameter 2', channel: 1, controlChange: 21, group: 'effects'},
   {name: 'Global FX parameter 3', channel: 1, controlChange: 22, group: 'effects'},

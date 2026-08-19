@@ -55,6 +55,7 @@ h2 { font-size: 1.12rem; font-weight: 600; }
 .fader-name { align-self: end; font-size: clamp(0.78rem, 0.82vw, 0.94rem); line-height: 1.25; }
 .fader-macro { --fader-accent: #c3eb7e; --fader-tint: rgba(195, 235, 126, 0.23); }
 .fader-gain { --fader-accent: #e0a9f5; --fader-tint: rgba(224, 169, 245, 0.23); }
+.fader-compressor { --fader-accent: #7eb6f5; --fader-tint: rgba(126, 182, 245, 0.23); }
 .fader-effects { --fader-accent: #ff9388; --fader-tint: rgba(255, 147, 136, 0.23); }
 .fader-performance { --fader-accent: #f4c65e; --fader-tint: rgba(244, 198, 94, 0.23); }
 .fader-equalizer { --fader-accent: #70e0bc; --fader-tint: rgba(112, 224, 188, 0.23); }
