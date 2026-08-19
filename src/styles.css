@@ -34,7 +34,7 @@ h2 { font-size: 1.12rem; font-weight: 600; }
 .control-bank { display: grid; grid-template-rows: minmax(0, 1fr); min-height: 0; width: 100%; }
 .control-bank-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
 .control-bank-heading > p { margin: 0; color: #92988e; font: 500 0.7rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
-.fader-grid { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); min-height: 0; gap: clamp(8px, 1vw, 16px); }
+.fader-grid { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); grid-auto-rows: minmax(0, 1fr); min-height: 0; gap: clamp(8px, 1vw, 16px); }
 .fader { --fader-accent: #b2d576; --fader-tint: rgba(178, 213, 118, 0.23); display: grid; grid-template-rows: auto minmax(64px, 1fr) auto; gap: 8px; justify-items: center; min-height: 0; padding: clamp(8px, 1vw, 16px) 7px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--fader-accent) 48%, #3d4439); border-radius: 10px; color: #e8ece2; background: linear-gradient(180deg, color-mix(in srgb, var(--fader-tint) 48%, transparent), #171916 56%); box-shadow: inset 0 3px 0 var(--fader-accent), inset 0 -18px 24px rgba(0, 0, 0, 0.12); text-align: center; transition: border-color 150ms ease, background 150ms ease, transform 150ms ease; }
 .fader:hover, .fader:focus-within { border-color: var(--fader-accent); background: linear-gradient(180deg, var(--fader-tint), #171916 56%); transform: translateY(-2px); }
 .fader:focus-within { box-shadow: inset 0 3px 0 var(--fader-accent), 0 0 0 3px color-mix(in srgb, var(--fader-accent) 22%, transparent); }
@@ -110,7 +110,7 @@ select:disabled { color: #797e75; background: #171916; }
   .header-actions { width: 100%; justify-content: space-between; }
   .workspace { padding: 24px 0; }
   .control-bank-heading { align-items: flex-start; flex-direction: column; }
-  .fader-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(0, 1fr)); }
+  .fader-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .fader { grid-template-rows: auto minmax(36px, 1fr) auto; gap: 3px; padding: 6px 3px; }
   .fader-value { font-size: 0.7rem; }
   .fader-cap { top: clamp(0px, calc(100% - var(--fader-position) - 6px), calc(100% - 13px)); width: 25px; height: 13px; }
