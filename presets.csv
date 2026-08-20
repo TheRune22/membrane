@@ -532,6 +532,8 @@ tap sitar,33,83,plucked,acoustic + clean + reverberant
 tape melody,33,84,keys,airy + analog + clean + lofi + simple + soft + warm
 taste of june,33,85,pads,analog + chords + ensemble + soft + stereo + warm
 tb keys,34,71,keys,aggressive + analog + distorted
+tb seq-2os,34,72,keys,aggressive + analog + distorted
+tb seq-3os,34,73,keys,analog + distorted + lfo
 telecasta,34,74,plucked,acoustic + electric
 tender stuck,33,86,mallets,acoustic + soft
 terjintro,33,87,keys,analog
@@ -606,5 +608,3 @@ yfm,34,12,keys,fm + lfo + stereo
 zapzap,34,14,sfx,analog + atonal + lfo + reverberant
 zazipad,34,15,pads,airy + echo + ensemble + noise + synthetic
 zenpercs,34,16,mallets,acoustic + intimate + soft
-2os,34,72,keys,aggressive + analog + distorted
-3os,34,73,keys,analog + distorted + lfo
