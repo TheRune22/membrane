@@ -28,7 +28,7 @@ export const osmoseParameters: readonly OsmoseParameter[] = [
   {name: 'EQ tilt value', channel: 1, controlChange: 83, group: 'equalizer'},
   {name: 'EQ frequency', channel: 1, controlChange: 84, group: 'equalizer'},
   {name: 'EQ mix', channel: 1, controlChange: 85, group: 'equalizer'},
-  {name: 'Sustain', channel: 1, controlChange: 64, group: 'performance'},
   {name: 'Sostenuto 1', channel: 1, controlChange: 66, group: 'performance'},
   {name: 'Sostenuto 2', channel: 1, controlChange: 69, group: 'performance'},
+  {name: 'Sustain', channel: 1, controlChange: 64, group: 'performance'},
 ]
