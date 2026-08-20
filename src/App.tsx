@@ -1,6 +1,5 @@
 import { Show, createSignal, onCleanup, onMount } from 'solid-js'
 import { ControllerHeader } from './components/ControllerHeader'
-import { EmptyWorkspace } from './components/EmptyWorkspace'
 import { MidiSetupDialog } from './components/MidiSetupDialog'
 import { OsmoseControlBank } from './components/OsmoseControlBank'
 import { PresetBrowserDialog } from './components/PresetBrowserDialog'
@@ -95,9 +94,12 @@ export default function App() {
   return <main class="page-shell"><section class="controller" aria-labelledby="page-title">
     <ControllerHeader connected={isConnected()} presetSelectionEnabled={Boolean(selectedOutput())} selectedPreset={selectedPreset()} selectedMidiDevice={selectedOutput()?.label} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} />
     <div class="workspace">
-      <Show when={selectedOutputId()} fallback={<EmptyWorkspace onOpenMidiSetup={() => setIsMidiSetupOpen(true)} />}>
-        <OsmoseControlBank parameters={osmoseParameters} values={controlValues()} onValueChange={sendControlChange} />
-      </Show>
+      <OsmoseControlBank
+        parameters={osmoseParameters}
+        values={controlValues()}
+        disabled={!selectedOutputId()}
+        onValueChange={sendControlChange}
+      />
     </div>
   </section>
   <Show when={isMidiSetupOpen()}><MidiSetupDialog connected={isConnected()} connecting={isConnecting()} outputs={outputs()} selectedOutputId={selectedOutputId()} status={status()} onRefresh={refreshMidiOutputs} onClose={() => setIsMidiSetupOpen(false)} onSelectionChange={selectOutput} /></Show>

@@ -17,7 +17,6 @@ export function MidiOutputSelector(props: MidiOutputSelectorProps) {
     <section class="control-group" aria-labelledby="output-heading">
       <div class="section-heading">
         <div>
-          <p class="step">01</p>
           <h2 id="output-heading">MIDI output</h2>
         </div>
         <button class="secondary-button" type="button" onClick={props.onRefresh} disabled={props.connecting}>

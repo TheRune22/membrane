@@ -19,6 +19,6 @@
 
 ## Verification and commits
 
-- Before finishing a code change, run `npm run build:sandbox`.
-- After verification succeeds, commit the completed cohesive change with a concise commit message.
-- If the sandbox build cannot run, state why and do not claim full verification.
+- Before finishing a code change, run `npm run build`.
+- After verification succeeds, ask the user to verify that the result is satisfactory, then commit the completed cohesive change with a concise commit message.
+- If the production build cannot run, state why and do not claim full verification.
