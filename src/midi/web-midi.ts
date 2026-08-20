@@ -35,7 +35,8 @@ export class WebMidiService implements MidiService {
   async connect() {
     if (!navigator.requestMIDIAccess) throw new Error('Web MIDI is unavailable in this browser. Please use a Chromium-based browser.')
 
-    this.access ??= await navigator.requestMIDIAccess()
+    if (this.access) this.access.onstatechange = null
+    this.access = await navigator.requestMIDIAccess()
     this.access.onstatechange = () => this.notifyListeners()
     this.notifyListeners()
   }
