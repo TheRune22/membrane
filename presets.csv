@@ -1,185 +1,369 @@
 preset name,cc 0,PGM,type,characters
-bitcrush keys,34,17,keys,
-bitcrush mod,34,18,keys,echo + lofi + synthetic
-blide,34,19,pads,analog + lofi
-bouncing pad,34,20,pads,lofi + warm
-bow tenor,34,21,bowed,acoustic + clean
-brassick,34,22,brass,acoustic + warm
-crush 2op,34,23,pads,lofi
-crush organ,34,24,organ,distorted + lofi + noise
-dakota sunset,34,25,pads,analog + distorted + lofi + warm
-diode pwm lead,34,26,lead,analog + portamento + warm
-diode pwm pad,34,27,pads,analog + clean + simple
-dubby reeds,34,28,flute reeds,acoustic + clean + echo
-dx magic,34,29,elec piano,digital + electric + fm
-eleclaf,34,30,elec piano,bright + digital + electric
-emilia,34,31,pads,analog + bright + simple
-epica,34,32,pads,analog + warm
-fabulia,34,33,pads lfo,feelgood
-resonator,34,34,plucked,clean + intimate
-fragilkey,34,34,mallets,lofi
-glassilia,34,36,mallets,acoustic + airy + bright + clean + soft
-guitararium,34,37,plucked,aggressive + distorted + echo
-harplitude,34,38,plucked,acoustic + lofi + metallic
-harpoke,34,39,plucked,acoustic + clean + lfo
-hide overload,34,40,lead,analog + echo
-jenny sync,34,41,keys,aggressive + lfo + synthetic
-jueno pad,34,42,pads,analog + clean
-justik,34,43,bass,aggressive + analog + distorted + warm
-kaladia,34,44,keys,analog
-kawaship,34,45,keys,analog + bright + clean + warm
-kinell,34,46,mallets,acoustic + bright
-kobolid,34,47,lead,analog + reverberant
-mafrila,34,48,mallets,acoustic + metallic
-marxophone,34,49,plucked,acoustic + lfo + metallic
-mascade,34,50,pads,analog + lfo + warm
-metallet,34,51,mallets,acoustic + bright + metallic
-numana,34,52,pads,analog + ensemble
-onereed alto,34,53,brass,acoustic + bright + warm
-onereed tenor,34,54,brass,acoustic + metallic
-op clav,34,55,keys,bright + clean + digital
-paladia,34,56,pads,analog + stereo + warm
-photalia,34,57,pads,analog
-pitchy place,34,58,sfx,atonal + echo
-rock robot,34,59,bass,aggressive + analog + distorted
-rusty dissonance,34,60,sfx,atonal + metallic
-saxalam,34,61,brass,acoustic
-saxman,34,62,brass,acoustic + metallic
-shifted wg,34,63,sfx,acoustic + aggressive + distorted + lofi + reverberant
-snowflakes,34,64,mallets,acoustic + airy + metallic
-solistrings,34,65,pads,analog + ensemble + stereo
-soustitre,34,66,pads,analog
-stacked osc,34,67,lead,aggressive + analog + ensemble
-strikey,34,68,elec piano,bright + electric
-synky,34,69,keys,analog
-tabernak,34,70,pads,distorted + lofi + stereo
-tb keys,34,71,keys,aggressive + analog + distorted
-2os,34,72,keys,aggressive + analog + distorted
-3os,34,73,keys,analog + distorted + lfo
-telecasta,34,74,plucked,acoustic + electric
-tesla pad,34,75,sfx,noise + stereo + synthetic
-the analog,34,76,pads,analog + ensemble
-the touch satur,34,77,plucked,acoustic + echo + intimate + reverberant
-tinette,34,78,keys,distorted + electric
-transistor pwm,34,79,bass,analog + warm
-transitor shimmer keys,34,80,keys,analog + clean + lfo
-transmission,34,81,sfx,atonal + lofi + noise
-tribol,34,82,mallets,acoustic + bright + metallic
-udon,34,83,keys,analog + warm
-udon v2,34,84,keys,analog + warm
-va bass 1,34,85,bass,analog + warm
-va bass 2,34,86,bass,analog + warm
-va brass 1,34,87,brass,analog + warm
-va keys 1,34,88,keys,analog + warm
-va keys 2,34,89,keys,analog + warm
-va keys 3,34,90,keys,analog + warm
-va leads 1,34,91,lead,analog + warm
-va pads 1,34,92,bass,analog + warm
-va pads 2,34,93,pads,analog + warm
-va pads 3,34,94,pads,analog + warm
-violens,34,95,bowed,acoustic + clean + intimate
-vorelso,34,96,pads,airy + layered + vocal
+abyss lands,30,0,pads,dark + echo + evolving + layered + reverberant
 acid bass,30,1,bass,aggressive + analog + distorted + stereo
 acouskop,30,2,bass,acoustic + distorted + fm + shaking
+acuitar,30,3,plucked,acoustic + portamento
+aerials,30,4,keys,analog
+after the rain,30,5,pads,acoustic + noise
+alacloud,30,6,mallets,acoustic + echo + lfo
+alenvers,30,7,pads,fm + lfo + stereo
+algo call,30,8,pads,fm + stereo
+altersaw,30,9,lead,analog
+ambiant analog 1,30,10,keys,analog + big + echo + reverberant + synthetic
+analog adsr,30,11,keys,analog + synthetic
+analog scream,30,12,keys,aggressive + analog + big + distorted + noise + stereo + warm
+anatolianpad,30,14,pads,analog + chords
+another big one,30,15,pads,aggressive + big + reverberant + synthetic
+anthophila organ,30,16,organ,acoustic + ensemble
+aplassian,30,17,plucked,acoustic + electric
+aqueous feel,30,18,keys,airy + bright + clean + digital
+archer,30,20,bowed,acoustic
+astral titans,30,21,pads,analog + distorted + fm
+azure key,30,22,keys,bright + clean + digital + simple + soft
+babrass,30,23,brass,acoustic
+bacteria,30,24,sfx,airy + atonal + metallic + noise + reverberant
+badratios bell,30,25,sfx,atonal + fm
+balafun,30,26,mallets,acoustic + woody
+balloon from hanoi,30,27,plucked,acoustic + clean + strumming
+bandrive paradise,30,28,lead,analog + distorted
+banjoy,30,29,plucked,acoustic + shaking
 bass distosine,30,31,bass,acoustic + synthetic
 bass monster,30,32,bass,analog + distorted + portamento + synthetic
-chordead,30,74,bass,analog + chords
-deep corners,30,108,bass,analog + chords
-dirt acid,30,112,bass,analog + distorted
-doubleslap,30,119,bass,acoustic + shaking + warm + woody
-edgy fm,30,127,bass,fm
-eighty neon,31,3,bass,analog
-electric bass 1,31,5,bass,acoustic + electric
-electric bass 2,31,6,bass,acoustic + electric
-fat model d,31,29,bass,analog + big + noise + portamento + warm
-flunkly,31,36,bass,analog
-fm darkness,31,43,bass,aggressive + big + dark + digital + dry + ensemble + fm + noise
-fm doublebass,31,44,bass,clean + fm + portamento
-fm slapman,31,50,bass,bright + digital + fm + metallic + stereo
-forgotten animal,31,54,bass,analog + fm + portamento
-forty eight db,31,55,bass,analog + distorted
-fourad,31,56,bass,analog + distorted
-fretless bass,31,57,bass,acoustic + portamento
-grittysaw,31,76,bass,analog + distorted
-hollowrez,31,86,bass,analog
-juknow that bass,31,107,bass,analog + big + clean + simple + soft + stereo
-kinespeech,31,121,bass,analog + vocal
-lacous bass,32,5,bass,acoustic + portamento
-ladder bass,32,7,bass,analog + lfo + synthetic
-night bass,32,58,bass,analog + portamento
-outspoken,32,92,bass,analog
-piercing bass,32,109,bass,aggressive + big + dark + digital
-pl-bass,32,114,bass,analog + dry + warm
-pulzz,32,126,bass,analog
-reesotto,33,5,bass,aggressive + digital
-reesy rider,33,6,bass,aggressive + analog + distorted + stereo
-rusty bass,33,19,bass,dark + digital + fm + soft
-rusty square,33,20,bass,analog + distorted
-simpledecay,33,39,bass,analog + distorted
-simplerez,33,41,bass,analog
-smooth operator,33,48,bass,acoustic + fm
-solid square,33,49,bass,analog
-steroids,33,68,bass,analog + noise
-sub bass 1,33,74,bass,analog
-subway,33,75,bass,analog + clean + dark + fm + simple
-syncat,33,77,bass,analog
-thrilla bass,33,95,bass,analog + dry
-velsquare,33,114,bass,analog
-vintage wide bass,33,119,bass,analog + big + dark + portamento + soft + stereo + warm
-walking blues,33,125,bass,acoustic
-wallface,33,127,bass,digital + fm + portamento
-archer,30,20,bowed,acoustic
+bass pad,30,33,pads,aggressive + analog + distorted
+bazambar,30,34,plucked,acoustic + shaking
+bella fm,30,36,mallets,bright + fm + strumming
+bells of digul,30,37,mallets,acoustic + metallic
+beny's territory,30,38,pads,acoustic + layered
+biquide hang,30,40,mallets,acoustic + metallic
+biquide harp,30,41,plucked,acoustic + clean + soft
+biquide steel,30,42,mallets,acoustic + metallic
+biquige bell,30,43,mallets,acoustic + metallic
+bird whistler,30,44,sfx,nature
+bitcrush keys,34,17,keys,
+bitcrush mod,34,18,keys,echo + lofi + synthetic
+bits organ,30,45,organ,analog + bright + strumming
+blasiz,30,46,lead,analog
+bleached organ,30,47,organ,fm + simple + stereo + woody
+blide,34,19,pads,analog + lofi
+blipkrieg,30,48,sfx,atonal + digital + fm + lofi
+bouncing pad,34,20,pads,lofi + warm
+bouncing spray,30,49,mallets,acoustic + echo + lfo + metallic
+bow tenor,34,21,bowed,acoustic + clean
+bowedsymphfm,30,50,keys,acoustic + clean + fm + shaking + soft + stereo
 bowreal lights,30,51,bowed,acoustic + layered + reverberant
+brass fm,30,52,brass,acoustic + fm + portamento
+brass fm2,30,53,brass,acoustic + fm + portamento
+brass fm3,30,54,brass,acoustic + portamento
+brassick,34,22,brass,acoustic + warm
+brassimple,30,55,brass,analog
+brassy,30,57,brass,acoustic
+brave fields,30,58,pads,analog
+bright organ,30,59,organ,acoustic + fm
+brightbank,30,60,mallets,acoustic + shaking
+canyon steel,30,61,plucked,acoustic + echo + portamento + soft
+carbon marimba,30,62,mallets,acoustic + lfo + warm + woody
+carifem,30,63,pads,fm + lfo
+celestial,30,64,mallets,acoustic
+celestial basin,30,65,sfx,airy + atonal + metallic + reverberant
 cellove,30,66,bowed,acoustic + portamento
 cellovir,30,67,bowed,acoustic
 chamber mellobow,30,68,bowed,acoustic + ensemble + lofi + stereo
 chamber strings,30,69,bowed,acoustic + clean + ensemble
-duocello,30,120,bowed,acoustic + portamento
-erumi,31,22,bowed,acoustic
-harmod,31,82,bowed,acoustic + portamento
-hybrid strings 1,31,92,bowed,analog
-hybrid strings 2,31,93,bowed,analog + lofi + noise
-hybrid strings 3,31,94,bowed,acoustic + analog
-lost ensemble,32,27,bowed,acoustic + analog + reverberant
-noisyman,32,61,bowed,acoustic
-noisypad,32,62,bowed,acoustic + noise
-numens strings,32,67,bowed,acoustic
-pajestric,32,98,bowed,layered
-pcs dandelion,32,104,bowed,bright + echo + evolving + icy + portamento + synthetic
-pressow,32,123,bowed,acoustic
-roto string,33,18,bowed,acoustic + airy + lfo + noise
-scie tard,33,24,bowed,acoustic + portamento
-stringtroen,33,73,bowed,acoustic
-trepizcato,33,101,bowed,acoustic
-viollaggio,33,120,bowed,acoustic
-violloiv,33,121,bowed,acoustic + echo
-vln vla cel bass 2,33,122,bowed,acoustic + clean
-babrass,30,23,brass,acoustic
-brass fm,30,52,brass,acoustic + fm + portamento
-brass fm2,30,53,brass,acoustic + fm + portamento
-brass fm3,30,54,brass,acoustic + portamento
-brassimple,30,55,brass,analog
-brassy,30,57,brass,acoustic
+cherie fm,30,70,lead,fm
+chick s lead,30,71,lead,analog + clean + portamento + soft + warm
+choir,30,72,pads,synthetic + vocal
+choir additive,30,73,pads,clean + vocal
+chordead,30,74,bass,analog + chords
+churchorgan,30,75,organ,acoustic
+classicana key,30,78,keys,analog + simple
+classicana lead,30,79,lead,analog + echo + simple
+classipad,30,80,pads,analog + ensemble + simple
+clavichord,30,82,mallets,acoustic + clean
+clavicorda,30,83,keys,digital + fm + shaking + stereo
+clings,30,85,mallets,acoustic + intimate + metallic + shaking + stereo
+cold lead,30,86,lead,analog + noise + simple + stereo + warm
+column of eternity,30,87,pads,clean + fm + simple + stereo
+copper club,30,89,lead,analog
+coridor,30,90,pads,fm + reverberant
+cork the bottle,30,91,sfx,atonal + dry + electric
 cosmic blues,30,92,brass,acoustic + portamento
+crackling things,30,94,sfx,atonal
+creaker,30,95,sfx,acoustic + atonal + intimate + lfo
+crossmod,30,96,pads,fm + stereo
+crossynthar,30,97,plucked,acoustic
+crush 2op,34,23,pads,lofi
+crush organ,34,24,organ,distorted + lofi + noise
+crystal harmonics,30,98,mallets,acoustic + airy + shaking
+cs80+ladder,30,99,pads,analog + big + reverberant + synthetic
+cs80+ladder II,30,100,pads,analog + chords
+cumulus,30,101,mallets,acoustic + bright + echo + lfo + metallic + stereo
 cvc 1,30,102,brass,voice
 cvc 2,30,103,brass,voices
 cvc 4,30,104,brass,voices
+cycle and duty,30,105,pads,analog + stereo
+dabka 2022,30,106,lead,acoustic + digital
+dakota sunset,34,25,pads,analog + distorted + lofi + warm
+declanche,30,107,keys,fm + lfo
+deep corners,30,108,bass,analog + chords
+delight lead,30,109,lead,analog + echo + simple
+dfm,30,111,keys,fm + stereo
+diode pwm lead,34,26,lead,analog + portamento + warm
+diode pwm pad,34,27,pads,analog + clean + simple
+dirt acid,30,112,bass,analog + distorted
+dirty osc pad,30,113,pads,airy + echo + evolving + lofi + random + synthetic
+disco dawn,30,114,keys,analog + dry + intimate + simple
+distortion guitar,30,115,plucked,acoustic + portamento
+dolce cristallo,30,116,mallets,acoustic + icy + intimate + metallic
+double saw,30,118,keys,analog + chords + simple
+doubleslap,30,119,bass,acoustic + shaking + warm + woody
+dubby reeds,34,28,flute reeds,acoustic + clean + echo
+duocello,30,120,bowed,acoustic + portamento
+dx magic,34,29,elec piano,digital + electric + fm
+dx1,30,121,keys,fm
+dx2,30,122,keys,fm
+dx3,30,123,keys,fm
+dx4,30,124,keys,fm
+dxim,30,125,keys,fm
+ebosin,30,126,pads,acoustic + ensemble + layered
+edgy fm,30,127,bass,fm
+efferie,31,0,keys,fm + strumming
+efmope,31,1,keys,bright + fm + simple
+eightiki,31,2,keys,analog + fm
+eighty neon,31,3,bass,analog
+ekeynox,31,4,keys,analog
+eleclaf,34,30,elec piano,bright + digital + electric
+electric bass 1,31,5,bass,acoustic + electric
+electric bass 2,31,6,bass,acoustic + electric
+electric wazoo,31,10,sfx,atonal + dry + electric + synthetic
+electrical bacher,31,11,mallets,acoustic + dark + metallic + reverberant + stereo
+ellis guitar,31,12,plucked,acoustic
+elsynkey,31,13,keys,analog
+emancikey,31,14,keys,analog
+emilia,34,31,pads,analog + bright + simple
+empty,31,15,,
+entanglement,31,17,sfx,aggressive + atonal + big + echo + evolving + reverberant
+envinkin,31,18,keys,analog
+envinkon,31,19,keys,analog
+epica,34,32,pads,analog + warm
+erumi,31,22,bowed,acoustic
 essendar,31,23,brass,
+etalophone,31,24,mallets,acoustic
+etherry,31,25,mallets,acoustic
+expluck,31,27,plucked,acoustic + shaking
+fabulia,34,33,pads lfo,feelgood
 fancy brass,31,28,brass,bright + chords + ensemble + lfo + stereo
+fat model d,31,29,bass,analog + big + noise + portamento + warm
+fdn crazyness,31,30,sfx,aggressive + atonal + big + electric + evolving + portamento + reverberant
+feleaz,31,31,keys,fm + simple + stereo
+feltgrains,31,32,mallets,acoustic + airy + noise + shaking + woody
+fleme,31,33,keys,fm
+floppy disk lands,31,35,pads,fm + lofi + noise + random + stereo
+flunkly,31,36,bass,analog
+fm 2612,31,39,pads,fm
+fm basic 4-ops,31,40,keys,bright + fm + strumming
 fm brassypoly,31,41,brass,clean + digital + ensemble + fm + soft + stereo
+fm darkness,31,43,bass,aggressive + big + dark + digital + dry + ensemble + fm + noise
+fm doublebass,31,44,bass,clean + fm + portamento
+fm dreampiano,31,45,keys,airy + fm + strumming + warm
+fm glacier,31,46,mallets,bright + clean + digital + echo + fm + icy + metallic + reverberant
+fm hang perc,31,47,mallets,digital + fm + noise + woody
+fm slapman,31,50,bass,bright + digital + fm + metallic + stereo
+fmwood&strings,31,51,keys,acoustic + metallic
+fof variabler res,31,52,keys,synthetic + vocal
+foming,31,53,keys,bright + fm
+forgotten animal,31,54,bass,analog + fm + portamento
+forty eight db,31,55,bass,analog + distorted
+fourad,31,56,bass,analog + distorted
+fragilkey,34,34,mallets,lofi
+fretless bass,31,57,bass,acoustic + portamento
+fruku,31,58,plucked,acoustic
+fukuel,31,59,mallets,acoustic + metallic + shaking
+funky lead,31,60,lead,analog + simple
 futazz,31,61,brass,analog
+futur engine,31,62,sfx,digital
+gabber 21,31,63,lead,aggressive + digital
+game invader,31,64,keys,digital + lofi + shaking
+gamelan spinner,31,65,mallets,clean + lfo + metallic
+geiger insects,31,66,sfx,atonal + intimate + lfo + nature + stereo
+ghabla,31,67,perc,acoustic
+ghost voice,31,68,lead,lofi + portamento + vocal
 gimmirez,31,69,brass,analog
+glassilia,34,36,mallets,acoustic + airy + bright + clean + soft
+graceful integrated,31,71,keys,analog + fm + simple + soft
+grains pluck,31,72,plucked,acoustic + metallic
+grandfather clock,31,73,mallets,metallic
+grandma's garden,31,74,pads,evolving + layered + lofi + woody
+granu osc,31,75,pads,fm + lfo + stereo
+grittysaw,31,76,bass,analog + distorted
+grubbead,31,77,lead,aggressive + distorted + fm
+guitararium,34,37,plucked,aggressive + distorted + echo
+gypsy kinetar,31,78,plucked,acoustic + shaking
+hantpad,31,80,pads,dark
 harmbrass,31,81,brass,acoustic + portamento
+harmod,31,82,bowed,acoustic + portamento
+harmolick,31,83,plucked,acoustic + metallic + portamento
+harplitude,34,38,plucked,acoustic + lofi + metallic
+harpoke,34,39,plucked,acoustic + clean + lfo
+harpsichord,31,84,mallets,acoustic + clean
+harpsytron,31,85,keys,dry + electric + fm
+hide overload,34,40,lead,analog + echo
+hollowrez,31,86,bass,analog
+hoovasquare,31,87,lead,analog + simple
 horn ytorink,31,88,brass,acoustic + warm
+howling sines,31,89,sfx,atonal + dark
+hp tales,31,90,keys,analog
+hybrid harp,31,91,plucked,acoustic + fm + soft
+hybrid strings 1,31,92,bowed,analog
+hybrid strings 2,31,93,bowed,analog + lofi + noise
+hybrid strings 3,31,94,bowed,acoustic + analog
+hyoshigi,31,95,perc,acoustic + atonal
+ikia,31,96,keys,fm + lfo
+insert coins,31,97,lead,bright + echo + lfo
+interkin,31,98,pads,analog
+ishango bone,31,99,perc,atonal + woody
+jaymar toy piano,31,101,mallets,acoustic + clean + dry + intimate
+jenny choir,31,102,pads,ensemble + vocal
+jenny fm,31,103,pads,fm + lfo + stereo
+jenny pulse,31,104,mallets,analog + echo + lfo + reverberant + synthetic
+jenny sync,34,41,keys,aggressive + lfo + synthetic
 jennybrass,31,105,brass,acoustic + fm + portamento
+jentenot,31,106,lead,
+jueno pad,34,42,pads,analog + clean
+juknow that bass,31,107,bass,analog + big + clean + simple + soft + stereo
+julia,31,108,lead,analog + simple
+jumpare,31,109,keys,analog + lfo
+june sunset,31,110,keys,analog
+jupinard,31,111,keys,analog + dry + simple
+jupipad,31,112,pads,analog + intimate
+justik,34,43,bass,aggressive + analog + distorted + warm
+jx10 1b,31,113,keys,analog + soft
+kaitof,31,114,perc,acoustic + noise
+kaladia,34,44,keys,analog
+karkup,31,116,plucked,acoustic + shaking
+karplus & modMan,31,117,plucked,clean + strumming + warm
+kawaship,34,45,keys,analog + bright + clean + warm
+kick bass slide,31,118,perc,analog + distorted + portamento + simple
+kinaflap,31,119,keys,analog
+kinafun,31,120,keys,analog + lfo
+kinell,34,46,mallets,acoustic + bright
+kinespeech,31,121,bass,analog + vocal
+kinetic analog,31,122,keys,analog
+kinetic anaseq,31,123,keys,aggressive + analog + echo + lfo + stereo + synthetic
+kinetic bowed fdn,31,124,sfx,atonal + dark + evolving + reverberant + stereo
+kinetic dragon,31,125,sfx,aggressive + atonal + distorted + reverberant
+kinetic micromotor,31,126,sfx,atonal + echo + lfo + synthetic
+kinetic overtones,31,127,sfx,aggressive + atonal + digital + distorted + reverberant + stereo + synthetic
+kinetic satpad,32,0,keys,aggressive + analog + big + distorted + ensemble + evolving + reverberant
+kinetic soundboard,32,1,plucked,acoustic + metallic + reverberant + shaking + synthetic
+kobolid,34,47,lead,analog + reverberant
+koto,32,3,plucked,acoustic + clean + intimate + strumming
+labello,32,4,mallets,acoustic + fm
+lacous bass,32,5,bass,acoustic + portamento
+ladagcer,32,6,keys,analog
+ladder bass,32,7,bass,analog + lfo + synthetic
+lalalead,32,8,lead,analog + portamento
+lamellas,32,9,mallets,acoustic + metallic + strumming
+lampadaire,32,10,pads,analog + lofi
+larekin,32,11,pads,analog + lofi
+larekin 2,32,12,pads,analog
+lavaya,32,13,keys,fm
+leadio,32,14,lead,analog
+libellule,32,16,mallets,acoustic + fm + strumming
+lighthouse,32,17,lead,analog
+lililead,32,18,lead,analog
+lilly,32,19,keys,acoustic + fm + soft + stereo
+lino,32,20,keys,analog
+lips steel,32,21,plucked,acoustic + portamento
+living pad,32,22,pads,analog + evolving + lfo
+lonely data,32,23,sfx,atonal + digital + intimate + lfo + synthetic
+lonely square,32,24,lead,analog + reverberant + simple
+lost beacon,32,25,keys,airy + analog + intimate + lfo + reverberant + synthetic + warm
+lost choir,32,26,pads,airy + ensemble + evolving + synthetic + vocal
+lost ensemble,32,27,bowed,acoustic + analog + reverberant
+lost operator,32,28,pads,fm
+lytiny,32,29,mallets,acoustic + shaking
+mafrila,34,48,mallets,acoustic + metallic
+magic pluck,32,30,mallets,acoustic + airy + bright + layered + shaking
+main square,32,31,lead,analog
+malabel,32,32,mallets,acoustic + shaking + strumming
+malgo,32,33,pads,fm
+marie s birds,32,34,sfx,acoustic + fm
+marlin perkins 1,32,35,perc,clean + intimate + woody
+marombox,32,36,mallets,acoustic + shaking
+marxophone,34,49,plucked,acoustic + lfo + metallic
+mascade,34,50,pads,analog + lfo + warm
+mattalo,32,38,mallets,acoustic + metallic
+mbiraski,32,39,mallets,clean + intimate + metallic
+metallet,34,51,mallets,acoustic + bright + metallic
+metarmonix,32,40,perc,acoustic + analog + metallic
+mild kisses,32,42,plucked,acoustic + portamento + soft
+minimando,32,43,plucked,acoustic + strumming
+minor de fond,32,44,lead,analog + chords
+modowel,32,46,pads,soft + stereo + vocal
+mojo of fdn,32,47,sfx,acoustic + atonal + echo + reverberant + strumming
+montine,32,48,keys,acoustic
+moving slate,32,49,pads,stereo
+munsplen,32,50,pads,analog
+music box bells,32,51,mallets,acoustic + dry + intimate + metallic
+mystaring,32,52,sfx,atonal + dark + fm
+nails on metal,32,53,sfx,acoustic + shaking
+nband,32,54,keys,airy + noise
+neon key,32,55,keys,analog
+neon key dreams,32,56,keys,analog + chords + lofi
+ngoni,32,57,plucked,acoustic + clean + strumming
+night bass,32,58,bass,analog + portamento
+nimbus,32,59,mallets,acoustic + airy + echo + lfo
+nofiad,32,60,pads,evolving + layered + lofi
+noisyman,32,61,bowed,acoustic
+noisypad,32,62,bowed,acoustic + noise
+noisything,32,63,mallets,acoustic
+nostalgia,32,64,lead,analog + lofi
+notenstrum,32,65,keys,analog + strumming
+notiseq,32,66,pads,chords + fm + lfo
+numana,34,52,pads,analog + ensemble
+numens strings,32,67,bowed,acoustic
+nynx,32,68,pads,fm + lfo + stereo
+oblivion,32,69,pads,ensemble + evolving + layered + lofi + stereo
+ocean triggs,32,71,mallets,acoustic + echo + lfo + metallic
+ocherry,32,72,plucked,acoustic + fm
+octalive drum,32,73,perc,acoustic + atonal + layered + metallic
+octecho,32,74,keys,analog + echo
+old pad machine,32,75,organ,analog + ensemble + evolving + lofi + synthetic
+onereed alto,34,53,brass,acoustic + bright + warm
+onereed tenor,34,54,brass,acoustic + metallic
+op clav,34,55,keys,bright + clean + digital
+op offset,32,76,pads,fm + lfo + stereo
+op repeat,32,77,keys,fm + lfo + stereo
+op2bell,32,78,mallets,fm + strumming
+opead,32,79,lead,analog
+opeal,32,80,lead,
+organ 1,32,82,organ,
+organ 2,32,83,organ,
+organ 3,32,84,organ,
+organ 4,32,85,organ,electric
+organ barbar,32,86,organ,
+organ voxy,32,87,organ,
+organo WereYouThere,32,88,organ,electric + reverberant
+os2dx,32,89,keys,fm
+osc dcf,32,90,keys,analog + simple
 osc five,32,91,brass,analog + simple + stereo
-smooth mouth,33,47,brass,acoustic + vocal
-trumpey,33,102,brass,analog
-vbrass 1,33,113,brass,acoustic + bright + clean + synthetic
-versailles brass,33,116,brass,analog + big + ensemble + simple + soft + warm
-vocalise,33,123,brass,clean + synthetic + vocal
-walking elephants,33,126,brass,acoustic + warm + woody
-wow soul chords,34,10,brass,analog + simple + soft
+outspoken,32,92,bass,analog
+pad 101,32,93,pads,airy + bright + chords + clean + echo + icy + noise + simple + stereo
+pad awan,32,94,pads,simple
+padding time,32,95,pads,analog + clean + ensemble + soft + stereo + warm
+padorama,32,96,pads,layered
+padorgan,32,97,organ,lofi + stereo
+pajestric,32,98,bowed,layered
+paladia,34,56,pads,analog + stereo + warm
+paliakey,32,99,keys,analog
+paperheart,32,101,keys,acoustic + shaking
+paris texas,32,102,plucked,acoustic + metallic
+patacalbas,32,103,perc,acoustic
+pcs dandelion,32,104,bowed,bright + echo + evolving + icy + portamento + synthetic
+perseus supernova,32,105,pads,analog + big + reverberant
+petit carillon,32,106,mallets,acoustic + metallic + shaking
+phase machine,32,107,pads,bright + ensemble + stereo
+photalia,34,57,pads,analog
 piano bazikey,30,35,elec,analog + simple
 piano beyond felt,30,39,elec,acoustic + shaking + strumming
 piano clavi 1,30,81,elec,electric
@@ -205,6 +389,31 @@ piano opikey,32,81,elec,fm
 piano tine,33,97,elec,acoustic + clean + dry + electric + intimate
 piano tinolin,33,98,elec,acoustic + fm
 piano upibanks,33,111,elec,acoustic
+pickope,32,108,lead,analog + portamento
+piercing bass,32,109,bass,aggressive + big + dark + digital
+pine strummer,32,110,plucked,acoustic + shaking
+pinkphone,32,111,mallets,acoustic
+pitchoune,32,113,keys,analog + lfo
+pitchy place,34,58,sfx,atonal + echo
+pl-bass,32,114,bass,analog + dry + warm
+plastigorien,32,115,pads,vocal
+plinklies,32,116,mallets,acoustic + intimate + lfo + metallic
+pluckead,32,117,lead,analog + clean + portamento + simple
+pluckeon,32,118,keys,analog + lofi
+podracer,32,119,sfx,digital + portamento
+polys20,32,120,keys,analog + distorted
+polysynthetix,32,121,keys,analog + big + chords + ensemble + warm
+potendu,32,122,perc,acoustic + atonal + woody
+pressow,32,123,bowed,acoustic
+psy squelches,32,124,sfx,aggressive + atonal + fm
+pulse pluck,32,125,keys,analog
+pulzz,32,126,bass,analog
+pusher,32,127,plucked,synthetic
+pxlize,33,0,keys,bright + digital + fm + layered + stereo
+quiet carriers,33,1,pads,fm
+radioactive zone,33,2,sfx,analog + dark + fm + stereo
+random trigger,33,3,sfx,acoustic + atonal + echo + random + reverberant + stereo
+rateanis,33,4,pads,analog + stereo
 reeds anareed,30,13,flute,acoustic + analog + portamento
 reeds arcadia pan,30,19,flute,acoustic
 reeds bansuri,30,30,flute,acoustic + soft + woody
@@ -233,378 +442,169 @@ reeds windotron,34,4,flute,acoustic + fm + soft + stereo + woody
 reeds windtube double reed,34,5,flute,acoustic + clean
 reeds woodwind,34,7,flute,acoustic + airy + clean + woody
 reeds yokobue,34,13,flute,acoustic + woody
-aerials,30,4,keys,analog
-ambiant analog 1,30,10,keys,analog + big + echo + reverberant + synthetic
-analog adsr,30,11,keys,analog + synthetic
-analog scream,30,12,keys,aggressive + analog + big + distorted + noise + stereo + warm
-aqueous feel,30,18,keys,airy + bright + clean + digital
-azure key,30,22,keys,bright + clean + digital + simple + soft
-bowedsymphfm,30,50,keys,acoustic + clean + fm + shaking + soft + stereo
-classicana key,30,78,keys,analog + simple
-clavicorda,30,83,keys,digital + fm + shaking + stereo
-declanche,30,107,keys,fm + lfo
-dfm,30,111,keys,fm + stereo
-disco dawn,30,114,keys,analog + dry + intimate + simple
-double saw,30,118,keys,analog + chords + simple
-dx1,30,121,keys,fm
-dx2,30,122,keys,fm
-dx3,30,123,keys,fm
-dx4,30,124,keys,fm
-dxim,30,125,keys,fm
-efferie,31,0,keys,fm + strumming
-efmope,31,1,keys,bright + fm + simple
-eightiki,31,2,keys,analog + fm
-ekeynox,31,4,keys,analog
-elsynkey,31,13,keys,analog
-emancikey,31,14,keys,analog
-envinkin,31,18,keys,analog
-envinkon,31,19,keys,analog
-feleaz,31,31,keys,fm + simple + stereo
-fleme,31,33,keys,fm
-fm basic 4-ops,31,40,keys,bright + fm + strumming
-fm dreampiano,31,45,keys,airy + fm + strumming + warm
-fmwood&strings,31,51,keys,acoustic + metallic
-fof variabler res,31,52,keys,synthetic + vocal
-foming,31,53,keys,bright + fm
-game invader,31,64,keys,digital + lofi + shaking
-graceful integrated,31,71,keys,analog + fm + simple + soft
-harpsytron,31,85,keys,dry + electric + fm
-hp tales,31,90,keys,analog
-ikia,31,96,keys,fm + lfo
-jumpare,31,109,keys,analog + lfo
-june sunset,31,110,keys,analog
-jupinard,31,111,keys,analog + dry + simple
-jx10 1b,31,113,keys,analog + soft
-kinaflap,31,119,keys,analog
-kinafun,31,120,keys,analog + lfo
-kinetic analog,31,122,keys,analog
-kinetic anaseq,31,123,keys,aggressive + analog + echo + lfo + stereo + synthetic
-kinetic satpad,32,0,keys,aggressive + analog + big + distorted + ensemble + evolving + reverberant
-ladagcer,32,6,keys,analog
-lavaya,32,13,keys,fm
-lilly,32,19,keys,acoustic + fm + soft + stereo
-lino,32,20,keys,analog
-lost beacon,32,25,keys,airy + analog + intimate + lfo + reverberant + synthetic + warm
-montine,32,48,keys,acoustic
-nband,32,54,keys,airy + noise
-neon key,32,55,keys,analog
-neon key dreams,32,56,keys,analog + chords + lofi
-notenstrum,32,65,keys,analog + strumming
-octecho,32,74,keys,analog + echo
-op repeat,32,77,keys,fm + lfo + stereo
-os2dx,32,89,keys,fm
-osc dcf,32,90,keys,analog + simple
-paliakey,32,99,keys,analog
-paperheart,32,101,keys,acoustic + shaking
-pitchoune,32,113,keys,analog + lfo
-pluckeon,32,118,keys,analog + lofi
-polys20,32,120,keys,analog + distorted
-polysynthetix,32,121,keys,analog + big + chords + ensemble + warm
-pulse pluck,32,125,keys,analog
-pxlize,33,0,keys,bright + digital + fm + layered + stereo
+reesotto,33,5,bass,aggressive + digital
+reesy rider,33,6,bass,aggressive + analog + distorted + stereo
+releasy,33,7,mallets,acoustic + fm + shaking
+ren keyboard,33,8,mallets,acoustic + echo + intimate
+replicants dreams,33,9,pads,analog + fm + reverberant
+resizable guitar,33,10,plucked,acoustic + echo + portamento + strumming
+reso nable,33,11,pads,analog
+resonant drum 1,33,12,perc,airy + atonal + noise + woody
+resonator,34,34,plucked,clean + intimate
+rewind time,33,13,pads,chords + echo + evolving + lfo + lofi
+ringad,33,14,pads,analog
 riseandbe,33,16,keys,analog + bright + digital + simple + soft + stereo
+rising pad,33,17,pads,analog + chords + evolving + simple
+rock robot,34,59,bass,aggressive + analog + distorted
+roto string,33,18,bowed,acoustic + airy + lfo + noise
+rusty bass,33,19,bass,dark + digital + fm + soft
+rusty dissonance,34,60,sfx,atonal + metallic
+rusty square,33,20,bass,analog + distorted
 saw vi,33,21,keys,analog + simple
+saxalam,34,61,brass,acoustic
+saxman,34,62,brass,acoustic + metallic
 scarlet,33,23,keys,analog + warm
+scie tard,33,24,bowed,acoustic + portamento
+scratching fdn,33,25,sfx,acoustic + atonal + reverberant + shaking
+seventies lead,33,27,lead,analog + echo + portamento + warm
+shakepad,33,28,mallets,acoustic + shaking
+shifted wg,34,63,sfx,acoustic + aggressive + distorted + lofi + reverberant
+shpad1,33,29,pads,analog + fm + lfo + random + stereo
 simple anakey1,33,30,keys,analog + simple
 simple anakey2,33,31,keys,analog + simple
 simple anakey4,33,32,keys,analog + simple
 simple fm 2 ops,33,33,keys,fm
 simple fmkey,33,34,keys,fm + simple
+simple lead even,33,35,lead,analog + portamento + simple
+simple lead odd,33,36,lead,analog + portamento + simple
+simple saw pad,33,37,pads,analog + stereo
+simple square pad,33,38,pads,analog + simple
+simpledecay,33,39,bass,analog + distorted
 simplephasemod,33,40,keys,fm + shaking + simple
+simplerez,33,41,bass,analog
+sinefeel,33,42,mallets,fm
+sinespray pad,33,43,pads,digital
+skoto,33,44,plucked,acoustic
+slappinperc,33,45,perc,acoustic + atonal + woody
+smeeb,33,46,lead,analog
+smooth mouth,33,47,brass,acoustic + vocal
+smooth operator,33,48,bass,acoustic + fm
+snowflakes,34,64,mallets,acoustic + airy + metallic
+solid square,33,49,bass,analog
+solima,33,50,pads,analog
+solistrings,34,65,pads,analog + ensemble + stereo
+sonogram,33,51,sfx,atonal + lfo + noise + stereo
 soulfm,33,53,keys,fm + simple
+soundboard,33,54,sfx,acoustic + aggressive + atonal + reverberant
+soustitre,34,66,pads,analog
+souvenirs,33,55,pads,evolving + layered + lofi + noise + vocal
+space flammenco,33,56,plucked,acoustic + shaking
 spracher,33,57,keys,fm
+spring shimming bell,33,58,mallets,intimate + lfo + soft
 squaluk,33,59,keys,analog
 squarynights,33,60,keys,acoustic + clean + fm + shaking + soft + stereo
 squazodia,33,61,keys,analog + lfo + lofi
 squeakysine,33,62,keys,strumming
 st-rum dx,33,63,keys,fm + strumming
+stacked osc,34,67,lead,aggressive + analog + ensemble
 stadium candy,33,64,keys,analog
-street pluck,33,70,keys,analog
-talking kine,33,82,keys,analog + vocal
-tape melody,33,84,keys,airy + analog + clean + lofi + simple + soft + warm
-terjintro,33,87,keys,analog
-utopia,33,112,keys,noise + strumming
-versaille,33,115,keys,acoustic + analog
-vinkeilyd,33,118,keys,analog + lofi
-whorus,34,3,keys,analog
-yfm,34,12,keys,fm + lfo + stereo
-altersaw,30,9,lead,analog
-bandrive paradise,30,28,lead,analog + distorted
-blasiz,30,46,lead,analog
-cherie fm,30,70,lead,fm
-chick s lead,30,71,lead,analog + clean + portamento + soft + warm
-classicana lead,30,79,lead,analog + echo + simple
-cold lead,30,86,lead,analog + noise + simple + stereo + warm
-copper club,30,89,lead,analog
-dabka 2022,30,106,lead,acoustic + digital
-delight lead,30,109,lead,analog + echo + simple
-funky lead,31,60,lead,analog + simple
-gabber 21,31,63,lead,aggressive + digital
-ghost voice,31,68,lead,lofi + portamento + vocal
-grubbead,31,77,lead,aggressive + distorted + fm
-hoovasquare,31,87,lead,analog + simple
-insert coins,31,97,lead,bright + echo + lfo
-jentenot,31,106,lead,
-julia,31,108,lead,analog + simple
-lalalead,32,8,lead,analog + portamento
-leadio,32,14,lead,analog
-lighthouse,32,17,lead,analog
-lililead,32,18,lead,analog
-lonely square,32,24,lead,analog + reverberant + simple
-main square,32,31,lead,analog
-minor de fond,32,44,lead,analog + chords
-nostalgia,32,64,lead,analog + lofi
-opead,32,79,lead,analog
-opeal,32,80,lead,
-pickope,32,108,lead,analog + portamento
-pluckead,32,117,lead,analog + clean + portamento + simple
-seventies lead,33,27,lead,analog + echo + portamento + warm
-simple lead even,33,35,lead,analog + portamento + simple
-simple lead odd,33,36,lead,analog + portamento + simple
-smeeb,33,46,lead,analog
 stadoor,33,65,lead,analog
-sterelead,33,67,lead,analog + lfo + simple + stereo
-synclit,33,78,lead,analog
-tiny wish,33,99,lead,analog + portamento
-xpressive saw,34,11,lead,airy + clean + intimate + portamento + reverberant + soft
-alacloud,30,6,mallets,acoustic + echo + lfo
-balafun,30,26,mallets,acoustic + woody
-bella fm,30,36,mallets,bright + fm + strumming
-bells of digul,30,37,mallets,acoustic + metallic
-biquide hang,30,40,mallets,acoustic + metallic
-biquide steel,30,42,mallets,acoustic + metallic
-biquige bell,30,43,mallets,acoustic + metallic
-bouncing spray,30,49,mallets,acoustic + echo + lfo + metallic
-brightbank,30,60,mallets,acoustic + shaking
-carbon marimba,30,62,mallets,acoustic + lfo + warm + woody
-celestial,30,64,mallets,acoustic
-clavichord,30,82,mallets,acoustic + clean
-clings,30,85,mallets,acoustic + intimate + metallic + shaking + stereo
-crystal harmonics,30,98,mallets,acoustic + airy + shaking
-cumulus,30,101,mallets,acoustic + bright + echo + lfo + metallic + stereo
-dolce cristallo,30,116,mallets,acoustic + icy + intimate + metallic
-electrical bacher,31,11,mallets,acoustic + dark + metallic + reverberant + stereo
-etalophone,31,24,mallets,acoustic
-etherry,31,25,mallets,acoustic
-feltgrains,31,32,mallets,acoustic + airy + noise + shaking + woody
-fm glacier,31,46,mallets,bright + clean + digital + echo + fm + icy + metallic + reverberant
-fm hang perc,31,47,mallets,digital + fm + noise + woody
-fukuel,31,59,mallets,acoustic + metallic + shaking
-gamelan spinner,31,65,mallets,clean + lfo + metallic
-grandfather clock,31,73,mallets,metallic
-harpsichord,31,84,mallets,acoustic + clean
-jaymar toy piano,31,101,mallets,acoustic + clean + dry + intimate
-jenny pulse,31,104,mallets,analog + echo + lfo + reverberant + synthetic
-labello,32,4,mallets,acoustic + fm
-lamellas,32,9,mallets,acoustic + metallic + strumming
-libellule,32,16,mallets,acoustic + fm + strumming
-lytiny,32,29,mallets,acoustic + shaking
-magic pluck,32,30,mallets,acoustic + airy + bright + layered + shaking
-malabel,32,32,mallets,acoustic + shaking + strumming
-marombox,32,36,mallets,acoustic + shaking
-mattalo,32,38,mallets,acoustic + metallic
-mbiraski,32,39,mallets,clean + intimate + metallic
-music box bells,32,51,mallets,acoustic + dry + intimate + metallic
-nimbus,32,59,mallets,acoustic + airy + echo + lfo
-noisything,32,63,mallets,acoustic
-ocean triggs,32,71,mallets,acoustic + echo + lfo + metallic
-op2bell,32,78,mallets,fm + strumming
-petit carillon,32,106,mallets,acoustic + metallic + shaking
-pinkphone,32,111,mallets,acoustic
-plinklies,32,116,mallets,acoustic + intimate + lfo + metallic
-releasy,33,7,mallets,acoustic + fm + shaking
-ren keyboard,33,8,mallets,acoustic + echo + intimate
-shakepad,33,28,mallets,acoustic + shaking
-sinefeel,33,42,mallets,fm
-spring shimming bell,33,58,mallets,intimate + lfo + soft
-tender stuck,33,86,mallets,acoustic + soft
-thoria,33,93,mallets,acoustic + noise
-tinytine,33,100,mallets,fm
-tubular bell,33,103,mallets,fm
-underwater,33,109,mallets,acoustic + dark
-vibrim,33,117,mallets,acoustic + simple
-woodybox,34,8,mallets,acoustic + strumming + woody
-zenpercs,34,16,mallets,acoustic + intimate + soft
-anthophila organ,30,16,organ,acoustic + ensemble
-bits organ,30,45,organ,analog + bright + strumming
-bleached organ,30,47,organ,fm + simple + stereo + woody
-bright organ,30,59,organ,acoustic + fm
-churchorgan,30,75,organ,acoustic
-old pad machine,32,75,organ,analog + ensemble + evolving + lofi + synthetic
-organ 1,32,82,organ,
-organ 2,32,83,organ,
-organ 3,32,84,organ,
-organ 4,32,85,organ,electric
-organ barbar,32,86,organ,
-organ voxy,32,87,organ,
-organo WereYouThere,32,88,organ,electric + reverberant
-padorgan,32,97,organ,lofi + stereo
-thick organ,33,92,organ,digital + dry + simple + soft
-vorgaphone,33,124,organ,
-woodorgan,34,6,organ,soft + warm + woody
-abyss lands,30,0,pads,dark + echo + evolving + layered + reverberant
-after the rain,30,5,pads,acoustic + noise
-alenvers,30,7,pads,fm + lfo + stereo
-algo call,30,8,pads,fm + stereo
-anatolianpad,30,14,pads,analog + chords
-another big one,30,15,pads,aggressive + big + reverberant + synthetic
-astral titans,30,21,pads,analog + distorted + fm
-bass pad,30,33,pads,aggressive + analog + distorted
-beny's territory,30,38,pads,acoustic + layered
-brave fields,30,58,pads,analog
-carifem,30,63,pads,fm + lfo
-choir,30,72,pads,synthetic + vocal
-choir additive,30,73,pads,clean + vocal
-classipad,30,80,pads,analog + ensemble + simple
-column of eternity,30,87,pads,clean + fm + simple + stereo
-coridor,30,90,pads,fm + reverberant
-crossmod,30,96,pads,fm + stereo
-cs80+ladder,30,99,pads,analog + big + reverberant + synthetic
-cs80+ladder II,30,100,pads,analog + chords
-cycle and duty,30,105,pads,analog + stereo
-dirty osc pad,30,113,pads,airy + echo + evolving + lofi + random + synthetic
-ebosin,30,126,pads,acoustic + ensemble + layered
-floppy disk lands,31,35,pads,fm + lofi + noise + random + stereo
-fm 2612,31,39,pads,fm
-grandma's garden,31,74,pads,evolving + layered + lofi + woody
-granu osc,31,75,pads,fm + lfo + stereo
-hantpad,31,80,pads,dark
-interkin,31,98,pads,analog
-jenny choir,31,102,pads,ensemble + vocal
-jenny fm,31,103,pads,fm + lfo + stereo
-jupipad,31,112,pads,analog + intimate
-lampadaire,32,10,pads,analog + lofi
-larekin,32,11,pads,analog + lofi
-larekin 2,32,12,pads,analog
-living pad,32,22,pads,analog + evolving + lfo
-lost choir,32,26,pads,airy + ensemble + evolving + synthetic + vocal
-lost operator,32,28,pads,fm
-malgo,32,33,pads,fm
-modowel,32,46,pads,soft + stereo + vocal
-moving slate,32,49,pads,stereo
-munsplen,32,50,pads,analog
-nofiad,32,60,pads,evolving + layered + lofi
-notiseq,32,66,pads,chords + fm + lfo
-nynx,32,68,pads,fm + lfo + stereo
-oblivion,32,69,pads,ensemble + evolving + layered + lofi + stereo
-op offset,32,76,pads,fm + lfo + stereo
-pad 101,32,93,pads,airy + bright + chords + clean + echo + icy + noise + simple + stereo
-pad awan,32,94,pads,simple
-padding time,32,95,pads,analog + clean + ensemble + soft + stereo + warm
-padorama,32,96,pads,layered
-perseus supernova,32,105,pads,analog + big + reverberant
-phase machine,32,107,pads,bright + ensemble + stereo
-plastigorien,32,115,pads,vocal
-quiet carriers,33,1,pads,fm
-rateanis,33,4,pads,analog + stereo
-replicants dreams,33,9,pads,analog + fm + reverberant
-reso nable,33,11,pads,analog
-rewind time,33,13,pads,chords + echo + evolving + lfo + lofi
-ringad,33,14,pads,analog
-rising pad,33,17,pads,analog + chords + evolving + simple
-shpad1,33,29,pads,analog + fm + lfo + random + stereo
-simple saw pad,33,37,pads,analog + stereo
-simple square pad,33,38,pads,analog + simple
-sinespray pad,33,43,pads,digital
-solima,33,50,pads,analog
-souvenirs,33,55,pads,evolving + layered + lofi + noise + vocal
 stellaris,33,66,pads,analog + distorted + echo + reverberant
+sterelead,33,67,lead,analog + lfo + simple + stereo
+steroids,33,68,bass,analog + noise
+stormy weather,33,69,sfx,atonal + noise
+street pluck,33,70,keys,analog
+strikey,34,68,elec piano,bright + electric
 strings machine,33,71,pads,analog + ensemble + stereo
 strings machine 2,33,72,pads,analog + ensemble + stereo
-taste of june,33,85,pads,analog + chords + ensemble + soft + stereo + warm
-three waves,33,94,pads,big + ensemble + synthetic
-twobanks,33,105,pads,analog
-under the weather,33,108,pads,dark + distorted + lofi
-unstable sum,33,110,pads,analog + lofi + noise
-zazipad,34,15,pads,airy + echo + ensemble + noise + synthetic
-ghabla,31,67,perc,acoustic
-hyoshigi,31,95,perc,acoustic + atonal
-ishango bone,31,99,perc,atonal + woody
-kaitof,31,114,perc,acoustic + noise
-kick bass slide,31,118,perc,analog + distorted + portamento + simple
-marlin perkins 1,32,35,perc,clean + intimate + woody
-metarmonix,32,40,perc,acoustic + analog + metallic
-octalive drum,32,73,perc,acoustic + atonal + layered + metallic
-patacalbas,32,103,perc,acoustic
-potendu,32,122,perc,acoustic + atonal + woody
-resonant drum 1,33,12,perc,airy + atonal + noise + woody
-slappinperc,33,45,perc,acoustic + atonal + woody
-tablast,33,80,perc,acoustic + atonal
-twozing,33,106,perc,acoustic + atonal + metallic
-wardrum,34,0,perc,acoustic + analog + big
-acuitar,30,3,plucked,acoustic + portamento
-aplassian,30,17,plucked,acoustic + electric
-balloon from hanoi,30,27,plucked,acoustic + clean + strumming
-banjoy,30,29,plucked,acoustic + shaking
-bazambar,30,34,plucked,acoustic + shaking
-biquide harp,30,41,plucked,acoustic + clean + soft
-canyon steel,30,61,plucked,acoustic + echo + portamento + soft
-crossynthar,30,97,plucked,acoustic
-distortion guitar,30,115,plucked,acoustic + portamento
-ellis guitar,31,12,plucked,acoustic
-expluck,31,27,plucked,acoustic + shaking
-fruku,31,58,plucked,acoustic
-grains pluck,31,72,plucked,acoustic + metallic
-gypsy kinetar,31,78,plucked,acoustic + shaking
-harmolick,31,83,plucked,acoustic + metallic + portamento
-hybrid harp,31,91,plucked,acoustic + fm + soft
-karkup,31,116,plucked,acoustic + shaking
-karplus & modMan,31,117,plucked,clean + strumming + warm
-kinetic soundboard,32,1,plucked,acoustic + metallic + reverberant + shaking + synthetic
-koto,32,3,plucked,acoustic + clean + intimate + strumming
-lips steel,32,21,plucked,acoustic + portamento
-mild kisses,32,42,plucked,acoustic + portamento + soft
-minimando,32,43,plucked,acoustic + strumming
-ngoni,32,57,plucked,acoustic + clean + strumming
-ocherry,32,72,plucked,acoustic + fm
-paris texas,32,102,plucked,acoustic + metallic
-pine strummer,32,110,plucked,acoustic + shaking
-pusher,32,127,plucked,synthetic
-resizable guitar,33,10,plucked,acoustic + echo + portamento + strumming
-skoto,33,44,plucked,acoustic
-space flammenco,33,56,plucked,acoustic + shaking
+stringtroen,33,73,bowed,acoustic
+sub bass 1,33,74,bass,analog
+subway,33,75,bass,analog + clean + dark + fm + simple
 sweethrice,33,76,plucked,acoustic + shaking
+syncat,33,77,bass,analog
+synclit,33,78,lead,analog
+synky,34,69,keys,analog
+tabernak,34,70,pads,distorted + lofi + stereo
+tablast,33,80,perc,acoustic + atonal
 tales of feathers,33,81,plucked,acoustic + airy + bright + clean + soft
+talking kine,33,82,keys,analog + vocal
 tap sitar,33,83,plucked,acoustic + clean + reverberant
-the touch guitar,33,90,plucked,acoustic + echo + intimate + reverberant
-twelve strings,33,104,plucked,acoustic + strumming
-uki pizz 1,33,107,plucked,acoustic + clean + intimate
-wopluk,34,9,plucked,acoustic + fm
-bacteria,30,24,sfx,airy + atonal + metallic + noise + reverberant
-badratios bell,30,25,sfx,atonal + fm
-bird whistler,30,44,sfx,nature
-blipkrieg,30,48,sfx,atonal + digital + fm + lofi
-celestial basin,30,65,sfx,airy + atonal + metallic + reverberant
-cork the bottle,30,91,sfx,atonal + dry + electric
-crackling things,30,94,sfx,atonal
-creaker,30,95,sfx,acoustic + atonal + intimate + lfo
-electric wazoo,31,10,sfx,atonal + dry + electric + synthetic
-entanglement,31,17,sfx,aggressive + atonal + big + echo + evolving + reverberant
-fdn crazyness,31,30,sfx,aggressive + atonal + big + electric + evolving + portamento + reverberant
-futur engine,31,62,sfx,digital
-geiger insects,31,66,sfx,atonal + intimate + lfo + nature + stereo
-howling sines,31,89,sfx,atonal + dark
-kinetic bowed fdn,31,124,sfx,atonal + dark + evolving + reverberant + stereo
-kinetic dragon,31,125,sfx,aggressive + atonal + distorted + reverberant
-kinetic micromotor,31,126,sfx,atonal + echo + lfo + synthetic
-kinetic overtones,31,127,sfx,aggressive + atonal + digital + distorted + reverberant + stereo + synthetic
-lonely data,32,23,sfx,atonal + digital + intimate + lfo + synthetic
-marie s birds,32,34,sfx,acoustic + fm
-mojo of fdn,32,47,sfx,acoustic + atonal + echo + reverberant + strumming
-mystaring,32,52,sfx,atonal + dark + fm
-nails on metal,32,53,sfx,acoustic + shaking
-podracer,32,119,sfx,digital + portamento
-psy squelches,32,124,sfx,aggressive + atonal + fm
-radioactive zone,33,2,sfx,analog + dark + fm + stereo
-random trigger,33,3,sfx,acoustic + atonal + echo + random + reverberant + stereo
-scratching fdn,33,25,sfx,acoustic + atonal + reverberant + shaking
-sonogram,33,51,sfx,atonal + lfo + noise + stereo
-soundboard,33,54,sfx,acoustic + aggressive + atonal + reverberant
-stormy weather,33,69,sfx,atonal + noise
+tape melody,33,84,keys,airy + analog + clean + lofi + simple + soft + warm
+taste of june,33,85,pads,analog + chords + ensemble + soft + stereo + warm
+tb keys,34,71,keys,aggressive + analog + distorted
+telecasta,34,74,plucked,acoustic + electric
+tender stuck,33,86,mallets,acoustic + soft
+terjintro,33,87,keys,analog
+tesla pad,34,75,sfx,noise + stereo + synthetic
+testbench,33,88,,
 th x,33,89,sfx,ensemble + stereo
+the analog,34,76,pads,analog + ensemble
+the touch guitar,33,90,plucked,acoustic + echo + intimate + reverberant
+the touch satur,34,77,plucked,acoustic + echo + intimate + reverberant
 theo s bicycles,33,91,sfx,metallic
+thick organ,33,92,organ,digital + dry + simple + soft
+thoria,33,93,mallets,acoustic + noise
+three waves,33,94,pads,big + ensemble + synthetic
+thrilla bass,33,95,bass,analog + dry
+tinette,34,78,keys,distorted + electric
+tiny wish,33,99,lead,analog + portamento
+tinytine,33,100,mallets,fm
+transistor pwm,34,79,bass,analog + warm
+transitor shimmer keys,34,80,keys,analog + clean + lfo
+transmission,34,81,sfx,atonal + lofi + noise
+trepizcato,33,101,bowed,acoustic
+tribol,34,82,mallets,acoustic + bright + metallic
+trumpey,33,102,brass,analog
+tubular bell,33,103,mallets,fm
+twelve strings,33,104,plucked,acoustic + strumming
+twobanks,33,105,pads,analog
+twozing,33,106,perc,acoustic + atonal + metallic
+udon,34,83,keys,analog + warm
+udon v2,34,84,keys,analog + warm
+uki pizz 1,33,107,plucked,acoustic + clean + intimate
+under the weather,33,108,pads,dark + distorted + lofi
+underwater,33,109,mallets,acoustic + dark
+unstable sum,33,110,pads,analog + lofi + noise
+utopia,33,112,keys,noise + strumming
+va bass 1,34,85,bass,analog + warm
+va bass 2,34,86,bass,analog + warm
+va brass 1,34,87,brass,analog + warm
+va keys 1,34,88,keys,analog + warm
+va keys 2,34,89,keys,analog + warm
+va keys 3,34,90,keys,analog + warm
+va leads 1,34,91,lead,analog + warm
+va pads 1,34,92,bass,analog + warm
+va pads 2,34,93,pads,analog + warm
+va pads 3,34,94,pads,analog + warm
+vbrass 1,33,113,brass,acoustic + bright + clean + synthetic
+velsquare,33,114,bass,analog
+versaille,33,115,keys,acoustic + analog
+versailles brass,33,116,brass,analog + big + ensemble + simple + soft + warm
+vibrim,33,117,mallets,acoustic + simple
+vinkeilyd,33,118,keys,analog + lofi
+vintage wide bass,33,119,bass,analog + big + dark + portamento + soft + stereo + warm
+violens,34,95,bowed,acoustic + clean + intimate
+viollaggio,33,120,bowed,acoustic
+violloiv,33,121,bowed,acoustic + echo
+vln vla cel bass 2,33,122,bowed,acoustic + clean
+vocalise,33,123,brass,clean + synthetic + vocal
+vorelso,34,96,pads,airy + layered + vocal
+vorgaphone,33,124,organ,
+walking blues,33,125,bass,acoustic
+walking elephants,33,126,brass,acoustic + warm + woody
+wallface,33,127,bass,digital + fm + portamento
+wardrum,34,0,perc,acoustic + analog + big
 waterphonie,34,1,sfx,atonal + bright + metallic + reverberant
 wet feeling,34,2,sfx,atonal + echo + reverberant + shaking
+whorus,34,3,keys,analog
+woodorgan,34,6,organ,soft + warm + woody
+woodybox,34,8,mallets,acoustic + strumming + woody
+wopluk,34,9,plucked,acoustic + fm
+wow soul chords,34,10,brass,analog + simple + soft
+xpressive saw,34,11,lead,airy + clean + intimate + portamento + reverberant + soft
+yfm,34,12,keys,fm + lfo + stereo
 zapzap,34,14,sfx,analog + atonal + lfo + reverberant
-empty,31,15,,
-testbench,33,88,,
+zazipad,34,15,pads,airy + echo + ensemble + noise + synthetic
+zenpercs,34,16,mallets,acoustic + intimate + soft
+2os,34,72,keys,aggressive + analog + distorted
+3os,34,73,keys,analog + distorted + lfo
