@@ -83,6 +83,7 @@ export default function App() {
 
     try {
       output.sendProgramChange(preset.bank, preset.program)
+      setControlValues({})
       setSelectedPreset(preset)
       setIsPresetBrowserOpen(false)
     } catch (error) {
