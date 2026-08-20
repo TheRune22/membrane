@@ -16,3 +16,9 @@
 - The shipped application must not expose arbitrary MIDI-byte entry. It should offer intentional controls that produce well-defined MIDI messages.
 - Raw MIDI-byte input may be used only as a temporary development diagnostic, not as a user-facing feature.
 - Do not add SysEx, message interpretation, MPE features, device editing, or monitoring without an explicit request.
+
+## Verification and commits
+
+- Before finishing a code change, run `npm run build:sandbox`.
+- After verification succeeds, commit the completed cohesive change with a concise commit message.
+- If the sandbox build cannot run, state why and do not claim full verification.
