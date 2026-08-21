@@ -6,7 +6,6 @@ import { PresetBrowserDialog } from './components/PresetBrowserDialog'
 import type { StatusKind } from './components/StatusMessage'
 import { WebMidiService } from './midi/web-midi'
 import type { MidiOutput } from './midi/types'
-import { osmoseParameters } from './osmose/parameters'
 import { osmosePresets, type OsmosePreset } from './osmose/presets'
 
 type Status = { kind: StatusKind; message: string }
@@ -61,7 +60,7 @@ export default function App() {
     return outputs().find((candidate) => candidate.id === selectedOutputId())
   }
 
-  function sendControlChange(channel: number, controlChange: number, value: number) {
+  function sendControlChange(id: string, channel: number, controlChange: number, value: number) {
     const output = selectedOutput()
     if (!output) {
       setStatus({ kind: 'error', message: 'Select an available MIDI output before using controls.' })
@@ -71,7 +70,7 @@ export default function App() {
 
     try {
       output.sendControlChange(channel, controlChange, value)
-      setControlValues((currentValues) => ({ ...currentValues, [`channel-${channel}-cc-${controlChange}`]: value }))
+      setControlValues((currentValues) => ({ ...currentValues, [id]: value }))
     } catch (error) {
       setStatus({ kind: 'error', message: error instanceof Error ? error.message : 'Unable to send the MIDI control change.' })
     }
@@ -96,7 +95,6 @@ export default function App() {
     <ControllerHeader connected={isConnected()} presetSelectionEnabled={Boolean(selectedOutput())} selectedPreset={selectedPreset()} selectedMidiDevice={selectedOutput()?.label} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} />
     <div class="workspace">
       <OsmoseControlBank
-        parameters={osmoseParameters}
         values={controlValues()}
         disabled={!selectedOutputId()}
         onValueChange={sendControlChange}
