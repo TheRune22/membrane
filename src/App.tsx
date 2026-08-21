@@ -9,36 +9,7 @@ import type { MidiOutput } from './midi/types'
 import { osmosePresets, type OsmosePreset } from './osmose/presets'
 
 type Status = { kind: StatusKind; message: string }
-type FaderAction = (output: MidiOutput, value: number) => void
-
 const midi = new WebMidiService()
-const osmoseFaderActions: Readonly<Record<string, FaderAction>> = {
-  'macro-1': (output, value) => output.sendControlChange(1, 12, value),
-  'macro-2': (output, value) => output.sendControlChange(1, 13, value),
-  'macro-3': (output, value) => output.sendControlChange(1, 14, value),
-  'macro-4': (output, value) => output.sendControlChange(1, 15, value),
-  'macro-5': (output, value) => output.sendControlChange(1, 16, value),
-  'macro-6': (output, value) => output.sendControlChange(1, 17, value),
-  pregain: (output, value) => output.sendControlChange(1, 26, value),
-  postgain: (output, value) => output.sendControlChange(1, 18, value),
-  'compressor-threshold': (output, value) => output.sendControlChange(1, 90, value),
-  'compressor-attack': (output, value) => output.sendControlChange(1, 91, value),
-  'compressor-ratio': (output, value) => output.sendControlChange(1, 92, value),
-  'compressor-mix': (output, value) => output.sendControlChange(1, 93, value),
-  'effects-parameter-1': (output, value) => output.sendControlChange(1, 20, value),
-  'effects-parameter-2': (output, value) => output.sendControlChange(1, 21, value),
-  'effects-parameter-3': (output, value) => output.sendControlChange(1, 22, value),
-  'effects-parameter-4': (output, value) => output.sendControlChange(1, 23, value),
-  'effects-parameter-5': (output, value) => output.sendControlChange(1, 95, value),
-  'effects-parameter-6': (output, value) => output.sendControlChange(1, 96, value),
-  'effects-mix': (output, value) => output.sendControlChange(1, 24, value),
-  'sostenuto-1': (output, value) => output.sendControlChange(1, 66, value),
-  'sostenuto-2': (output, value) => output.sendControlChange(1, 69, value),
-  sustain: (output, value) => output.sendControlChange(1, 64, value),
-  'eq-tilt': (output, value) => output.sendControlChange(1, 83, value),
-  'eq-frequency': (output, value) => output.sendControlChange(1, 84, value),
-  'eq-mix': (output, value) => output.sendControlChange(1, 85, value),
-}
 
 export default function App() {
   const [outputs, setOutputs] = createSignal<readonly MidiOutput[]>([])
@@ -89,7 +60,7 @@ export default function App() {
     return outputs().find((candidate) => candidate.id === selectedOutputId())
   }
 
-  function handleFaderValueChange(id: string, value: number) {
+  function handleFaderValueChange(id: string, value: number, action: (output: MidiOutput) => void) {
     const output = selectedOutput()
     if (!output) {
       setStatus({ kind: 'error', message: 'Select an available MIDI output before using controls.' })
@@ -97,14 +68,8 @@ export default function App() {
       return
     }
 
-    const action = osmoseFaderActions[id]
-    if (!action) {
-      setStatus({ kind: 'error', message: `No MIDI action is configured for ${id}.` })
-      return
-    }
-
     try {
-      action(output, value)
+      action(output)
       setControlValues((currentValues) => ({ ...currentValues, [id]: value }))
     } catch (error) {
       setStatus({ kind: 'error', message: error instanceof Error ? error.message : 'Unable to send the MIDI control change.' })
