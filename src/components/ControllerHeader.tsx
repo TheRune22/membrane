@@ -12,7 +12,7 @@ interface ControllerHeaderProps {
 export function ControllerHeader(props: ControllerHeaderProps) {
   return (
     <header class="controller-header">
-      <h1 id="page-title">Osmose Control Surface</h1>
+      <h1 id="page-title">Osmose Controller</h1>
       <div class="header-actions">
         <button
           classList={{ 'midi-device-button': true, connected: props.connected }}
