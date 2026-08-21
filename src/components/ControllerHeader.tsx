@@ -10,19 +10,21 @@ interface ControllerHeaderProps {
 }
 
 export function ControllerHeader(props: ControllerHeaderProps) {
+  const midiDeviceLabel = () => props.selectedMidiDevice ?? (props.connected ? 'Select MIDI output' : 'Set up MIDI access')
+
   return (
     <header class="controller-header">
       <h1 id="page-title">Osmose Controller</h1>
       <div class="header-actions">
         <button
-          classList={{ 'midi-device-button': true, connected: props.connected }}
+          classList={{ 'midi-device-button': true, ready: Boolean(props.selectedMidiDevice) }}
           type="button"
           onClick={props.onOpenMidiSetup}
-          aria-label={props.selectedMidiDevice ? `Change MIDI device, currently ${props.selectedMidiDevice}` : 'Set up MIDI device'}
+          aria-label={props.selectedMidiDevice ? `Change MIDI device, currently ${props.selectedMidiDevice}` : midiDeviceLabel()}
         >
           <span class="midi-device-label">
             <span aria-hidden="true" />
-            <span class="midi-device-name" title={props.selectedMidiDevice}>{props.selectedMidiDevice ?? (props.connected ? 'MIDI connected' : 'MIDI setup')}</span>
+            <span class="midi-device-name" title={props.selectedMidiDevice}>{midiDeviceLabel()}</span>
           </span>
         </button>
         <button

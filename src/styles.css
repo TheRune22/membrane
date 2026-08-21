@@ -18,9 +18,9 @@ h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; }
 .midi-device-button, .preset-button { border: 0; color: #d8d7cf; background: transparent; }
 .midi-device-button { padding: 8px 0; }
 .midi-device-label { display: flex; gap: 9px; align-items: center; font-size: .72rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
-.midi-device-label > span:first-child { width: 9px; height: 9px; border-radius: 50%; background: #5b5e58; box-shadow: 0 0 0 2px #121311; }
+.midi-device-label > span:first-child { width: 9px; height: 9px; border-radius: 50%; background: #f05b55; box-shadow: 0 0 10px rgba(240,91,85,.9), 0 0 0 2px #121311; }
 .midi-device-label .midi-device-name { width: auto; max-width: min(24vw, 260px); height: auto; overflow: hidden; border-radius: 0; background: transparent; box-shadow: none; text-overflow: ellipsis; white-space: nowrap; }
-.midi-device-button.connected .midi-device-label > span:first-child { background: #9ae34a; box-shadow: 0 0 10px rgba(154,227,74,.9); }
+.midi-device-button.ready .midi-device-label > span:first-child { background: #9ae34a; box-shadow: 0 0 10px rgba(154,227,74,.9); }
 .midi-device-button:hover { color: #fff; }
 .preset-button { display: grid; grid-template-areas: 'label' 'name'; row-gap: 5px; align-items: center; min-width: min(250px, 25vw); min-height: 47px; padding: 7px 14px; border: 1px solid #545751; border-radius: 5px; color: #dfddd4; background: linear-gradient(135deg, #242622, #0e0f0e); box-shadow: inset 2px 0 #8d917f, inset 0 1px rgba(255,255,255,.09), 0 3px 7px rgba(0,0,0,.42); text-align: left; }
 .preset-button:hover:not(:disabled) { border-color: #a2a69a; color: #fff; box-shadow: inset 2px 0 #b6bb9c, inset 0 1px rgba(255,255,255,.12), 0 3px 7px rgba(0,0,0,.42); }
