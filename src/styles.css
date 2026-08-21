@@ -1,4 +1,4 @@
-:root { font-family: Inter, Aptos, Arial, sans-serif; color: #e9e8e2; background: #030403; font-synthesis: none; }
+:root { font-family: Poppins, Arial, sans-serif; color: #e9e8e2; background: #030403; font-synthesis: none; }
 * { box-sizing: border-box; }
 body { margin: 0; min-width: 320px; min-height: 100vh; background: #030403; }
 button, input, select { font: inherit; }
@@ -25,7 +25,7 @@ h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; }
 .preset-button { display: grid; grid-template-areas: 'label' 'name'; row-gap: 5px; align-items: center; min-width: min(250px, 25vw); min-height: 47px; padding: 7px 14px; border: 1px solid #545751; border-radius: 5px; color: #dfddd4; background: linear-gradient(135deg, #242622, #0e0f0e); box-shadow: inset 2px 0 #8d917f, inset 0 1px rgba(255,255,255,.09), 0 3px 7px rgba(0,0,0,.42); text-align: left; }
 .preset-button:hover:not(:disabled) { border-color: #a2a69a; color: #fff; box-shadow: inset 2px 0 #b6bb9c, inset 0 1px rgba(255,255,255,.12), 0 3px 7px rgba(0,0,0,.42); }
 .preset-button:disabled { color: #686b65; border-color: #292b28; box-shadow: inset 2px 0 #454740, inset 0 1px rgba(255,255,255,.03); }
-.preset-label { grid-area: label; color: #aeb2a2; font: 600 .58rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: .14em; text-transform: uppercase; }
+.preset-label { grid-area: label; color: #aeb2a2; font: 600 .58rem/1 Poppins, Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; }
 .preset-current-name { grid-area: name; max-width: min(20vw, 220px); overflow: hidden; font-size: .82rem; font-weight: 600; letter-spacing: .02em; text-overflow: ellipsis; white-space: nowrap; }
 
 .workspace { display: grid; min-height: 0; padding-top: clamp(18px, 2.5vw, 38px); }
@@ -44,7 +44,7 @@ h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; }
 .control-section-gain .section-fader-grid { grid-template-columns: minmax(56px, 1fr); }
 .control-section-effects .section-fader-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .fader { --fader-tint: color-mix(in srgb, var(--fader-accent) 20%, transparent); display: grid; grid-template-rows: auto minmax(88px, 1fr) auto; gap: 9px; min-width: 0; justify-items: center; color: #dbddd7; text-align: center; }
-.fader-value { color: var(--fader-accent); font: 650 clamp(.72rem, .95vw, .98rem)/1 ui-monospace, 'Cascadia Code', Consolas, monospace; text-shadow: 0 0 10px color-mix(in srgb, var(--fader-accent) 35%, transparent); }
+.fader-value { color: var(--fader-accent); font: 650 clamp(.72rem, .95vw, .98rem)/1 Poppins, Arial, sans-serif; text-shadow: 0 0 10px color-mix(in srgb, var(--fader-accent) 35%, transparent); }
 .fader-track { position: relative; display: grid; width: 100%; min-height: 0; place-items: center; }
 .fader-track::before { position: absolute; z-index: 1; top: 0; bottom: 0; left: 50%; width: 14px; border: 1px solid #020302; border-radius: 99px; background: #050605; box-shadow: inset 1px 0 2px rgba(255,255,255,.09), inset -1px 0 3px #000; content: ''; transform: translateX(-50%); }
 .fader-ticks { position: absolute; z-index: 0; top: 3px; bottom: 3px; left: calc(50% - 24px); display: flex; width: 48px; flex-direction: column; justify-content: space-between; }
@@ -67,7 +67,7 @@ h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; }
 
 .midi-dialog { position: fixed; z-index: 10; top: 50%; left: 50%; width: min(calc(100vw - 36px), 400px); padding: 22px; border: 1px solid #62655f; border-radius: 10px; background: linear-gradient(135deg, rgba(40,42,39,.97), rgba(12,13,12,.98)); box-shadow: 0 24px 60px rgba(0,0,0,.7), inset 0 1px rgba(255,255,255,.11); backdrop-filter: blur(16px); transform: translate(-50%, -50%); }
 .dialog-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
-.eyebrow { margin: 0 0 5px; color: #9fa19a; font: 600 .62rem/1 ui-monospace, 'Cascadia Code', Consolas, monospace; letter-spacing: .14em; text-transform: uppercase; }
+.eyebrow { margin: 0 0 5px; color: #9fa19a; font: 600 .62rem/1 Poppins, Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; }
 .midi-dialog h2 { color: #edece4; font-size: .9rem; }
 .icon-button { display: grid; width: 27px; height: 27px; place-items: center; border: 0; color: #aaada5; background: transparent; font-size: 1.35rem; line-height: 1; }
 .icon-button:hover { color: #fff; }
