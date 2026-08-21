@@ -5,7 +5,7 @@ import { OsmoseControlBank } from './components/OsmoseControlBank'
 import { PresetBrowserDialog } from './components/PresetBrowserDialog'
 import type { StatusKind } from './components/StatusMessage'
 import { WebMidiService } from './midi/web-midi'
-import type { MidiOutput } from './midi/types'
+import type { MidiMessage, MidiOutput } from './midi/types'
 import { osmosePresets, type OsmosePreset } from './osmose/presets'
 import { setPreset } from './osmose/protocol'
 
@@ -61,7 +61,7 @@ export default function App() {
     return outputs().find((candidate) => candidate.id === selectedOutputId())
   }
 
-  function handleFaderValueChange(id: string, value: number, action: (output: MidiOutput) => void) {
+  function handleFaderValueChange(id: string, value: number, messages: readonly MidiMessage[]) {
     const output = selectedOutput()
     if (!output) {
       setStatus({ kind: 'error', message: 'Select an available MIDI output before using controls.' })
@@ -70,7 +70,7 @@ export default function App() {
     }
 
     try {
-      action(output)
+      output.send(messages)
       setControlValues((currentValues) => ({ ...currentValues, [id]: value }))
     } catch (error) {
       setStatus({ kind: 'error', message: error instanceof Error ? error.message : 'Unable to send the MIDI control change.' })
@@ -82,7 +82,7 @@ export default function App() {
     if (!output) return
 
     try {
-      setPreset(output, preset)
+      output.send(setPreset(preset))
       setControlValues({})
       setSelectedPreset(preset)
       setIsPresetBrowserOpen(false)

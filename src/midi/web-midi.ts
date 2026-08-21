@@ -1,4 +1,4 @@
-import type { MidiOutput, MidiService } from './types'
+import type { MidiMessage, MidiOutput, MidiService } from './types'
 
 class BrowserMidiOutput implements MidiOutput {
   constructor(private readonly port: MIDIOutput) {}
@@ -9,21 +9,9 @@ class BrowserMidiOutput implements MidiOutput {
     return this.port.manufacturer ? `${this.port.manufacturer} — ${name}` : name
   }
 
-  sendControlChange(channel: number, controlChange: number, value: number) {
+  send(messages: readonly MidiMessage[]) {
     if (this.port.state === 'disconnected') throw new Error('The selected MIDI output is no longer connected.')
-    if (!Number.isInteger(channel) || channel < 1 || channel > 16) throw new Error('The MIDI channel must be between 1 and 16.')
-    if (!Number.isInteger(controlChange) || controlChange < 0 || controlChange > 127) throw new Error('The MIDI control change must be between 0 and 127.')
-    if (!Number.isInteger(value) || value < 0 || value > 127) throw new Error('The MIDI control value must be between 0 and 127.')
-
-    this.port.send([0xb0 + channel - 1, controlChange, value])
-  }
-
-  sendProgramChange(channel: number, program: number) {
-    if (this.port.state === 'disconnected') throw new Error('The selected MIDI output is no longer connected.')
-    if (!Number.isInteger(channel) || channel < 1 || channel > 16) throw new Error('The MIDI channel must be between 1 and 16.')
-    if (!Number.isInteger(program) || program < 0 || program > 127) throw new Error('The MIDI program must be between 0 and 127.')
-
-    this.port.send([0xc0 + channel - 1, program])
+    this.port.send(messages.flat())
   }
 }
 

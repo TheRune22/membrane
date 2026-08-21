@@ -1,8 +1,9 @@
+export type MidiMessage = readonly number[]
+
 export interface MidiOutput {
   readonly id: string
   readonly label: string
-  sendControlChange(channel: number, controlChange: number, value: number): void
-  sendProgramChange(channel: number, program: number): void
+  send(messages: readonly MidiMessage[]): void
 }
 
 export interface MidiService {

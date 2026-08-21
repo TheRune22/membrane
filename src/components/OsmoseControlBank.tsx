@@ -1,13 +1,13 @@
 import { Fader } from './Fader'
 import { controlChange, type MidiAction } from '../osmose/protocol'
-import type { MidiOutput } from '../midi/types'
+import type { MidiMessage } from '../midi/types'
 
 type Group = 'macro' | 'gain' | 'compressor' | 'effects' | 'performance' | 'equalizer'
-interface Props { values: Readonly<Record<string, number>>; disabled: boolean; onFaderValueChange: (id: string, value: number, action: (output: MidiOutput) => void) => void }
+interface Props { values: Readonly<Record<string, number>>; disabled: boolean; onFaderValueChange: (id: string, value: number, messages: readonly MidiMessage[]) => void }
 
 export function OsmoseControlBank(props: Props) {
   function FaderWrapper(p: { id: string; name: string; label: string; group: Group; action: MidiAction }) {
-    return <Fader {...p} values={props.values} disabled={props.disabled} onValueChange={(value) => props.onFaderValueChange(p.id, value, (output) => p.action(output, value))} />
+    return <Fader {...p} values={props.values} disabled={props.disabled} onValueChange={(value) => props.onFaderValueChange(p.id, value, p.action(value))} />
   }
   return <section class="control-bank" aria-label="Osmose controls">
     <section class="control-section control-section-macro" aria-labelledby="macro-heading"><h2 id="macro-heading">Macros</h2><div class="section-fader-grid">
