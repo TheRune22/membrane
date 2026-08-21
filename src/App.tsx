@@ -7,6 +7,7 @@ import type { StatusKind } from './components/StatusMessage'
 import { WebMidiService } from './midi/web-midi'
 import type { MidiOutput } from './midi/types'
 import { osmosePresets, type OsmosePreset } from './osmose/presets'
+import { setPreset } from './osmose/protocol'
 
 type Status = { kind: StatusKind; message: string }
 const midi = new WebMidiService()
@@ -81,7 +82,7 @@ export default function App() {
     if (!output) return
 
     try {
-      output.sendProgramChange(preset.bank, preset.program)
+      setPreset(output, preset)
       setControlValues({})
       setSelectedPreset(preset)
       setIsPresetBrowserOpen(false)

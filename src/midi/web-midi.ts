@@ -18,13 +18,12 @@ class BrowserMidiOutput implements MidiOutput {
     this.port.send([0xb0 + channel - 1, controlChange, value])
   }
 
-  sendProgramChange(bank: number, program: number) {
+  sendProgramChange(channel: number, program: number) {
     if (this.port.state === 'disconnected') throw new Error('The selected MIDI output is no longer connected.')
-    if (!Number.isInteger(bank) || bank < 0 || bank > 127) throw new Error('The MIDI bank must be between 0 and 127.')
+    if (!Number.isInteger(channel) || channel < 1 || channel > 16) throw new Error('The MIDI channel must be between 1 and 16.')
     if (!Number.isInteger(program) || program < 0 || program > 127) throw new Error('The MIDI program must be between 0 and 127.')
 
-    this.port.send([0xb0, 0, bank])
-    this.port.send([0xc0, program])
+    this.port.send([0xc0 + channel - 1, program])
   }
 }
 
