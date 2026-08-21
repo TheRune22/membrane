@@ -27,7 +27,9 @@ export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
   onMount(() => selectedPresetOption?.scrollIntoView({ block: 'center' }))
 
   return (
-    <div class="dialog-backdrop" role="presentation">
+    <div class="dialog-backdrop" role="presentation" onClick={(event) => {
+      if (event.target === event.currentTarget) props.onClose()
+    }}>
       <section class="preset-dialog" role="dialog" aria-modal="true" aria-labelledby="preset-browser-title">
         <div class="dialog-header">
           <div><p class="eyebrow">Osmose library</p><h2 id="preset-browser-title">Select a preset</h2></div>
