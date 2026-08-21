@@ -1,4 +1,4 @@
-import { For, Show, createMemo, createSignal } from 'solid-js'
+import { For, Show, createMemo, createSignal, onMount } from 'solid-js'
 import type { OsmosePreset } from '../osmose/presets'
 
 interface PresetBrowserDialogProps {
@@ -12,6 +12,7 @@ export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
   const [query, setQuery] = createSignal('')
   const [type, setType] = createSignal('all')
   const [character, setCharacter] = createSignal('all')
+  let selectedPresetOption: HTMLButtonElement | undefined
   const types = createMemo(() => [...new Set(props.presets.map((preset) => preset.type))].sort())
   const characters = createMemo(() => [...new Set(props.presets.flatMap((preset) => preset.tags))].sort())
   const matchingPresets = createMemo(() => {
@@ -22,6 +23,8 @@ export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
       (!normalizedQuery || [preset.name, preset.type, ...preset.tags].some((value) => value.toLowerCase().includes(normalizedQuery))),
     )
   })
+
+  onMount(() => selectedPresetOption?.scrollIntoView({ block: 'center' }))
 
   return (
     <div class="dialog-backdrop" role="presentation">
@@ -44,7 +47,11 @@ export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
         <p class="preset-count">{matchingPresets().length} presets</p>
         <div class="preset-list" role="list">
           <For each={matchingPresets()}>{(preset) =>
-            <button classList={{ 'preset-option': true, selected: props.selectedPreset?.bank === preset.bank && props.selectedPreset?.program === preset.program }} type="button" onClick={() => props.onSelect(preset)} role="listitem">
+            <button ref={(element) => {
+              if (props.selectedPreset?.bank === preset.bank && props.selectedPreset?.program === preset.program) {
+                selectedPresetOption = element
+              }
+            }} classList={{ 'preset-option': true, selected: props.selectedPreset?.bank === preset.bank && props.selectedPreset?.program === preset.program }} type="button" onClick={() => props.onSelect(preset)} role="listitem">
               <span class="preset-name">{preset.name}</span>
               <span class="preset-meta">
                 <span class="preset-type">{preset.type}</span>
