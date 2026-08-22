@@ -13,7 +13,7 @@ function parsePreset(row: string, rowNumber: number): OsmosePreset {
   const parsedBank = Number(bank)
   const parsedProgram = Number(program)
 
-  if (!name || !Number.isInteger(parsedBank) || !Number.isInteger(parsedProgram)) {
+  if (!name.trim() || !bank.trim() || !program.trim() || !Number.isInteger(parsedBank) || !Number.isInteger(parsedProgram)) {
     throw new Error(`Invalid preset data on row ${rowNumber}.`)
   }
 
@@ -26,8 +26,12 @@ function parsePreset(row: string, rowNumber: number): OsmosePreset {
   }
 }
 
-export const osmosePresets: readonly OsmosePreset[] = presetsCsv
-  .trim()
-  .split(/\r?\n/)
-  .slice(1)
-  .map((row, index) => parsePreset(row, index + 2))
+export function parseOsmosePresets(csv: string): readonly OsmosePreset[] {
+  return csv
+    .trim()
+    .split(/\r?\n/)
+    .slice(1)
+    .map((row, index) => parsePreset(row, index + 2))
+}
+
+export const osmosePresets = parseOsmosePresets(presetsCsv)

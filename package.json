@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:sandbox": "tsc -b && vite build --configLoader runner",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run"
   },
   "dependencies": {
     "solid-js": "^1.9.10"
@@ -15,6 +16,7 @@
   "devDependencies": {
     "typescript": "^5.9.3",
     "vite": "^7.1.7",
-    "vite-plugin-solid": "^2.11.8"
+    "vite-plugin-solid": "^2.11.8",
+    "vitest": "^4.1.11"
   }
 }
