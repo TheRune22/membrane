@@ -11,6 +11,7 @@ import { setPreset } from './osmose/protocol'
 
 type Status = { kind: StatusKind; message: string }
 const midi = new WebMidiService()
+const preferredOsmoseOutputLabel = 'MIDIOUT2 (Osmose)'
 
 export default function App() {
   const [outputs, setOutputs] = createSignal<readonly MidiOutput[]>([])
@@ -29,6 +30,14 @@ export default function App() {
       setSelectedOutputId('')
       setStatus({ kind: 'error', message: 'The selected MIDI output was disconnected.' })
       setIsMidiSetupOpen(true)
+    }
+
+    if (!selectedOutputId()) {
+      const osmoseOutput = nextOutputs.find((output) => output.label === preferredOsmoseOutputLabel)
+      if (osmoseOutput) {
+        setSelectedOutputId(osmoseOutput.id)
+        setIsMidiSetupOpen(false)
+      }
     }
   })
   onCleanup(unsubscribe)
