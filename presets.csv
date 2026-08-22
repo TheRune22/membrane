@@ -150,7 +150,7 @@ essendar,31,23,brass,
 etalophone,31,24,mallets,acoustic
 etherry,31,25,mallets,acoustic
 expluck,31,27,plucked,acoustic + shaking
-fabulia,34,33,pads lfo,feelgood
+fabulia,34,33,pads,lfo + feelgood
 fancy brass,31,28,brass,bright + chords + ensemble + lfo + stereo
 fat model d,31,29,bass,analog + big + noise + portamento + warm
 fdn crazyness,31,30,sfx,aggressive + atonal + big + electric + evolving + portamento + reverberant
@@ -364,31 +364,31 @@ perseus supernova,32,105,pads,analog + big + reverberant
 petit carillon,32,106,mallets,acoustic + metallic + shaking
 phase machine,32,107,pads,bright + ensemble + stereo
 photalia,34,57,pads,analog
-piano bazikey,30,35,elec,analog + simple
-piano beyond felt,30,39,elec,acoustic + shaking + strumming
-piano clavi 1,30,81,elec,electric
-piano clawha,30,84,elec,electric
-piano copey,30,88,elec,electric
-piano cp eight,30,93,elec,electric
-piano deven,30,110,elec,electric
-piano electric keys 1,31,7,elec,electric
-piano electric keys 5,31,8,elec,electric
-piano electric keys 6,31,9,elec,clean + electric
-piano epiano1,31,20,elec,electric
-piano epiarom,31,21,elec,fm
-piano etines mk1,31,26,elec,acoustic + electric
-piano fm clav 1,31,42,elec,fm
-piano fm piano1,31,48,elec,bright + fm
-piano hammers brushed,31,79,elec,acoustic + shaking + soft
-piano iziki,31,100,elec,analog + clean + fm + simple
-piano kakey,31,115,elec,electric
-piano klavunk,32,2,elec,clean + electric
-piano legacy dx ep,32,15,elec,clean + digital
-piano martine,32,37,elec,acoustic + strumming
-piano opikey,32,81,elec,fm
-piano tine,33,97,elec,acoustic + clean + dry + electric + intimate
-piano tinolin,33,98,elec,acoustic + fm
-piano upibanks,33,111,elec,acoustic
+piano bazikey,30,35,elec piano,analog + simple
+piano beyond felt,30,39,elec piano,acoustic + shaking + strumming
+piano clavi 1,30,81,elec piano,electric
+piano clawha,30,84,elec piano,electric
+piano copey,30,88,elec piano,electric
+piano cp eight,30,93,elec piano,electric
+piano deven,30,110,elec piano,electric
+piano electric keys 1,31,7,elec piano,electric
+piano electric keys 5,31,8,elec piano,electric
+piano electric keys 6,31,9,elec piano,clean + electric
+piano epiano1,31,20,elec piano,electric
+piano epiarom,31,21,elec piano,fm
+piano etines mk1,31,26,elec piano,acoustic + electric
+piano fm clav 1,31,42,elec piano,fm
+piano fm piano1,31,48,elec piano,bright + fm
+piano hammers brushed,31,79,elec piano,acoustic + shaking + soft
+piano iziki,31,100,elec piano,analog + clean + fm + simple
+piano kakey,31,115,elec piano,electric
+piano klavunk,32,2,elec piano,clean + electric
+piano legacy dx ep,32,15,elec piano,clean + digital
+piano martine,32,37,elec piano,acoustic + strumming
+piano opikey,32,81,elec piano,fm
+piano tine,33,97,elec piano,acoustic + clean + dry + electric + intimate
+piano tinolin,33,98,elec piano,acoustic + fm
+piano upibanks,33,111,elec piano,acoustic
 pickope,32,108,lead,analog + portamento
 piercing bass,32,109,bass,aggressive + big + dark + digital
 pine strummer,32,110,plucked,acoustic + shaking
@@ -414,34 +414,34 @@ quiet carriers,33,1,pads,fm
 radioactive zone,33,2,sfx,analog + dark + fm + stereo
 random trigger,33,3,sfx,acoustic + atonal + echo + random + reverberant + stereo
 rateanis,33,4,pads,analog + stereo
-reeds anareed,30,13,flute,acoustic + analog + portamento
-reeds arcadia pan,30,19,flute,acoustic
-reeds bansuri,30,30,flute,acoustic + soft + woody
-reeds brasswind,30,56,flute,acoustic + portamento
-reeds claribreath,30,76,flute,acoustic + atonal + noise + portamento
-reeds clarinet,30,77,flute,acoustic + clean + warm + woody
-reeds double reed,30,117,flute,acoustic + bright + clean + warm
-reeds empyrean,31,16,flute,acoustic + warm
-reeds flip tube,31,34,flute,acoustic + airy + echo + lfo
-reeds flute transverse,31,37,flute,acoustic + airy + clean
-reeds flutimut,31,38,flute,acoustic + fm
-reeds fm reed,31,49,flute,acoustic + fm + portamento
-reeds gowind,31,70,flute,acoustic + clean
-reeds microdelay pipewg,32,41,flute,acoustic + airy + clean
-reeds model string wind,32,45,flute,acoustic + airy + morphing
-reeds oboreed,32,70,flute,acoustic + fm + portamento
-reeds panpipe solo,32,100,flute,airy + clean + noise
-reeds pipopi,32,112,flute,acoustic + portamento
-reeds ringmod harmonica,33,15,flute,acoustic + distorted
-reeds saxoon,33,22,flute,acoustic + atonal + noise + reverberant
-reeds sentimental mood,33,26,flute,acoustic + airy + clean + woody
-reeds soprano recorder,33,52,flute,acoustic + airy + clean + portamento
-reeds tabec,33,79,flute,acoustic + portamento
-reeds tin whistle,33,96,flute,clean + portamento
-reeds windotron,34,4,flute,acoustic + fm + soft + stereo + woody
-reeds windtube double reed,34,5,flute,acoustic + clean
-reeds woodwind,34,7,flute,acoustic + airy + clean + woody
-reeds yokobue,34,13,flute,acoustic + woody
+reeds anareed,30,13,flute reeds,acoustic + analog + portamento
+reeds arcadia pan,30,19,flute reeds,acoustic
+reeds bansuri,30,30,flute reeds,acoustic + soft + woody
+reeds brasswind,30,56,flute reeds,acoustic + portamento
+reeds claribreath,30,76,flute reeds,acoustic + atonal + noise + portamento
+reeds clarinet,30,77,flute reeds,acoustic + clean + warm + woody
+reeds double reed,30,117,flute reeds,acoustic + bright + clean + warm
+reeds empyrean,31,16,flute reeds,acoustic + warm
+reeds flip tube,31,34,flute reeds,acoustic + airy + echo + lfo
+reeds flute transverse,31,37,flute reeds,acoustic + airy + clean
+reeds flutimut,31,38,flute reeds,acoustic + fm
+reeds fm reed,31,49,flute reeds,acoustic + fm + portamento
+reeds gowind,31,70,flute reeds,acoustic + clean
+reeds microdelay pipewg,32,41,flute reeds,acoustic + airy + clean
+reeds model string wind,32,45,flute reeds,acoustic + airy + morphing
+reeds oboreed,32,70,flute reeds,acoustic + fm + portamento
+reeds panpipe solo,32,100,flute reeds,airy + clean + noise
+reeds pipopi,32,112,flute reeds,acoustic + portamento
+reeds ringmod harmonica,33,15,flute reeds,acoustic + distorted
+reeds saxoon,33,22,flute reeds,acoustic + atonal + noise + reverberant
+reeds sentimental mood,33,26,flute reeds,acoustic + airy + clean + woody
+reeds soprano recorder,33,52,flute reeds,acoustic + airy + clean + portamento
+reeds tabec,33,79,flute reeds,acoustic + portamento
+reeds tin whistle,33,96,flute reeds,clean + portamento
+reeds windotron,34,4,flute reeds,acoustic + fm + soft + stereo + woody
+reeds windtube double reed,34,5,flute reeds,acoustic + clean
+reeds woodwind,34,7,flute reeds,acoustic + airy + clean + woody
+reeds yokobue,34,13,flute reeds,acoustic + woody
 reesotto,33,5,bass,aggressive + digital
 reesy rider,33,6,bass,aggressive + analog + distorted + stereo
 releasy,33,7,mallets,acoustic + fm + shaking
