@@ -20,6 +20,10 @@ export class WebMidiService implements MidiService {
   private readonly listeners = new Set<(outputs: readonly MidiOutput[]) => void>()
 
   async connect() {
+    if (!window.isSecureContext) {
+      throw new Error('Web MIDI requires a secure HTTPS connection. Open this page over HTTPS and try again.')
+    }
+
     if (!navigator.requestMIDIAccess) throw new Error('Web MIDI is unavailable in this browser. Please use a Chromium-based browser.')
 
     if (this.access) this.access.onstatechange = null
