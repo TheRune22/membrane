@@ -4,6 +4,7 @@ interface ControllerHeaderProps {
   connected: boolean
   presetSelectionEnabled: boolean
   selectedPreset: OsmosePreset | undefined
+  currentPresetName: string | undefined
   selectedMidiDevice: string | undefined
   onOpenMidiSetup: () => void
   onOpenPresetBrowser: () => void
@@ -32,10 +33,10 @@ export function ControllerHeader(props: ControllerHeaderProps) {
           type="button"
           onClick={props.onOpenPresetBrowser}
           disabled={!props.presetSelectionEnabled}
-          aria-label={props.selectedPreset ? `Change preset, currently ${props.selectedPreset.name}` : 'Choose a preset'}
+          aria-label={props.currentPresetName || props.selectedPreset ? `Change preset, currently ${props.currentPresetName ?? props.selectedPreset?.name}` : 'Choose a preset'}
         >
           <span class="preset-label">Preset</span>
-          <span class="preset-current-name">{props.selectedPreset?.name ?? 'Select preset'}</span>
+          <span class="preset-current-name">{props.currentPresetName ?? props.selectedPreset?.name ?? 'Select preset'}</span>
         </button>
       </div>
     </header>

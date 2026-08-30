@@ -34,4 +34,8 @@ export function parseOsmosePresets(csv: string): readonly OsmosePreset[] {
     .map((row, index) => parsePreset(row, index + 2))
 }
 
+export function findOsmosePresetByName(presets: readonly OsmosePreset[], name: string): OsmosePreset | undefined {
+  return presets.find((preset) => preset.name === name)
+}
+
 export const osmosePresets = parseOsmosePresets(presetsCsv)

@@ -1,4 +1,4 @@
-import type { MidiMessage, MidiOutput, MidiService } from './types'
+import type { MidiInput, MidiMessage, MidiOutput, MidiService } from './types'
 
 class BrowserMidiOutput implements MidiOutput {
   constructor(private readonly port: MIDIOutput) {}
@@ -15,9 +15,28 @@ class BrowserMidiOutput implements MidiOutput {
   }
 }
 
+class BrowserMidiInput implements MidiInput {
+  constructor(private readonly port: MIDIInput) {}
+
+  get id() { return this.port.id }
+  get label() {
+    const name = this.port.name ?? 'Unnamed MIDI input'
+    return this.port.manufacturer ? `${this.port.manufacturer} — ${name}` : name
+  }
+
+  onMessage(listener: (message: MidiMessage) => void) {
+    const receive = (event: MIDIMessageEvent) => {
+      if (event.data) listener([...event.data])
+    }
+    this.port.addEventListener('midimessage', receive)
+    return () => this.port.removeEventListener('midimessage', receive)
+  }
+}
+
 export class WebMidiService implements MidiService {
   private access: MIDIAccess | undefined
-  private readonly listeners = new Set<(outputs: readonly MidiOutput[]) => void>()
+  private readonly outputListeners = new Set<(outputs: readonly MidiOutput[]) => void>()
+  private readonly inputListeners = new Set<(inputs: readonly MidiInput[]) => void>()
 
   async connect() {
     if (!window.isSecureContext) {
@@ -37,14 +56,27 @@ export class WebMidiService implements MidiService {
     return [...this.access.outputs.values()].filter((output) => output.state === 'connected').map((output) => new BrowserMidiOutput(output))
   }
 
+  getInputs(): readonly MidiInput[] {
+    if (!this.access) return []
+    return [...this.access.inputs.values()].filter((input) => input.state === 'connected').map((input) => new BrowserMidiInput(input))
+  }
+
   onOutputsChanged(listener: (outputs: readonly MidiOutput[]) => void) {
-    this.listeners.add(listener)
+    this.outputListeners.add(listener)
     listener(this.getOutputs())
-    return () => this.listeners.delete(listener)
+    return () => this.outputListeners.delete(listener)
+  }
+
+  onInputsChanged(listener: (inputs: readonly MidiInput[]) => void) {
+    this.inputListeners.add(listener)
+    listener(this.getInputs())
+    return () => this.inputListeners.delete(listener)
   }
 
   private notifyListeners() {
     const outputs = this.getOutputs()
-    this.listeners.forEach((listener) => listener(outputs))
+    const inputs = this.getInputs()
+    this.outputListeners.forEach((listener) => listener(outputs))
+    this.inputListeners.forEach((listener) => listener(inputs))
   }
 }

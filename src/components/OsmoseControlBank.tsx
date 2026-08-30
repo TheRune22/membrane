@@ -3,7 +3,7 @@ import { controlChangeAction, type MidiAction } from '../osmose/protocol'
 import type { MidiMessage } from '../midi/types'
 
 type Group = 'macro' | 'gain' | 'compressor' | 'effects' | 'performance' | 'equalizer'
-interface Props { values: Readonly<Record<string, number>>; disabled: boolean; onFaderValueChange: (id: string, value: number, messages: readonly MidiMessage[]) => void }
+interface Props { values: Readonly<Record<string, number>>; macroLabels: Readonly<Record<string, string>>; disabled: boolean; onFaderValueChange: (id: string, value: number, messages: readonly MidiMessage[]) => void }
 
 export function OsmoseControlBank(props: Props) {
   function FaderWrapper(p: { id: string; name: string; label: string; group: Group; action: MidiAction }) {
@@ -11,12 +11,12 @@ export function OsmoseControlBank(props: Props) {
   }
   return <section class="control-bank" aria-label="Osmose controls">
     <section class="control-section control-section-macro" aria-labelledby="macro-heading"><h2 id="macro-heading">Macros</h2><div class="section-fader-grid">
-      <FaderWrapper id="macro-1" name="Macro 1" label="M1" group="macro" action={controlChangeAction(12)} />
-      <FaderWrapper id="macro-2" name="Macro 2" label="M2" group="macro" action={controlChangeAction(13)} />
-      <FaderWrapper id="macro-3" name="Macro 3" label="M3" group="macro" action={controlChangeAction(14)} />
-      <FaderWrapper id="macro-4" name="Macro 4" label="M4" group="macro" action={controlChangeAction(15)} />
-      <FaderWrapper id="macro-5" name="Macro 5" label="M5" group="macro" action={controlChangeAction(16)} />
-      <FaderWrapper id="macro-6" name="Macro 6" label="M6" group="macro" action={controlChangeAction(17)} />
+      <FaderWrapper id="macro-1" name="Macro 1" label={props.macroLabels['macro-1'] ?? 'M1'} group="macro" action={controlChangeAction(12)} />
+      <FaderWrapper id="macro-2" name="Macro 2" label={props.macroLabels['macro-2'] ?? 'M2'} group="macro" action={controlChangeAction(13)} />
+      <FaderWrapper id="macro-3" name="Macro 3" label={props.macroLabels['macro-3'] ?? 'M3'} group="macro" action={controlChangeAction(14)} />
+      <FaderWrapper id="macro-4" name="Macro 4" label={props.macroLabels['macro-4'] ?? 'M4'} group="macro" action={controlChangeAction(15)} />
+      <FaderWrapper id="macro-5" name="Macro 5" label={props.macroLabels['macro-5'] ?? 'M5'} group="macro" action={controlChangeAction(16)} />
+      <FaderWrapper id="macro-6" name="Macro 6" label={props.macroLabels['macro-6'] ?? 'M6'} group="macro" action={controlChangeAction(17)} />
     </div></section>
     <section class="control-section control-section-gain" aria-labelledby="gain-heading"><h2 id="gain-heading">Gain</h2><div class="section-fader-grid">
       <FaderWrapper id="pregain" name="Pregain" label="Pregain" group="gain" action={controlChangeAction(26)} />

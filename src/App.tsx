@@ -5,24 +5,31 @@ import { OsmoseControlBank } from './components/OsmoseControlBank'
 import { PresetBrowserDialog } from './components/PresetBrowserDialog'
 import type { StatusKind } from './components/StatusMessage'
 import { WebMidiService } from './midi/web-midi'
-import type { MidiMessage, MidiOutput } from './midi/types'
-import { osmosePresets, type OsmosePreset } from './osmose/presets'
-import { setPreset } from './osmose/protocol'
+import type { MidiInput, MidiMessage, MidiOutput } from './midi/types'
+import { findOsmosePresetByName, osmosePresets, type OsmosePreset } from './osmose/presets'
+import { requestCurrentPreset, setPreset } from './osmose/protocol'
+import { OsmoseSnapshotParser, type OsmoseSnapshot } from './osmose/snapshot'
 
 type Status = { kind: StatusKind; message: string }
 const midi = new WebMidiService()
 const preferredOsmoseOutputLabel = 'MIDIOUT2 (Osmose)'
+const preferredOsmoseInputLabel = 'MIDIIN2 (Osmose)'
 
 export default function App() {
   const [outputs, setOutputs] = createSignal<readonly MidiOutput[]>([])
+  const [inputs, setInputs] = createSignal<readonly MidiInput[]>([])
   const [selectedOutputId, setSelectedOutputId] = createSignal('')
+  const [selectedInputId, setSelectedInputId] = createSignal('')
   const [selectedPreset, setSelectedPreset] = createSignal<OsmosePreset>()
+  const [currentPreset, setCurrentPreset] = createSignal<OsmoseSnapshot>()
   const [isConnecting, setIsConnecting] = createSignal(false)
   const [isConnected, setIsConnected] = createSignal(false)
   const [isMidiSetupOpen, setIsMidiSetupOpen] = createSignal(true)
   const [isPresetBrowserOpen, setIsPresetBrowserOpen] = createSignal(false)
   const [controlValues, setControlValues] = createSignal<Readonly<Record<string, number>>>({})
   const [status, setStatus] = createSignal<Status>({ kind: 'neutral', message: 'Looking for available MIDI outputs.' })
+  const snapshotParser = new OsmoseSnapshotParser()
+  let stopReceiving: (() => void) | undefined
 
   const unsubscribe = midi.onOutputsChanged((nextOutputs) => {
     setOutputs(nextOutputs)
@@ -40,7 +47,22 @@ export default function App() {
       }
     }
   })
-  onCleanup(unsubscribe)
+  const unsubscribeInputs = midi.onInputsChanged((nextInputs) => {
+    setInputs(nextInputs)
+    if (selectedInputId() && !nextInputs.some((input) => input.id === selectedInputId())) {
+      selectInput('')
+      setStatus({ kind: 'error', message: 'The selected MIDI input was disconnected.' })
+    }
+    if (!selectedInputId()) {
+      const osmoseInput = nextInputs.find((input) => input.label === preferredOsmoseInputLabel)
+      if (osmoseInput) selectInput(osmoseInput.id)
+    }
+  })
+  onCleanup(() => {
+    unsubscribe()
+    unsubscribeInputs()
+    stopReceiving?.()
+  })
 
   async function refreshMidiOutputs() {
     setIsConnecting(true)
@@ -49,6 +71,7 @@ export default function App() {
       setIsConnected(true)
       const availableOutputs = midi.getOutputs()
       setOutputs(availableOutputs)
+      setInputs(midi.getInputs())
       setStatus(availableOutputs.length === 0
         ? { kind: 'neutral', message: 'Connected, but no MIDI outputs are available.' }
         : { kind: 'success', message: `${availableOutputs.length} MIDI output${availableOutputs.length === 1 ? '' : 's'} found.` })
@@ -64,10 +87,49 @@ export default function App() {
   function selectOutput(outputId: string) {
     setSelectedOutputId(outputId)
     if (outputId) setIsMidiSetupOpen(false)
+    requestCurrentPresetState()
+  }
+
+  function selectInput(inputId: string) {
+    stopReceiving?.()
+    stopReceiving = undefined
+    snapshotParser.reset()
+    setSelectedInputId(inputId)
+    const input = inputs().find((candidate) => candidate.id === inputId)
+    if (!input) return
+    stopReceiving = input.onMessage(handleIncomingMessage)
+    requestCurrentPresetState()
   }
 
   function selectedOutput() {
     return outputs().find((candidate) => candidate.id === selectedOutputId())
+  }
+
+  function handleIncomingMessage(message: MidiMessage) {
+    const snapshot = snapshotParser.push(message)
+    if (!snapshot) return
+    setCurrentPreset(snapshot)
+    setSelectedPreset(findOsmosePresetByName(osmosePresets, snapshot.name))
+    setControlValues(snapshot.controlValues)
+    setStatus({ kind: 'success', message: `Loaded current Osmose preset: ${snapshot.name}.` })
+  }
+
+  function requestCurrentPresetState() {
+    const output = selectedOutput()
+    if (!output || !selectedInputId()) return
+    try {
+      output.send(requestCurrentPreset())
+    } catch (error) {
+      setStatus({ kind: 'error', message: error instanceof Error ? error.message : 'Unable to read the current Osmose preset.' })
+    }
+  }
+
+  function macroLabels() {
+    const names = currentPreset()?.macroNames
+    return {
+      'macro-1': names?.i ?? 'M1', 'macro-2': names?.ii ?? 'M2', 'macro-3': names?.iii ?? 'M3',
+      'macro-4': names?.iv ?? 'M4', 'macro-5': names?.v ?? 'M5', 'macro-6': names?.vi ?? 'M6',
+    }
   }
 
   function handleFaderValueChange(id: string, value: number, messages: readonly MidiMessage[]) {
@@ -92,9 +154,9 @@ export default function App() {
 
     try {
       output.send(setPreset(preset))
-      setControlValues({})
       setSelectedPreset(preset)
       setIsPresetBrowserOpen(false)
+      requestCurrentPresetState()
     } catch (error) {
       setStatus({ kind: 'error', message: error instanceof Error ? error.message : 'Unable to select the preset.' })
       setIsMidiSetupOpen(true)
@@ -102,16 +164,17 @@ export default function App() {
   }
 
   return <main class="page-shell"><section class="controller" aria-labelledby="page-title">
-    <ControllerHeader connected={isConnected()} presetSelectionEnabled={Boolean(selectedOutput())} selectedPreset={selectedPreset()} selectedMidiDevice={selectedOutput()?.label} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} />
+    <ControllerHeader connected={isConnected()} presetSelectionEnabled={Boolean(selectedOutput())} selectedPreset={selectedPreset()} currentPresetName={currentPreset()?.name} selectedMidiDevice={selectedOutput()?.label} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} />
     <div class="workspace">
       <OsmoseControlBank
         values={controlValues()}
+        macroLabels={macroLabels()}
         disabled={!selectedOutputId()}
         onFaderValueChange={handleFaderValueChange}
       />
     </div>
   </section>
-  <Show when={isMidiSetupOpen()}><MidiSetupDialog connected={isConnected()} connecting={isConnecting()} outputs={outputs()} selectedOutputId={selectedOutputId()} status={status()} onRefresh={refreshMidiOutputs} onClose={() => setIsMidiSetupOpen(false)} onSelectionChange={selectOutput} /></Show>
+  <Show when={isMidiSetupOpen()}><MidiSetupDialog connected={isConnected()} connecting={isConnecting()} outputs={outputs()} inputs={inputs()} selectedOutputId={selectedOutputId()} selectedInputId={selectedInputId()} status={status()} onRefresh={refreshMidiOutputs} onClose={() => setIsMidiSetupOpen(false)} onSelectionChange={selectOutput} onInputSelectionChange={selectInput} /></Show>
   <Show when={isPresetBrowserOpen()}><PresetBrowserDialog presets={osmosePresets} selectedPreset={selectedPreset()} onClose={() => setIsPresetBrowserOpen(false)} onSelect={selectPreset} /></Show>
   </main>
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseOsmosePresets } from './presets'
+import { findOsmosePresetByName, parseOsmosePresets } from './presets'
 
 describe('parseOsmosePresets', () => {
   it('parses preset fields and character tags', () => {
@@ -16,5 +16,12 @@ describe('parseOsmosePresets', () => {
 
   it('rejects rows with missing required data', () => {
     expect(() => parseOsmosePresets('Name,Bank,Program,Type,Characters\nBroken,,3,Pad,Warm')).toThrow('Invalid preset data on row 2.')
+  })
+
+  it('finds a catalog preset by its Osmose-reported name', () => {
+    const presets = parseOsmosePresets('Name,Bank,Program,Type,Characters\nAnalog Pad,30,42,Pad,Warm')
+
+    expect(findOsmosePresetByName(presets, 'Analog Pad')).toEqual(presets[0])
+    expect(findOsmosePresetByName(presets, 'A preset not in the catalog')).toBeUndefined()
   })
 })

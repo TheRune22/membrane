@@ -14,3 +14,7 @@ export function setPreset(preset: OsmosePreset): readonly MidiMessage[] {
     programChange(1, preset.program),
   ]
 }
+
+export function requestCurrentPreset(): readonly MidiMessage[] {
+  return [controlChange(16, 109, 16)]
+}
