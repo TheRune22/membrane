@@ -1,30 +1,24 @@
-# Project guidelines
+# Osmose Controller
 
-## Project context
-
-- This is a small SolidJS + TypeScript application built with Vite.
-- Keep browser Web MIDI integration confined to `src/midi`; device-specific Osmose data and behavior belong in `src/osmose`.
-
-## Code quality
-
-- Prioritize readability and maintainability over cleverness or premature flexibility.
-- Keep the app small: introduce an abstraction only when it gives a clear boundary or removes a real source of complexity.
-- Prefer descriptive names and straightforward control flow to explanatory comments.
-- Add docstrings only for public boundaries or behavior that is not obvious from the code itself.
-- Keep browser-specific MIDI APIs inside `src/midi`; UI code should use the app-level MIDI interfaces.
-- Build the UI from focused components; keep `App` responsible for composition and app-level state rather than presentation details.
-- Avoid adding dependencies unless they materially improve the current product.
-- Keep commits focused and free of unrelated work. Do not include pre-existing or unrelated working-tree changes.
+SolidJS + TypeScript + Vite static web app for controlling an Expressive E Osmose through the browser Web MIDI API (Chromium, HTTPS).
+It currently discovers/selects MIDI outputs (auto-selecting Osmose when available), sends channel-1 controls through an Osmose control bank, and browses/selects the bundled preset library via bank-select and program-change messages.
 
 ## Scope
 
-- The shipped application must not expose arbitrary MIDI-byte entry. It should offer intentional controls that produce well-defined MIDI messages.
-- Raw MIDI-byte input may be used only as a temporary development diagnostic, not as a user-facing feature.
-- Do not add SysEx, message interpretation, MPE features, device editing, or monitoring without an explicit request.
+- Keep Web MIDI/browser APIs in `src/midi`; keep Osmose protocol, preset data, and device behavior in `src/osmose`; UI uses those app-level interfaces.
+- The shipped UI exposes intentional, well-defined controls only—never arbitrary MIDI-byte entry. Do not add unrelated SysEx, MIDI interpretation/monitoring, MPE, or device editing without an explicit request.
+- This app configures the Osmose; controlling other devices, an on-screen keyboard, and note-playing or performance features are out of scope unless explicitly requested.
+- Planned work: load presets to the Osmose; add parameter controls including 14-bit macros; support two-way communication for current settings, change detection, parameter names, and downloading presets from the Osmose.
 
-## Verification and commits
+## Principles
 
-- Before finishing a code change, run `npm run build`.
-- Report the verification result and any checks that could not be run.
-- Ask the user to verify user-facing changes before committing them. Once they confirm, commit the completed cohesive change with a concise message.
-- If the production build cannot run, state why and do not claim full verification.
+- Favor readability, maintainability, and focused modular components over cleverness or premature abstraction.
+- Preserve separation of concerns; keep `App` for composition and app state, and components for presentation.
+- Prefer clear names and direct control flow. Add dependencies, comments, and abstractions only when they solve a concrete problem.
+- Keep changes focused; preserve unrelated working-tree changes.
+
+## Every task
+
+- Verify the change works as expected (run `npm run build` for code changes and report results).
+- Reconsider whether code can be refactored, consolidated, simplified, or deleted after the change.
+- Prompt the user to commit the completed cohesive change after user-facing verification.
