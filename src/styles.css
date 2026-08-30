@@ -67,6 +67,7 @@ h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; }
 
 .midi-dialog { position: fixed; z-index: 10; top: 50%; left: 50%; width: min(calc(100vw - 36px), 400px); padding: 22px; border: 1px solid #62655f; border-radius: 10px; background: linear-gradient(135deg, rgba(40,42,39,.97), rgba(12,13,12,.98)); box-shadow: 0 24px 60px rgba(0,0,0,.7), inset 0 1px rgba(255,255,255,.11); backdrop-filter: blur(16px); transform: translate(-50%, -50%); }
 .dialog-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.dialog-actions { display: flex; align-items: center; gap: 8px; }
 .eyebrow { margin: 0 0 5px; color: #9fa19a; font: 600 .62rem/1 Poppins, Arial, sans-serif; letter-spacing: .14em; text-transform: uppercase; }
 .midi-dialog h2 { color: #edece4; font-size: .9rem; }
 .icon-button { display: grid; width: 27px; height: 27px; place-items: center; border: 0; color: #aaada5; background: transparent; font-size: 1.35rem; line-height: 1; }

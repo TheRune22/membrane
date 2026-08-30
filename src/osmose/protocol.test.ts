@@ -7,7 +7,7 @@ describe('Osmose MIDI protocol', () => {
   })
 
   it('selects a preset with bank select followed by program change', () => {
-    expect(setPreset({ name: 'Example', bank: 2, program: 37, type: 'Keys', tags: [] })).toEqual([
+    expect(setPreset({ name: 'Example', bank: 2, program: 37 })).toEqual([
       [0xb0, 0, 2],
       [0xc0, 37],
     ])

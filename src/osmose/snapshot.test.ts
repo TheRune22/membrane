@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { MidiMessage } from '../midi/types'
-import { OsmoseSnapshotParser } from './snapshot'
+import { macroLabelsFromSnapshot, OsmoseSnapshotParser } from './snapshot'
 
 const header: MidiMessage[] = [[0xbf, 104, 24], [0xbf, 105, 0], [0xbf, 106, 0]]
 const context: MidiMessage[] = [
@@ -23,6 +23,7 @@ describe('Osmose snapshot parser', () => {
       macroNames: { i: 'cutoff_cutoff', ii: 'resonance_filterReso' },
       controlValues: { 'macro-1': 48, pregain: 45, 'compressor-threshold': 65, 'effects-mix': 50, sustain: 0, 'eq-tilt': 64 },
     })
+    expect(macroLabelsFromSnapshot(snapshot!)).toEqual({ 'macro-1': 'cutoff_cutoff', 'macro-2': 'resonance_filterReso', 'macro-3': undefined, 'macro-4': undefined, 'macro-5': undefined, 'macro-6': undefined })
   })
 
   it('ignores the preset-load preamble and waits for the full snapshot header', () => {

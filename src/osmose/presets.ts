@@ -1,9 +1,12 @@
 import presetsCsv from '../../presets.csv?raw'
 
-export interface OsmosePreset {
+export interface OsmosePresetAddress {
   readonly name: string
   readonly bank: number
   readonly program: number
+}
+
+export interface OsmosePreset extends OsmosePresetAddress {
   readonly type: string
   readonly tags: readonly string[]
 }

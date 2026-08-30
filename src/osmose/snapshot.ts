@@ -1,9 +1,7 @@
 import type { MidiMessage } from '../midi/types'
+import type { OsmosePresetAddress } from './presets'
 
-export interface OsmoseSnapshot {
-  readonly name: string
-  readonly bank: number
-  readonly program: number
+export interface OsmoseSnapshot extends OsmosePresetAddress {
   readonly macroNames: Readonly<Record<string, string>>
   readonly controlValues: Readonly<Record<string, number>>
 }
@@ -14,6 +12,14 @@ const controlIds: Readonly<Record<number, string>> = {
   64: 'sustain', 66: 'sostenuto-1', 69: 'sostenuto-2',
   83: 'eq-tilt', 84: 'eq-frequency', 85: 'eq-mix',
   90: 'compressor-threshold', 91: 'compressor-attack', 92: 'compressor-ratio', 93: 'compressor-mix', 95: 'effects-parameter-5', 96: 'effects-parameter-6',
+}
+
+export function macroLabelsFromSnapshot(snapshot: OsmoseSnapshot): Readonly<Partial<Record<string, string>>> {
+  const names = snapshot.macroNames
+  return {
+    'macro-1': names.i, 'macro-2': names.ii, 'macro-3': names.iii,
+    'macro-4': names.iv, 'macro-5': names.v, 'macro-6': names.vi,
+  }
 }
 
 function decodeText(bytes: readonly number[]) {

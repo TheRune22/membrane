@@ -3,27 +3,15 @@ import type { MidiOutput } from '../midi/types'
 
 interface MidiOutputSelectorProps {
   connected: boolean
-  connecting: boolean
   outputs: readonly MidiOutput[]
   selectedOutputId: string
-  onRefresh: () => void
   onSelectionChange: (outputId: string) => void
 }
 
 export function MidiOutputSelector(props: MidiOutputSelectorProps) {
-  const buttonLabel = () => props.connecting ? 'Refreshing...' : 'Refresh outputs'
-
   return (
     <section class="control-group" aria-labelledby="output-heading">
-      <div class="section-heading">
-        <div>
-          <h2 id="output-heading">MIDI output</h2>
-        </div>
-        <button class="secondary-button" type="button" onClick={props.onRefresh} disabled={props.connecting}>
-          {buttonLabel()}
-        </button>
-      </div>
-
+      <div class="section-heading"><h2 id="output-heading">MIDI output</h2></div>
       <label class="field-label" for="midi-output">Send messages to</label>
       <select
         id="midi-output"
@@ -35,7 +23,7 @@ export function MidiOutputSelector(props: MidiOutputSelectorProps) {
         <For each={props.outputs}>{(output) => <option value={output.id}>{output.label}</option>}</For>
       </select>
       <Show when={props.connected && props.outputs.length === 0}>
-        <p class="field-note">Connect a MIDI device, then refresh outputs.</p>
+        <p class="field-note">Connect an Osmose MIDI output, then refresh MIDI access.</p>
       </Show>
     </section>
   )

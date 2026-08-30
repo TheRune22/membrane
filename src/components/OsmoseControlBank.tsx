@@ -3,7 +3,7 @@ import { controlChangeAction, type MidiAction } from '../osmose/protocol'
 import type { MidiMessage } from '../midi/types'
 
 type Group = 'macro' | 'gain' | 'compressor' | 'effects' | 'performance' | 'equalizer'
-interface Props { values: Readonly<Record<string, number>>; macroLabels: Readonly<Record<string, string>>; disabled: boolean; onFaderValueChange: (id: string, value: number, messages: readonly MidiMessage[]) => void }
+interface Props { values: Readonly<Record<string, number>>; macroLabels: Readonly<Partial<Record<string, string>>>; disabled: boolean; onFaderValueChange: (id: string, value: number, messages: readonly MidiMessage[]) => void }
 
 export function OsmoseControlBank(props: Props) {
   function FaderWrapper(p: { id: string; name: string; label: string; group: Group; action: MidiAction }) {

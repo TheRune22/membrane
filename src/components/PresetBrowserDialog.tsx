@@ -1,9 +1,9 @@
 import { For, Show, createMemo, createSignal, onMount } from 'solid-js'
-import type { OsmosePreset } from '../osmose/presets'
+import type { OsmosePreset, OsmosePresetAddress } from '../osmose/presets'
 
 interface PresetBrowserDialogProps {
   presets: readonly OsmosePreset[]
-  selectedPreset: OsmosePreset | undefined
+  selectedPreset: OsmosePresetAddress | undefined
   onClose: () => void
   onSelect: (preset: OsmosePreset) => void
 }
