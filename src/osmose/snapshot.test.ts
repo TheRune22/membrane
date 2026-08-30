@@ -43,12 +43,15 @@ describe('Osmose snapshot parser', () => {
     expect(snapshot).toMatchObject({ name: 'the analog', bank: 126, program: 1, controlValues: { 'macro-6': 54 } })
   })
 
-  it('parses macro names from arbitrary keys in their stream order', () => {
-    const macros = 'first=timbre_timbre x-shape=shape_shape 3=body_body anything=breath_breath g1=tone_toneEQ g2=breathTone_default3'
+  it('parses macro names in stream order and retains preset character and author', () => {
+    const macros = 'i=brightness_brightness ii=tone_toneEQ iii=body_body iv=resonance_acousticResonance g1=tremolo_tremolo g2=delay_delayAmt\nC=ST_PL_AC_PO\nA=G.Bonneau'
     const name = textStream(0, 'macro test')
     const snapshot = parse([...header, ...textStream(1, macros), ...name, [0xbf, 0, 0], [0xbf, 32, 0], [0xcf, 0]])
 
-    expect(snapshot?.macroNames).toEqual(['timbre_timbre', 'shape_shape', 'body_body', 'breath_breath', 'tone_toneEQ', 'breathTone_default3'])
-    expect(macroLabelsFromSnapshot(snapshot!)).toEqual({ 'macro-1': 'timbre', 'macro-2': 'shape', 'macro-3': 'body', 'macro-4': 'breath', 'macro-5': 'tone', 'macro-6': 'breathTone' })
+    expect(snapshot).toMatchObject({
+      macroNames: ['brightness_brightness', 'tone_toneEQ', 'body_body', 'resonance_acousticResonance', 'tremolo_tremolo', 'delay_delayAmt'],
+      character: 'ST_PL_AC_PO', author: 'G.Bonneau',
+    })
+    expect(macroLabelsFromSnapshot(snapshot!)).toEqual({ 'macro-1': 'brightness', 'macro-2': 'tone', 'macro-3': 'body', 'macro-4': 'resonance', 'macro-5': 'tremolo', 'macro-6': 'delay' })
   })
 })

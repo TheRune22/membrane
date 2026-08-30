@@ -3,6 +3,8 @@ import type { OsmosePresetAddress } from './presets'
 
 export interface OsmoseSnapshot extends OsmosePresetAddress {
   readonly macroNames: readonly string[]
+  readonly character?: string
+  readonly author?: string
   readonly controlValues: Readonly<Record<string, number>>
 }
 
@@ -31,15 +33,24 @@ function decodeText(bytes: readonly number[]) {
   return String.fromCharCode(...bytes).replace(/\0+$/, '')
 }
 
-function parseMacroNames(context: string) {
+function parsePresetContext(context: string) {
   const names: string[] = []
-  for (const match of context.matchAll(/(?:^|\s)[^=\s]+=(\S+)/g)) names.push(match[1])
-  return names
+  let character: string | undefined
+  let author: string | undefined
+  for (const match of context.matchAll(/(?:^|\s)([^=\s]+)=(\S+)/g)) {
+    const [, key, value] = match
+    if (key === 'C') character = value
+    else if (key === 'A') author = value
+    else names.push(value)
+  }
+  return { names, character, author }
 }
 
 type ActiveSnapshot = {
   controlValues: Record<string, number>
   macroNames: string[]
+  character: string | undefined
+  author: string | undefined
   name: string | undefined
   stream: { id: number; bytes: number[] } | undefined
   completion: 'waiting' | 'bank-high' | 'bank-low'
@@ -68,7 +79,7 @@ export class OsmoseSnapshotParser {
     if (this.headerStep !== expectedControls.length) return undefined
 
     this.headerStep = 0
-    this.active = { controlValues: {}, macroNames: [], name: undefined, stream: undefined, completion: 'waiting', bank: undefined, program: undefined }
+    this.active = { controlValues: {}, macroNames: [], character: undefined, author: undefined, name: undefined, stream: undefined, completion: 'waiting', bank: undefined, program: undefined }
     return undefined
   }
 
@@ -83,7 +94,12 @@ export class OsmoseSnapshotParser {
       if (message[2] === 127 && active.stream) {
         const text = decodeText(active.stream.bytes)
         if (active.stream.id === 0) active.name = text
-        if (active.stream.id === 1) active.macroNames.push(...parseMacroNames(text))
+        if (active.stream.id === 1) {
+          const context = parsePresetContext(text)
+          active.macroNames.push(...context.names)
+          active.character = context.character
+          active.author = context.author
+        }
         active.stream = undefined
         if (active.name) active.completion = 'waiting'
       } else if (message[2] !== 127) {
@@ -109,7 +125,10 @@ export class OsmoseSnapshotParser {
     }
     if (active.completion === 'bank-low' && message[0] === 0xcf) {
       active.program = message[1]
-      const snapshot: OsmoseSnapshot = { name: active.name, bank: active.bank!, program: active.program, macroNames: active.macroNames, controlValues: active.controlValues }
+      const snapshot: OsmoseSnapshot = {
+        name: active.name, bank: active.bank!, program: active.program, macroNames: active.macroNames, controlValues: active.controlValues,
+        ...(active.character ? { character: active.character } : {}), ...(active.author ? { author: active.author } : {}),
+      }
       this.active = undefined
       return snapshot
     }
