@@ -23,7 +23,7 @@ describe('Osmose snapshot parser', () => {
       macroNames: { i: 'cutoff_cutoff', ii: 'resonance_filterReso' },
       controlValues: { 'macro-1': 48, pregain: 45, 'compressor-threshold': 65, 'effects-mix': 50, sustain: 0, 'eq-tilt': 64 },
     })
-    expect(macroLabelsFromSnapshot(snapshot!)).toEqual({ 'macro-1': 'cutoff_cutoff', 'macro-2': 'resonance_filterReso', 'macro-3': undefined, 'macro-4': undefined, 'macro-5': undefined, 'macro-6': undefined })
+    expect(macroLabelsFromSnapshot(snapshot!)).toEqual({ 'macro-1': 'cutoff', 'macro-2': 'resonance', 'macro-3': undefined, 'macro-4': undefined, 'macro-5': undefined, 'macro-6': undefined })
   })
 
   it('ignores the preset-load preamble and waits for the full snapshot header', () => {

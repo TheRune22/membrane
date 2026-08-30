@@ -17,9 +17,14 @@ const controlIds: Readonly<Record<number, string>> = {
 export function macroLabelsFromSnapshot(snapshot: OsmoseSnapshot): Readonly<Partial<Record<string, string>>> {
   const names = snapshot.macroNames
   return {
-    'macro-1': names.i, 'macro-2': names.ii, 'macro-3': names.iii,
-    'macro-4': names.iv, 'macro-5': names.v, 'macro-6': names.vi,
+    'macro-1': displayMacroLabel(names.i), 'macro-2': displayMacroLabel(names.ii), 'macro-3': displayMacroLabel(names.iii),
+    'macro-4': displayMacroLabel(names.iv), 'macro-5': displayMacroLabel(names.v), 'macro-6': displayMacroLabel(names.vi),
   }
+}
+
+function displayMacroLabel(name: string | undefined) {
+  if (!name) return undefined
+  return name.split('_', 1)[0].trim() || name.trim()
 }
 
 function decodeText(bytes: readonly number[]) {
