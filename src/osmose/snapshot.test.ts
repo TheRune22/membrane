@@ -9,6 +9,15 @@ const context: MidiMessage[] = [
 ]
 const finish: MidiMessage[] = [[0xbf, 56, 0], [0xaf, 116, 104], [0xaf, 101, 32], [0xaf, 97, 110], [0xaf, 97, 108], [0xaf, 111, 103], [0xbf, 56, 127], [0xbf, 0, 126], [0xbf, 32, 0], [0xcf, 1]]
 
+function textStream(id: number, text: string): MidiMessage[] {
+  const bytes = [...text].map((character) => character.charCodeAt(0))
+  if (bytes.length % 2) bytes.push(0)
+  const messages: MidiMessage[] = [[0xbf, 56, id]]
+  for (let index = 0; index < bytes.length; index += 2) messages.push([0xaf, bytes[index], bytes[index + 1]])
+  messages.push([0xbf, 56, 127])
+  return messages
+}
+
 function parse(messages: readonly MidiMessage[]) {
   const parser = new OsmoseSnapshotParser()
   return messages.map((message) => parser.push(message)).find((snapshot) => snapshot !== undefined)
@@ -20,7 +29,7 @@ describe('Osmose snapshot parser', () => {
 
     expect(snapshot).toEqual({
       name: 'the analog', bank: 126, program: 1,
-      macroNames: { i: 'cutoff_cutoff', ii: 'resonance_filterReso' },
+      macroNames: ['cutoff_cutoff', 'resonance_filterReso'],
       controlValues: { 'macro-1': 48, pregain: 45, 'compressor-threshold': 65, 'effects-mix': 50, sustain: 0, 'eq-tilt': 64 },
     })
     expect(macroLabelsFromSnapshot(snapshot!)).toEqual({ 'macro-1': 'cutoff', 'macro-2': 'resonance', 'macro-3': undefined, 'macro-4': undefined, 'macro-5': undefined, 'macro-6': undefined })
@@ -32,5 +41,14 @@ describe('Osmose snapshot parser', () => {
     const snapshot = parse([...preamble, ...header, ...context, [0xb0, 17, 54], ...finish])
 
     expect(snapshot).toMatchObject({ name: 'the analog', bank: 126, program: 1, controlValues: { 'macro-6': 54 } })
+  })
+
+  it('parses macro names from arbitrary keys in their stream order', () => {
+    const macros = 'first=timbre_timbre x-shape=shape_shape 3=body_body anything=breath_breath g1=tone_toneEQ g2=breathTone_default3'
+    const name = textStream(0, 'macro test')
+    const snapshot = parse([...header, ...textStream(1, macros), ...name, [0xbf, 0, 0], [0xbf, 32, 0], [0xcf, 0]])
+
+    expect(snapshot?.macroNames).toEqual(['timbre_timbre', 'shape_shape', 'body_body', 'breath_breath', 'tone_toneEQ', 'breathTone_default3'])
+    expect(macroLabelsFromSnapshot(snapshot!)).toEqual({ 'macro-1': 'timbre', 'macro-2': 'shape', 'macro-3': 'body', 'macro-4': 'breath', 'macro-5': 'tone', 'macro-6': 'breathTone' })
   })
 })
