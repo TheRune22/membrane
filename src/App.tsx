@@ -31,6 +31,7 @@ export default function App() {
   const [status, setStatus] = createSignal<Status>({ kind: 'neutral', message: 'Looking for available MIDI outputs.' })
   const snapshotParser = new OsmoseSnapshotParser()
   let stopReceiving: (() => void) | undefined
+  let patchLoadTimeout: number | undefined
 
   createEffect(() => {
     if (selectedOutputId() && selectedInputId()) requestCurrentPresetState()
@@ -67,6 +68,7 @@ export default function App() {
     unsubscribe()
     unsubscribeInputs()
     stopReceiving?.()
+    if (patchLoadTimeout !== undefined) window.clearTimeout(patchLoadTimeout)
   })
 
   async function refreshMidiOutputs() {
@@ -171,11 +173,16 @@ export default function App() {
     setIsPatchLoading(true)
     try {
       const messages = parseMidiFile(await file.arrayBuffer())
-      output.sendScheduled(loadPatchFile(messages, file.name))
-      setStatus({ kind: 'success', message: `Loaded patch from ${file.name}.` })
+      const scheduledMessages = loadPatchFile(messages, file.name)
+      output.sendScheduled(scheduledMessages)
+      const completionDelay = Math.max(...scheduledMessages.map(({ timestamp }) => timestamp)) + 1
+      patchLoadTimeout = window.setTimeout(() => {
+        setIsPatchLoading(false)
+        setStatus({ kind: 'success', message: `Loaded patch from ${file.name}.` })
+        patchLoadTimeout = undefined
+      }, completionDelay)
     } catch (error) {
       setStatus({ kind: 'error', message: error instanceof Error ? error.message : 'Unable to load the patch MIDI file.' })
-    } finally {
       setIsPatchLoading(false)
     }
   }
