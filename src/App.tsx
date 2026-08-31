@@ -188,7 +188,7 @@ export default function App() {
   }
 
   return <main class="page-shell"><section class="controller" aria-labelledby="page-title">
-    <ControllerHeader connected={isConnected()} presetSelectionEnabled={Boolean(selectedOutput())} patchLoading={isPatchLoading()} selectedPreset={selectedPreset()} selectedMidiDevice={selectedOutput()?.label} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} onPatchFileSelected={loadPatchFromFile} />
+    <ControllerHeader connected={isConnected()} presetSelectionEnabled={Boolean(selectedOutput())} selectedPreset={selectedPreset()} selectedMidiDevice={selectedOutput()?.label} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} />
     <div class="workspace">
       <OsmoseControlBank
         values={controlValues()}
@@ -199,6 +199,6 @@ export default function App() {
     </div>
   </section>
   <Show when={isMidiSetupOpen()}><MidiSetupDialog connected={isConnected()} connecting={isConnecting()} outputs={outputs()} inputs={inputs()} selectedOutputId={selectedOutputId()} selectedInputId={selectedInputId()} status={status()} onRefresh={refreshMidiOutputs} onClose={() => setIsMidiSetupOpen(false)} onOutputSelectionChange={selectOutput} onInputSelectionChange={selectInput} /></Show>
-  <Show when={isPresetBrowserOpen()}><PresetBrowserDialog presets={osmosePresets} selectedPreset={selectedPreset()} onClose={() => setIsPresetBrowserOpen(false)} onSelect={selectPreset} /></Show>
+  <Show when={isPresetBrowserOpen()}><PresetBrowserDialog presets={osmosePresets} selectedPreset={selectedPreset()} patchLoading={isPatchLoading()} onClose={() => setIsPresetBrowserOpen(false)} onSelect={selectPreset} onPatchFileSelected={loadPatchFromFile} /></Show>
   </main>
 }

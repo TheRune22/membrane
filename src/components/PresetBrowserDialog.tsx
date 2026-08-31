@@ -4,8 +4,10 @@ import type { OsmosePreset, OsmosePresetAddress } from '../osmose/presets'
 interface PresetBrowserDialogProps {
   presets: readonly OsmosePreset[]
   selectedPreset: OsmosePresetAddress | undefined
+  patchLoading: boolean
   onClose: () => void
   onSelect: (preset: OsmosePreset) => void
+  onPatchFileSelected: (file: File) => void
 }
 
 export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
@@ -13,6 +15,7 @@ export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
   const [type, setType] = createSignal('all')
   const [character, setCharacter] = createSignal('all')
   let selectedPresetOption: HTMLButtonElement | undefined
+  let patchFileInput: HTMLInputElement | undefined
   const types = createMemo(() => [...new Set(props.presets.map((preset) => preset.type))].sort())
   const characters = createMemo(() => [...new Set(props.presets.flatMap((preset) => preset.tags))].sort())
   const matchingPresets = createMemo(() => {
@@ -26,6 +29,16 @@ export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
 
   onMount(() => selectedPresetOption?.scrollIntoView({ block: 'center' }))
 
+  function selectPatchFile(event: Event) {
+    const input = event.currentTarget as HTMLInputElement
+    const file = input.files?.[0]
+    input.value = ''
+    if (file) {
+      props.onPatchFileSelected(file)
+      props.onClose()
+    }
+  }
+
   return (
     <div class="dialog-backdrop" role="presentation" onClick={(event) => {
       if (event.target === event.currentTarget) props.onClose()
@@ -33,7 +46,13 @@ export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
       <section class="preset-dialog" role="dialog" aria-modal="true" aria-labelledby="preset-browser-title">
         <div class="dialog-header">
           <div><p class="eyebrow">Osmose library</p><h2 id="preset-browser-title">Select a preset</h2></div>
-          <button class="icon-button" type="button" onClick={props.onClose} aria-label="Close preset browser">×</button>
+          <div class="dialog-actions">
+            <input ref={patchFileInput} class="visually-hidden" type="file" accept=".mid,.midi,audio/midi" onChange={selectPatchFile} />
+            <button class="secondary-button patch-load-button" type="button" onClick={() => patchFileInput?.click()} disabled={props.patchLoading}>
+              {props.patchLoading ? 'Loading patch…' : 'Load from file'}
+            </button>
+            <button class="icon-button" type="button" onClick={props.onClose} aria-label="Close preset browser">×</button>
+          </div>
         </div>
         <div class="preset-filters">
           <input type="search" value={query()} onInput={(event) => setQuery(event.currentTarget.value)} placeholder="Search names, types, or characters" aria-label="Search preset names, types, or characters" autofocus />
