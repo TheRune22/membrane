@@ -5,9 +5,10 @@ import { OsmoseControlBank } from './components/OsmoseControlBank'
 import { PresetBrowserDialog } from './components/PresetBrowserDialog'
 import type { StatusKind } from './components/StatusMessage'
 import { WebMidiService } from './midi/web-midi'
+import { parseMidiFile } from './midi/file'
 import type { MidiInput, MidiMessage, MidiOutput } from './midi/types'
 import { findOsmosePresetByName, osmosePresets, type OsmosePreset, type OsmosePresetAddress } from './osmose/presets'
-import { requestCurrentPreset, setPreset } from './osmose/protocol'
+import { loadPatchFile, requestCurrentPreset, setPreset } from './osmose/protocol'
 import { macroLabelsFromSnapshot, OsmoseSnapshotParser } from './osmose/snapshot'
 
 type Status = { kind: StatusKind; message: string }
@@ -25,6 +26,7 @@ export default function App() {
   const [isConnected, setIsConnected] = createSignal(false)
   const [isMidiSetupOpen, setIsMidiSetupOpen] = createSignal(true)
   const [isPresetBrowserOpen, setIsPresetBrowserOpen] = createSignal(false)
+  const [isPatchLoading, setIsPatchLoading] = createSignal(false)
   const [controlValues, setControlValues] = createSignal<Readonly<Record<string, number>>>({})
   const [status, setStatus] = createSignal<Status>({ kind: 'neutral', message: 'Looking for available MIDI outputs.' })
   const snapshotParser = new OsmoseSnapshotParser()
@@ -158,8 +160,28 @@ export default function App() {
     }
   }
 
+  async function loadPatchFromFile(file: File) {
+    const output = selectedOutput()
+    if (!output) {
+      setStatus({ kind: 'error', message: 'Select an available MIDI output before loading a patch.' })
+      setIsMidiSetupOpen(true)
+      return
+    }
+
+    setIsPatchLoading(true)
+    try {
+      const messages = parseMidiFile(await file.arrayBuffer())
+      output.sendScheduled(loadPatchFile(messages, file.name))
+      setStatus({ kind: 'success', message: `Loaded patch from ${file.name}.` })
+    } catch (error) {
+      setStatus({ kind: 'error', message: error instanceof Error ? error.message : 'Unable to load the patch MIDI file.' })
+    } finally {
+      setIsPatchLoading(false)
+    }
+  }
+
   return <main class="page-shell"><section class="controller" aria-labelledby="page-title">
-    <ControllerHeader connected={isConnected()} presetSelectionEnabled={Boolean(selectedOutput())} selectedPreset={selectedPreset()} selectedMidiDevice={selectedOutput()?.label} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} />
+    <ControllerHeader connected={isConnected()} presetSelectionEnabled={Boolean(selectedOutput())} patchLoading={isPatchLoading()} selectedPreset={selectedPreset()} selectedMidiDevice={selectedOutput()?.label} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} onPatchFileSelected={loadPatchFromFile} />
     <div class="workspace">
       <OsmoseControlBank
         values={controlValues()}

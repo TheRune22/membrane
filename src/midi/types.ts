@@ -1,9 +1,15 @@
 export type MidiMessage = readonly number[]
 
+export interface ScheduledMidiMessage {
+  readonly message: MidiMessage
+  readonly timestamp: number
+}
+
 export interface MidiOutput {
   readonly id: string
   readonly label: string
   send(messages: readonly MidiMessage[]): void
+  sendScheduled(messages: readonly ScheduledMidiMessage[]): void
 }
 
 export interface MidiInput {

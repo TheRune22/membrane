@@ -1,4 +1,4 @@
-import type { MidiInput, MidiMessage, MidiOutput, MidiService } from './types'
+import type { MidiInput, MidiMessage, MidiOutput, MidiService, ScheduledMidiMessage } from './types'
 
 class BrowserMidiOutput implements MidiOutput {
   constructor(private readonly port: MIDIOutput) {}
@@ -12,6 +12,12 @@ class BrowserMidiOutput implements MidiOutput {
   send(messages: readonly MidiMessage[]) {
     if (this.port.state === 'disconnected') throw new Error('The selected MIDI output is no longer connected.')
     this.port.send(messages.flat())
+  }
+
+  sendScheduled(messages: readonly ScheduledMidiMessage[]) {
+    if (this.port.state === 'disconnected') throw new Error('The selected MIDI output is no longer connected.')
+    const startTime = performance.now()
+    messages.forEach(({ message, timestamp }) => this.port.send(message, startTime + timestamp))
   }
 }
 

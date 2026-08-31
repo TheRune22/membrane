@@ -4,6 +4,7 @@ body { margin: 0; min-width: 320px; min-height: 100vh; background: #030403; }
 button, input, select { font: inherit; }
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; clip-path: inset(50%); }
 
 .page-shell { display: grid; min-height: 100vh; place-items: center; padding: clamp(14px, 2.6vw, 44px); background: radial-gradient(ellipse at 50% 115%, #171a17 0%, #070806 42%, #020302 76%); }
 .controller { position: relative; display: grid; grid-template-rows: auto minmax(0, 1fr); width: min(100%, 2100px); min-height: min(1050px, calc(100vh - clamp(28px, 5.2vw, 88px))); padding: clamp(20px, 2.4vw, 44px); overflow: hidden; border: 1px solid #393b38; border-radius: 10px; background: linear-gradient(145deg, #20221f, #0b0c0b 15%, #111210 88%, #1d1f1c); box-shadow: 0 38px 90px rgba(0, 0, 0, .62), inset 0 1px rgba(255,255,255,.12), inset 0 -1px rgba(0,0,0,.8); }
@@ -64,6 +65,9 @@ h2 { font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; }
 .empty-workspace .step, .empty-workspace p:not(.step) { margin: 0; }
 .empty-workspace p:not(.step) { max-width: 400px; font-size: .9rem; line-height: 1.6; }
 .secondary-button { min-height: 40px; padding: 0 14px; border: 1px solid #60635d; border-radius: 5px; color: #eee; background: #20211f; }
+.patch-load-button { min-height: 47px; color: #cdd7c2; font-size: .72rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
+.patch-load-button:hover:not(:disabled) { border-color: #a2a69a; color: #fff; }
+.patch-load-button:disabled { color: #686b65; border-color: #292b28; }
 
 .midi-dialog { position: fixed; z-index: 10; top: 50%; left: 50%; width: min(calc(100vw - 36px), 400px); padding: 22px; border: 1px solid #62655f; border-radius: 10px; background: linear-gradient(135deg, rgba(40,42,39,.97), rgba(12,13,12,.98)); box-shadow: 0 24px 60px rgba(0,0,0,.7), inset 0 1px rgba(255,255,255,.11); backdrop-filter: blur(16px); transform: translate(-50%, -50%); }
 .dialog-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
