@@ -226,7 +226,7 @@ export default function App() {
   }
 
   return <main class="page-shell"><section class="controller" aria-labelledby="page-title">
-    <ControllerHeader connected={isConnected()} presetSelectionEnabled={Boolean(selectedOutput())} selectedPreset={selectedPreset()} selectedMidiDevice={selectedOutput()?.label} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} />
+    <ControllerHeader connected={isConnected()} presetSelectionEnabled={Boolean(selectedOutput())} selectedPreset={selectedPreset()} selectedMidiOutput={selectedOutput()?.label} selectedMidiInput={inputs().find((input) => input.id === selectedInputId())?.label} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} />
     <div class="workspace">
       <OsmoseControlBank
         values={controlValues()}
