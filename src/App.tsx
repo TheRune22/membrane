@@ -3,7 +3,6 @@ import { ControllerHeader } from './components/ControllerHeader'
 import { MidiSetupDialog } from './components/MidiSetupDialog'
 import { OsmoseControlBank } from './components/OsmoseControlBank'
 import { PresetBrowserDialog } from './components/PresetBrowserDialog'
-import { PatchstorageBrowserDialog } from './components/PatchstorageBrowserDialog'
 import type { StatusKind } from './components/StatusMessage'
 import { WebMidiService } from './midi/web-midi'
 import { parseMidiFile } from './midi/file'
@@ -28,7 +27,6 @@ export default function App() {
   const [isConnected, setIsConnected] = createSignal(false)
   const [isMidiSetupOpen, setIsMidiSetupOpen] = createSignal(true)
   const [isPresetBrowserOpen, setIsPresetBrowserOpen] = createSignal(false)
-  const [isPatchstorageBrowserOpen, setIsPatchstorageBrowserOpen] = createSignal(false)
   const [isPatchLoading, setIsPatchLoading] = createSignal(false)
   const [isPatchstorageLoading, setIsPatchstorageLoading] = createSignal(false)
   const [patchstoragePatches, setPatchstoragePatches] = createSignal<readonly PatchstoragePatch[]>([])
@@ -211,9 +209,7 @@ export default function App() {
     }
   }
 
-  function openPatchstorageBrowser() {
-    setIsPresetBrowserOpen(false)
-    setIsPatchstorageBrowserOpen(true)
+  function openPatchstorageTab() {
     if (patchstoragePatches().length === 0) void refreshPatchstoragePatches()
   }
 
@@ -221,7 +217,7 @@ export default function App() {
     setIsPatchLoading(true)
     try {
       const file = await downloadPatchstorageMidiFile(patch)
-      if (await loadPatch(file.fileName, file.contents)) setIsPatchstorageBrowserOpen(false)
+      if (await loadPatch(file.fileName, file.contents)) setIsPresetBrowserOpen(false)
     } catch (error) {
       setStatus({ kind: 'error', message: error instanceof Error ? error.message : 'Unable to load the Patchstorage MIDI file.' })
       setIsPatchLoading(false)
@@ -241,7 +237,6 @@ export default function App() {
     </div>
   </section>
   <Show when={isMidiSetupOpen()}><MidiSetupDialog connected={isConnected()} connecting={isConnecting()} outputs={outputs()} inputs={inputs()} selectedOutputId={selectedOutputId()} selectedInputId={selectedInputId()} status={status()} onRefresh={refreshMidiOutputs} onClose={() => setIsMidiSetupOpen(false)} onOutputSelectionChange={selectOutput} onInputSelectionChange={selectInput} /></Show>
-  <Show when={isPresetBrowserOpen()}><PresetBrowserDialog presets={osmosePresets} selectedPreset={selectedPreset()} patchLoading={isPatchLoading()} onClose={() => setIsPresetBrowserOpen(false)} onSelect={selectPreset} onPatchFileSelected={loadPatchFromFile} onOpenPatchstorage={openPatchstorageBrowser} /></Show>
-  <Show when={isPatchstorageBrowserOpen()}><PatchstorageBrowserDialog patches={patchstoragePatches()} loading={isPatchstorageLoading()} error={patchstorageError()} patchLoading={isPatchLoading()} onClose={() => setIsPatchstorageBrowserOpen(false)} onRefresh={refreshPatchstoragePatches} onSelect={loadPatchFromPatchstorage} /></Show>
+  <Show when={isPresetBrowserOpen()}><PresetBrowserDialog presets={osmosePresets} selectedPreset={selectedPreset()} patchLoading={isPatchLoading()} patchstorageLoading={isPatchstorageLoading()} patchstoragePatches={patchstoragePatches()} patchstorageError={patchstorageError()} onClose={() => setIsPresetBrowserOpen(false)} onSelect={selectPreset} onPatchFileSelected={loadPatchFromFile} onPatchstorageTabOpen={openPatchstorageTab} onRefreshPatchstorage={refreshPatchstoragePatches} onSelectPatchstoragePatch={loadPatchFromPatchstorage} /></Show>
   </main>
 }
