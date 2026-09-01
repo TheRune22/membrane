@@ -8,6 +8,7 @@ interface PresetBrowserDialogProps {
   onClose: () => void
   onSelect: (preset: OsmosePreset) => void
   onPatchFileSelected: (file: File) => void
+  onOpenPatchstorage: () => void
 }
 
 export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
@@ -51,6 +52,7 @@ export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
             <button class="secondary-button patch-load-button" type="button" onClick={() => patchFileInput?.click()} disabled={props.patchLoading}>
               {props.patchLoading ? 'Loading patch…' : 'Load from file'}
             </button>
+            <button class="secondary-button patch-load-button" type="button" onClick={props.onOpenPatchstorage} disabled={props.patchLoading}>Browse Patchstorage</button>
             <button class="icon-button" type="button" onClick={props.onClose} aria-label="Close preset browser">×</button>
           </div>
         </div>

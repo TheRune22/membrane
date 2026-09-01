@@ -3,6 +3,7 @@ import { ControllerHeader } from './components/ControllerHeader'
 import { MidiSetupDialog } from './components/MidiSetupDialog'
 import { OsmoseControlBank } from './components/OsmoseControlBank'
 import { PresetBrowserDialog } from './components/PresetBrowserDialog'
+import { PatchstorageBrowserDialog } from './components/PatchstorageBrowserDialog'
 import type { StatusKind } from './components/StatusMessage'
 import { WebMidiService } from './midi/web-midi'
 import { parseMidiFile } from './midi/file'
@@ -10,6 +11,7 @@ import type { MidiInput, MidiMessage, MidiOutput } from './midi/types'
 import { findOsmosePresetByName, osmosePresets, type OsmosePreset, type OsmosePresetAddress } from './osmose/presets'
 import { loadPatchFile, requestCurrentPreset, setPreset } from './osmose/protocol'
 import { macroLabelsFromSnapshot, OsmoseSnapshotParser } from './osmose/snapshot'
+import { downloadPatchstorageMidiFile, listEaganMatrixPatches, type PatchstoragePatch } from './osmose/patchstorage'
 
 type Status = { kind: StatusKind; message: string }
 const midi = new WebMidiService()
@@ -26,7 +28,11 @@ export default function App() {
   const [isConnected, setIsConnected] = createSignal(false)
   const [isMidiSetupOpen, setIsMidiSetupOpen] = createSignal(true)
   const [isPresetBrowserOpen, setIsPresetBrowserOpen] = createSignal(false)
+  const [isPatchstorageBrowserOpen, setIsPatchstorageBrowserOpen] = createSignal(false)
   const [isPatchLoading, setIsPatchLoading] = createSignal(false)
+  const [isPatchstorageLoading, setIsPatchstorageLoading] = createSignal(false)
+  const [patchstoragePatches, setPatchstoragePatches] = createSignal<readonly PatchstoragePatch[]>([])
+  const [patchstorageError, setPatchstorageError] = createSignal<string>()
   const [controlValues, setControlValues] = createSignal<Readonly<Record<string, number>>>({})
   const [status, setStatus] = createSignal<Status>({ kind: 'neutral', message: 'Looking for available MIDI outputs.' })
   const snapshotParser = new OsmoseSnapshotParser()
@@ -162,28 +168,64 @@ export default function App() {
     }
   }
 
-  async function loadPatchFromFile(file: File) {
+  async function loadPatch(fileName: string, contents: ArrayBuffer): Promise<boolean> {
     const output = selectedOutput()
     if (!output) {
       setStatus({ kind: 'error', message: 'Select an available MIDI output before loading a patch.' })
       setIsMidiSetupOpen(true)
-      return
+      return false
     }
 
     setIsPatchLoading(true)
     try {
-      const messages = parseMidiFile(await file.arrayBuffer())
-      const scheduledMessages = loadPatchFile(messages, file.name)
+      const messages = parseMidiFile(contents)
+      const scheduledMessages = loadPatchFile(messages, fileName)
       output.sendScheduled(scheduledMessages)
       const completionDelay = Math.max(...scheduledMessages.map(({ timestamp }) => timestamp)) + 1
       patchLoadTimeout = window.setTimeout(() => {
         setIsPatchLoading(false)
-        setStatus({ kind: 'success', message: `Loaded patch from ${file.name}.` })
+        setStatus({ kind: 'success', message: `Loaded patch from ${fileName}.` })
         patchLoadTimeout = undefined
       }, completionDelay)
+      return true
     } catch (error) {
       setStatus({ kind: 'error', message: error instanceof Error ? error.message : 'Unable to load the patch MIDI file.' })
       setIsPatchLoading(false)
+      return false
+    }
+  }
+
+  async function loadPatchFromFile(file: File) {
+    await loadPatch(file.name, await file.arrayBuffer())
+  }
+
+  async function refreshPatchstoragePatches() {
+    setIsPatchstorageLoading(true)
+    setPatchstorageError(undefined)
+    try {
+      setPatchstoragePatches(await listEaganMatrixPatches())
+    } catch (error) {
+      setPatchstorageError(error instanceof Error ? error.message : 'Unable to load Patchstorage patches.')
+    } finally {
+      setIsPatchstorageLoading(false)
+    }
+  }
+
+  function openPatchstorageBrowser() {
+    setIsPresetBrowserOpen(false)
+    setIsPatchstorageBrowserOpen(true)
+    if (patchstoragePatches().length === 0) void refreshPatchstoragePatches()
+  }
+
+  async function loadPatchFromPatchstorage(patch: PatchstoragePatch) {
+    setIsPatchLoading(true)
+    try {
+      const file = await downloadPatchstorageMidiFile(patch)
+      if (await loadPatch(file.fileName, file.contents)) setIsPatchstorageBrowserOpen(false)
+    } catch (error) {
+      setStatus({ kind: 'error', message: error instanceof Error ? error.message : 'Unable to load the Patchstorage MIDI file.' })
+      setIsPatchLoading(false)
+      return false
     }
   }
 
@@ -199,6 +241,7 @@ export default function App() {
     </div>
   </section>
   <Show when={isMidiSetupOpen()}><MidiSetupDialog connected={isConnected()} connecting={isConnecting()} outputs={outputs()} inputs={inputs()} selectedOutputId={selectedOutputId()} selectedInputId={selectedInputId()} status={status()} onRefresh={refreshMidiOutputs} onClose={() => setIsMidiSetupOpen(false)} onOutputSelectionChange={selectOutput} onInputSelectionChange={selectInput} /></Show>
-  <Show when={isPresetBrowserOpen()}><PresetBrowserDialog presets={osmosePresets} selectedPreset={selectedPreset()} patchLoading={isPatchLoading()} onClose={() => setIsPresetBrowserOpen(false)} onSelect={selectPreset} onPatchFileSelected={loadPatchFromFile} /></Show>
+  <Show when={isPresetBrowserOpen()}><PresetBrowserDialog presets={osmosePresets} selectedPreset={selectedPreset()} patchLoading={isPatchLoading()} onClose={() => setIsPresetBrowserOpen(false)} onSelect={selectPreset} onPatchFileSelected={loadPatchFromFile} onOpenPatchstorage={openPatchstorageBrowser} /></Show>
+  <Show when={isPatchstorageBrowserOpen()}><PatchstorageBrowserDialog patches={patchstoragePatches()} loading={isPatchstorageLoading()} error={patchstorageError()} patchLoading={isPatchLoading()} onClose={() => setIsPatchstorageBrowserOpen(false)} onRefresh={refreshPatchstoragePatches} onSelect={loadPatchFromPatchstorage} /></Show>
   </main>
 }
