@@ -115,6 +115,11 @@ select:disabled { color: #797c75; }
 .preset-name { font-size: .86rem; font-weight: 600; }
 .patchstorage-author { color: #aeb2a2; font-size: .72rem; }
 .patchstorage-excerpt { display: -webkit-box; overflow: hidden; color: #8f938b; font-size: .72rem; line-height: 1.4; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.patchstorage-option { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
+.patchstorage-select { display: grid; gap: 7px; min-width: 0; padding: 0; border: 0; color: inherit; background: transparent; text-align: left; }
+.patchstorage-select:disabled { cursor: not-allowed; opacity: .55; }
+.patchstorage-details { padding: 4px 0 4px 10px; color: #b6dd8a; font-size: .68rem; font-weight: 650; letter-spacing: .04em; text-decoration: none; text-transform: uppercase; white-space: nowrap; }
+.patchstorage-details:hover, .patchstorage-details:focus-visible { color: #e5f7d0; text-decoration: underline; }
 .preset-meta { display: flex; flex-wrap: wrap; gap: 5px; }
 .preset-type, .preset-character { display: inline-flex; align-items: center; min-height: 19px; padding: 0 7px; border-radius: 99px; font-size: .67rem; line-height: 1; }
 .preset-type { color: #172110; background: #9ae34a; font-weight: 700; }

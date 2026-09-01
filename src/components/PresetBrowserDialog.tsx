@@ -113,18 +113,21 @@ export function PresetBrowserDialog(props: PresetBrowserDialogProps) {
         <Show when={source() === 'patchstorage'}>
           <div class="preset-source-panel">
             <div class="patchstorage-toolbar">
-              <input class="patchstorage-search" type="search" value={patchstorageQuery()} onInput={(event) => setPatchstorageQuery(event.currentTarget.value)} placeholder="Search patches or authors" aria-label="Search Patchstorage patches" autofocus />
+              <input class="patchstorage-search" type="search" value={patchstorageQuery()} onInput={(event) => setPatchstorageQuery(event.currentTarget.value)} placeholder="Search names or authors" aria-label="Search Patchstorage patches" autofocus />
               <button class="secondary-button" type="button" onClick={props.onRefreshPatchstorage} disabled={props.patchstorageLoading || props.patchLoading}>{props.patchstorageLoading ? 'Refreshing…' : 'Refresh'}</button>
             </div>
-            <p class="preset-count">{props.patchstorageLoading ? 'Loading patches…' : `${matchingPatchstoragePatches().length} patches`}</p>
+            <p class="preset-count">{props.patchstorageLoading ? 'Loading presets…' : `${matchingPatchstoragePatches().length} presets`}</p>
             <div class="preset-list" role="list">
-              <For each={matchingPatchstoragePatches()}>{(patch) => <button class="preset-option" type="button" onClick={() => props.onSelectPatchstoragePatch(patch)} disabled={props.patchLoading} role="listitem">
-                <span class="preset-name">{patch.title}</span>
-                <span class="patchstorage-author">by {patch.authorName}</span>
-                <Show when={patch.excerpt}><span class="patchstorage-excerpt">{patch.excerpt}</span></Show>
-              </button>}</For>
+              <For each={matchingPatchstoragePatches()}>{(patch) => <div class="preset-option patchstorage-option" role="listitem">
+                <button class="patchstorage-select" type="button" onClick={() => props.onSelectPatchstoragePatch(patch)} disabled={props.patchLoading}>
+                  <span class="preset-name">{patch.title}</span>
+                  <span class="patchstorage-author">by {patch.authorName}</span>
+                  <Show when={patch.excerpt}><span class="patchstorage-excerpt">{patch.excerpt}</span></Show>
+                </button>
+                <a class="patchstorage-details" href={patch.url} target="_blank" rel="noreferrer">View details</a>
+              </div>}</For>
               <Show when={props.patchstorageError}><p class="empty-results">{props.patchstorageError}</p></Show>
-              <Show when={!props.patchstorageLoading && !props.patchstorageError && matchingPatchstoragePatches().length === 0}><p class="empty-results">No Patchstorage patches match that search.</p></Show>
+              <Show when={!props.patchstorageLoading && !props.patchstorageError && matchingPatchstoragePatches().length === 0}><p class="empty-results">No Patchstorage presets match that search.</p></Show>
             </div>
           </div>
         </Show>
