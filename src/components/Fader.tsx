@@ -2,7 +2,7 @@ interface FaderProps {
   id: string
   name: string
   label: string
-  group: 'macro' | 'gain' | 'compressor' | 'effects' | 'performance' | 'equalizer'
+  group: 'macro' | 'compressor' | 'effects' | 'performance' | 'equalizer'
   values: Readonly<Record<string, number>>
   disabled: boolean
   onValueChange: (value: number) => void

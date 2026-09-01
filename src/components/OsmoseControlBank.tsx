@@ -2,7 +2,7 @@ import { Fader } from './Fader'
 import { controlChangeAction, type MidiAction } from '../osmose/protocol'
 import type { MidiMessage } from '../midi/types'
 
-type Group = 'macro' | 'gain' | 'compressor' | 'effects' | 'performance' | 'equalizer'
+type Group = 'macro' | 'compressor' | 'effects' | 'performance' | 'equalizer'
 interface Props { values: Readonly<Record<string, number>>; macroLabels: Readonly<Partial<Record<string, string>>>; disabled: boolean; onFaderValueChange: (id: string, value: number, messages: readonly MidiMessage[]) => void }
 
 export function OsmoseControlBank(props: Props) {
@@ -18,14 +18,12 @@ export function OsmoseControlBank(props: Props) {
       <FaderWrapper id="macro-5" name="Macro 5" label={props.macroLabels['macro-5'] ?? 'M5'} group="macro" action={controlChangeAction(16)} />
       <FaderWrapper id="macro-6" name="Macro 6" label={props.macroLabels['macro-6'] ?? 'M6'} group="macro" action={controlChangeAction(17)} />
     </div></section>
-    <section class="control-section control-section-gain" aria-labelledby="gain-heading"><h2 id="gain-heading">Gain</h2><div class="section-fader-grid">
-      <FaderWrapper id="pregain" name="Pregain" label="Pregain" group="gain" action={controlChangeAction(26)} />
-      <FaderWrapper id="postgain" name="Postgain" label="Postgain" group="gain" action={controlChangeAction(18)} />
-    </div></section>
     <section class="control-section control-section-compressor" aria-labelledby="compressor-heading"><h2 id="compressor-heading">Compressor</h2><div class="section-fader-grid">
       <FaderWrapper id="compressor-threshold" name="Compressor Threshold" label="Threshold" group="compressor" action={controlChangeAction(90)} />
       <FaderWrapper id="compressor-attack" name="Compressor Attack" label="Attack" group="compressor" action={controlChangeAction(91)} />
       <FaderWrapper id="compressor-ratio" name="Compressor Ratio" label="Ratio" group="compressor" action={controlChangeAction(92)} />
+      <FaderWrapper id="pregain" name="Pregain" label="Pregain" group="compressor" action={controlChangeAction(26)} />
+      <FaderWrapper id="postgain" name="Postgain" label="Postgain" group="compressor" action={controlChangeAction(18)} />
       <FaderWrapper id="compressor-mix" name="Compressor Mix" label="Mix" group="compressor" action={controlChangeAction(93)} />
     </div></section>
     <section class="control-section control-section-effects" aria-labelledby="effects-heading"><h2 id="effects-heading">Effects</h2><div class="section-fader-grid">
@@ -37,15 +35,15 @@ export function OsmoseControlBank(props: Props) {
       <FaderWrapper id="effects-parameter-6" name="Global FX Parameter 6" label="FX 6" group="effects" action={controlChangeAction(96)} />
       <FaderWrapper id="effects-mix" name="Global FX Mix" label="FX Mix" group="effects" action={controlChangeAction(24)} />
     </div></section>
-    <section class="control-section control-section-performance" aria-labelledby="performance-heading"><h2 id="performance-heading">Performance</h2><div class="section-fader-grid">
-      <FaderWrapper id="sostenuto-1" name="Sostenuto 1" label="Sost. 1" group="performance" action={controlChangeAction(66)} />
-      <FaderWrapper id="sostenuto-2" name="Sostenuto 2" label="Sost. 2" group="performance" action={controlChangeAction(69)} />
-      <FaderWrapper id="sustain" name="Sustain" label="Sustain" group="performance" action={controlChangeAction(64)} />
-    </div></section>
     <section class="control-section control-section-equalizer" aria-labelledby="equalizer-heading"><h2 id="equalizer-heading">Equalizer</h2><div class="section-fader-grid">
       <FaderWrapper id="eq-tilt" name="EQ Tilt Value" label="Tilt" group="equalizer" action={controlChangeAction(83)} />
       <FaderWrapper id="eq-frequency" name="EQ Frequency" label="Freq" group="equalizer" action={controlChangeAction(84)} />
       <FaderWrapper id="eq-mix" name="EQ Mix" label="Mix" group="equalizer" action={controlChangeAction(85)} />
+    </div></section>
+    <section class="control-section control-section-performance" aria-labelledby="performance-heading"><h2 id="performance-heading">Performance</h2><div class="section-fader-grid">
+      <FaderWrapper id="sostenuto-1" name="Sostenuto 1" label="Sost. 1" group="performance" action={controlChangeAction(66)} />
+      <FaderWrapper id="sostenuto-2" name="Sostenuto 2" label="Sost. 2" group="performance" action={controlChangeAction(69)} />
+      <FaderWrapper id="sustain" name="Sustain" label="Sustain" group="performance" action={controlChangeAction(64)} />
     </div></section>
   </section>
 }
