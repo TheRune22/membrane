@@ -1,4 +1,4 @@
-preset name,cc 0,PGM,type,characters
+﻿preset name,cc 0,PGM,type,characters
 abyss lands,30,0,pads,dark + echo + evolving + layered + reverberant
 acid bass,30,1,bass,aggressive + analog + distorted + stereo
 acouskop,30,2,bass,acoustic + distorted + fm + shaking
@@ -175,6 +175,7 @@ fabulia,34,33,pads,lfo + feelgood
 fancy brass,31,28,brass,bright + chords + ensemble + lfo + stereo
 fat model d,31,29,bass,analog + big + noise + portamento + warm
 fdn crazyness,31,30,sfx,aggressive + atonal + big + electric + evolving + portamento + reverberant
+feelgood resonator,34,34,plucked,clean + intimate
 feleaz,31,31,keys,fm + simple + stereo
 feltgrains,31,32,mallets,acoustic + airy + noise + shaking + woody
 fleme,31,33,keys,fm
@@ -437,7 +438,6 @@ replicants dreams,33,9,pads,analog + fm + reverberant
 resizable guitar,33,10,plucked,acoustic + echo + portamento + strumming
 reso nable,33,11,pads,analog
 resonant drum 1,33,12,perc,airy + atonal + noise + woody
-resonator,34,34,plucked,clean + intimate
 rewind time,33,13,pads,chords + echo + evolving + lfo + lofi
 ringad,33,14,pads,analog
 ringmod harmonica,33,15,flute reeds,acoustic + distorted
