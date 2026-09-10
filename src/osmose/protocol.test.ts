@@ -1,9 +1,36 @@
 import { describe, expect, it } from 'vitest'
-import { controlChangeAction, loadPatchFile, requestCurrentPreset, setPreset } from './protocol'
+import { controlChangeAction, loadPatchFile, macro14BitAction, requestCurrentPreset, set14BitMacro, setPreset } from './protocol'
 
 describe('Osmose MIDI protocol', () => {
   it('creates a channel-one control-change message', () => {
     expect(controlChangeAction(12)(64)).toEqual([[0xb0, 12, 64]])
+  })
+
+  it('sets a 14-bit macro with its fractional byte before its main control', () => {
+    expect(set14BitMacro(7, 0x2000)).toEqual([
+      [0xb0, 86, 0],
+      [0xb0, 40, 64],
+    ])
+  })
+
+  it('maps the documented bipolar macro ranges', () => {
+    expect(set14BitMacro(30, 0)).toEqual([[0xb0, 86, 0], [0xb0, 63, 0]])
+    expect(set14BitMacro(31, 0)).toEqual([[0xb0, 86, 0], [0xb0, 102, 0]])
+    expect(set14BitMacro(48, 0x3fff)).toEqual([[0xb0, 86, 127], [0xb0, 119, 127]])
+    expect(set14BitMacro(49, 0x1234)).toEqual([[0xb0, 97, 52], [0xb0, 40, 36]])
+    expect(set14BitMacro(72, 0)).toEqual([[0xb0, 97, 0], [0xb0, 63, 0]])
+    expect(set14BitMacro(73, 0)).toEqual([[0xb0, 97, 0], [0xb0, 102, 0]])
+    expect(set14BitMacro(90, 0x3fff)).toEqual([[0xb0, 97, 127], [0xb0, 119, 127]])
+  })
+
+  it('provides an action for use by future controls', () => {
+    expect(macro14BitAction(7)(128)).toEqual([[0xb0, 86, 0], [0xb0, 40, 1]])
+  })
+
+  it('rejects unsupported macros and invalid 14-bit values', () => {
+    expect(() => set14BitMacro(6, 0)).toThrow('between 7 and 90')
+    expect(() => set14BitMacro(91, 0)).toThrow('between 7 and 90')
+    expect(() => set14BitMacro(7, 0x4000)).toThrow('between 0 and 16,383')
   })
 
   it('selects a preset with bank select followed by program change', () => {

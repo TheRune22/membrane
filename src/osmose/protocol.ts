@@ -4,8 +4,43 @@ import type { OsmosePresetAddress } from './presets'
 
 export type MidiAction = (value: number) => readonly MidiMessage[]
 
+const macro14BitValueMaximum = 0x3fff
+
 export function controlChangeAction(control: number): MidiAction {
   return (value) => [controlChange(1, control, value)]
+}
+
+export function macro14BitAction(macro: number): MidiAction {
+  return (value) => set14BitMacro(macro, value)
+}
+
+/**
+ * Sets a bipolar Osmose 14-bit macro from M7 through M90. `value` is the raw
+ * 14-bit value from 0 through 16,383; 8,192 is the bipolar centre position.
+ */
+export function set14BitMacro(macro: number, value: number): readonly MidiMessage[] {
+  const { fractionControl, mainControl } = macro14BitControls(macro)
+  validate14BitMacroValue(value)
+  return [
+    controlChange(1, fractionControl, value & 0x7f),
+    controlChange(1, mainControl, value >> 7),
+  ]
+}
+
+function macro14BitControls(macro: number) {
+  if (!Number.isInteger(macro) || macro < 7 || macro > 90) {
+    throw new Error('The bipolar Osmose 14-bit macro must be between 7 and 90.')
+  }
+  if (macro <= 30) return { fractionControl: 86, mainControl: macro + 33 }
+  if (macro <= 48) return { fractionControl: 86, mainControl: macro + 71 }
+  if (macro <= 72) return { fractionControl: 97, mainControl: macro - 9 }
+  return { fractionControl: 97, mainControl: macro + 29 }
+}
+
+function validate14BitMacroValue(value: number) {
+  if (!Number.isInteger(value) || value < 0 || value > macro14BitValueMaximum) {
+    throw new Error('The Osmose 14-bit macro value must be between 0 and 16,383.')
+  }
 }
 
 export function setPreset(preset: OsmosePresetAddress): readonly MidiMessage[] {
