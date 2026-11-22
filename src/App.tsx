@@ -237,7 +237,7 @@ export default function App() {
   }
 
   return <main class="page-shell"><section class="controller" aria-labelledby="page-title">
-    <ControllerHeader connected={isConnected()} presetSelectionEnabled={Boolean(hakenOutput())} selectedPreset={selectedPreset()} selectedMidiOutput={hakenOutput()?.label} selectedMidiInput={inputs().find((input) => input.id === hakenInputId())?.label} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} />
+    <ControllerHeader midiReady={Boolean(isConnected() && hakenOutput() && outputs().some((output) => output.id === soundEngineOutputId()) && inputs().some((input) => input.id === hakenInputId()))} presetSelectionEnabled={Boolean(hakenOutput())} selectedPreset={selectedPreset()} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} />
     <div class="workspace">
       <OsmoseControlBank
         values={controlValues()}
