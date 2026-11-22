@@ -14,7 +14,7 @@ import { downloadPatchstorageMidiFile, listEaganMatrixPatches, type Patchstorage
 
 type Status = { kind: StatusKind; message: string }
 const midi = new WebMidiService()
-const preferredOsmoseOutputLabel = 'MIDIOUT2 (Osmose 49)'
+const preferredOsmoseOutputLabel = 'MIDIOUT5 (Osmose 49)'
 const preferredOsmoseInputLabel = 'MIDIIN5 (Osmose 49)'
 export default function App() {
   const [outputs, setOutputs] = createSignal<readonly MidiOutput[]>([])
