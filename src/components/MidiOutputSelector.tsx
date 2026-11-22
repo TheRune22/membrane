@@ -2,6 +2,8 @@ import { For, Show } from 'solid-js'
 import type { MidiOutput } from '../midi/types'
 
 interface MidiOutputSelectorProps {
+  title: string
+  id: string
   connected: boolean
   outputs: readonly MidiOutput[]
   selectedOutputId: string
@@ -10,11 +12,11 @@ interface MidiOutputSelectorProps {
 
 export function MidiOutputSelector(props: MidiOutputSelectorProps) {
   return (
-    <section class="control-group" aria-labelledby="output-heading">
-      <div class="section-heading"><h2 id="output-heading">MIDI output</h2></div>
-      <label class="field-label" for="midi-output">Send messages to</label>
+    <section class="control-group" aria-labelledby={`${props.id}-heading`}>
+      <div class="section-heading"><h2 id={`${props.id}-heading`}>{props.title}</h2></div>
+      <label class="field-label" for={props.id}>Send messages to</label>
       <select
-        id="midi-output"
+        id={props.id}
         value={props.selectedOutputId}
         onChange={(event) => props.onSelectionChange(event.currentTarget.value)}
         disabled={!props.connected || props.outputs.length === 0}

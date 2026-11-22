@@ -8,13 +8,15 @@ interface MidiSetupDialogProps {
   connecting: boolean
   outputs: readonly MidiOutput[]
   inputs: readonly MidiInput[]
-  selectedOutputId: string
-  selectedInputId: string
+  hakenOutputId: string
+  soundEngineOutputId: string
+  hakenInputId: string
   status: { kind: StatusKind; message: string }
   onRefresh: () => void
   onClose: () => void
-  onOutputSelectionChange: (outputId: string) => void
-  onInputSelectionChange: (inputId: string) => void
+  onHakenOutputSelectionChange: (outputId: string) => void
+  onSoundEngineOutputSelectionChange: (outputId: string) => void
+  onHakenInputSelectionChange: (inputId: string) => void
 }
 
 export function MidiSetupDialog(props: MidiSetupDialogProps) {
@@ -37,16 +39,26 @@ export function MidiSetupDialog(props: MidiSetupDialogProps) {
           </div>
         </div>
         <MidiOutputSelector
+          title="Haken output"
+          id="haken-output"
           connected={props.connected}
           outputs={props.outputs}
-          selectedOutputId={props.selectedOutputId}
-          onSelectionChange={props.onOutputSelectionChange}
+          selectedOutputId={props.hakenOutputId}
+          onSelectionChange={props.onHakenOutputSelectionChange}
+        />
+        <MidiOutputSelector
+          title="Sound engine output"
+          id="sound-engine-output"
+          connected={props.connected}
+          outputs={props.outputs}
+          selectedOutputId={props.soundEngineOutputId}
+          onSelectionChange={props.onSoundEngineOutputSelectionChange}
         />
         <MidiInputSelector
           connected={props.connected}
           inputs={props.inputs}
-          selectedInputId={props.selectedInputId}
-          onSelectionChange={props.onInputSelectionChange}
+          selectedInputId={props.hakenInputId}
+          onSelectionChange={props.onHakenInputSelectionChange}
         />
         <StatusMessage kind={props.status.kind} message={props.status.message} />
       </section>

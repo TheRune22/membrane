@@ -14,13 +14,15 @@ import { downloadPatchstorageMidiFile, listEaganMatrixPatches, type Patchstorage
 
 type Status = { kind: StatusKind; message: string }
 const midi = new WebMidiService()
-const preferredOsmoseOutputLabel = 'MIDIOUT5 (Osmose 49)'
-const preferredOsmoseInputLabel = 'MIDIIN5 (Osmose 49)'
+const hakenOutputLabel = 'MIDIOUT5 (Osmose 49)'
+const soundEngineOutputLabel = 'MIDIOUT2 (Osmose 49)'
+const hakenInputLabel = 'MIDIIN5 (Osmose 49)'
 export default function App() {
   const [outputs, setOutputs] = createSignal<readonly MidiOutput[]>([])
   const [inputs, setInputs] = createSignal<readonly MidiInput[]>([])
-  const [selectedOutputId, setSelectedOutputId] = createSignal('')
-  const [selectedInputId, setSelectedInputId] = createSignal('')
+  const [hakenOutputId, setHakenOutputId] = createSignal('')
+  const [soundEngineOutputId, setSoundEngineOutputId] = createSignal('')
+  const [hakenInputId, setHakenInputId] = createSignal('')
   const [selectedPreset, setSelectedPreset] = createSignal<OsmosePresetAddress>()
   const [macroLabels, setMacroLabels] = createSignal<Readonly<Partial<Record<string, string>>>>({})
   const [isConnecting, setIsConnecting] = createSignal(false)
@@ -38,34 +40,39 @@ export default function App() {
   let patchLoadTimeout: number | undefined
 
   createEffect(() => {
-    if (selectedOutputId() && selectedInputId()) requestCurrentPresetState()
+    if (hakenOutputId() && hakenInputId()) requestCurrentPresetState()
   })
 
   const unsubscribe = midi.onOutputsChanged((nextOutputs) => {
     setOutputs(nextOutputs)
-    if (selectedOutputId() && !nextOutputs.some((output) => output.id === selectedOutputId())) {
-      setSelectedOutputId('')
+    if (soundEngineOutputId() && !nextOutputs.some((output) => output.id === soundEngineOutputId())) setSoundEngineOutputId('')
+    if (!soundEngineOutputId()) {
+      const soundEngine = nextOutputs.find((output) => output.label === soundEngineOutputLabel)
+      if (soundEngine) setSoundEngineOutputId(soundEngine.id)
+    }
+    if (hakenOutputId() && !nextOutputs.some((output) => output.id === hakenOutputId())) {
+      setHakenOutputId('')
       setStatus({ kind: 'error', message: 'The selected MIDI output was disconnected.' })
       setIsMidiSetupOpen(true)
     }
 
-    if (!selectedOutputId()) {
-      const osmoseOutput = nextOutputs.find((output) => output.label === preferredOsmoseOutputLabel)
-      if (osmoseOutput) {
-        setSelectedOutputId(osmoseOutput.id)
+    if (!hakenOutputId()) {
+      const hakenOutput = nextOutputs.find((output) => output.label === hakenOutputLabel)
+      if (hakenOutput) {
+        setHakenOutputId(hakenOutput.id)
         setIsMidiSetupOpen(false)
       }
     }
   })
   const unsubscribeInputs = midi.onInputsChanged((nextInputs) => {
     setInputs(nextInputs)
-    if (selectedInputId() && !nextInputs.some((input) => input.id === selectedInputId())) {
-      selectInput('')
+    if (hakenInputId() && !nextInputs.some((input) => input.id === hakenInputId())) {
+      selectHakenInput('')
       setStatus({ kind: 'error', message: 'The selected MIDI input was disconnected.' })
     }
-    if (!selectedInputId()) {
-      const osmoseInput = nextInputs.find((input) => input.label === preferredOsmoseInputLabel)
-      if (osmoseInput) selectInput(osmoseInput.id)
+    if (!hakenInputId()) {
+      const hakenInput = nextInputs.find((input) => input.label === hakenInputLabel)
+      if (hakenInput) selectHakenInput(hakenInput.id)
     }
   })
   onCleanup(() => {
@@ -95,26 +102,26 @@ export default function App() {
 
   onMount(() => { void refreshMidiOutputs() })
 
-  function selectOutput(outputId: string) {
-    setSelectedOutputId(outputId)
+  function selectHakenOutput(outputId: string) {
+    setHakenOutputId(outputId)
     if (outputId) setIsMidiSetupOpen(false)
   }
 
-  function selectInput(inputId: string) {
+  function selectHakenInput(inputId: string) {
     stopReceiving?.()
     stopReceiving = undefined
     snapshotParser.reset()
     const input = inputs().find((candidate) => candidate.id === inputId)
     if (!input) {
-      setSelectedInputId('')
+      setHakenInputId('')
       return
     }
     stopReceiving = input.onMessage(handleIncomingMessage)
-    setSelectedInputId(inputId)
+    setHakenInputId(inputId)
   }
 
-  function selectedOutput() {
-    return outputs().find((candidate) => candidate.id === selectedOutputId())
+  function hakenOutput() {
+    return outputs().find((candidate) => candidate.id === hakenOutputId())
   }
 
   function handleIncomingMessage(message: MidiMessage) {
@@ -127,8 +134,8 @@ export default function App() {
   }
 
   function requestCurrentPresetState() {
-    const output = selectedOutput()
-    if (!output || !selectedInputId()) return
+    const output = hakenOutput()
+    if (!output || !hakenInputId()) return
     try {
       output.send(requestCurrentPreset())
     } catch (error) {
@@ -137,7 +144,7 @@ export default function App() {
   }
 
   function handleFaderValueChange(id: string, value: number, messages: readonly MidiMessage[]) {
-    const output = selectedOutput()
+    const output = hakenOutput()
     if (!output) {
       setStatus({ kind: 'error', message: 'Select an available MIDI output before using controls.' })
       setIsMidiSetupOpen(true)
@@ -153,8 +160,12 @@ export default function App() {
   }
 
   function selectPreset(preset: OsmosePreset) {
-    const output = selectedOutput()
-    if (!output) return
+    const output = outputs().find((candidate) => candidate.id === soundEngineOutputId())
+    if (!output) {
+      setStatus({ kind: 'error', message: 'Select the sound engine output before selecting a preset.' })
+      setIsMidiSetupOpen(true)
+      return
+    }
 
     try {
       output.send(setPreset(preset))
@@ -167,7 +178,7 @@ export default function App() {
   }
 
   async function loadPatch(fileName: string, contents: ArrayBuffer): Promise<boolean> {
-    const output = selectedOutput()
+    const output = hakenOutput()
     if (!output) {
       setStatus({ kind: 'error', message: 'Select an available MIDI output before loading a patch.' })
       setIsMidiSetupOpen(true)
@@ -226,17 +237,17 @@ export default function App() {
   }
 
   return <main class="page-shell"><section class="controller" aria-labelledby="page-title">
-    <ControllerHeader connected={isConnected()} presetSelectionEnabled={Boolean(selectedOutput())} selectedPreset={selectedPreset()} selectedMidiOutput={selectedOutput()?.label} selectedMidiInput={inputs().find((input) => input.id === selectedInputId())?.label} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} />
+    <ControllerHeader connected={isConnected()} presetSelectionEnabled={Boolean(hakenOutput())} selectedPreset={selectedPreset()} selectedMidiOutput={hakenOutput()?.label} selectedMidiInput={inputs().find((input) => input.id === hakenInputId())?.label} onOpenMidiSetup={() => setIsMidiSetupOpen(true)} onOpenPresetBrowser={() => setIsPresetBrowserOpen(true)} />
     <div class="workspace">
       <OsmoseControlBank
         values={controlValues()}
         macroLabels={macroLabels()}
-        disabled={!selectedOutputId()}
+        disabled={!hakenOutputId()}
         onFaderValueChange={handleFaderValueChange}
       />
     </div>
   </section>
-  <Show when={isMidiSetupOpen()}><MidiSetupDialog connected={isConnected()} connecting={isConnecting()} outputs={outputs()} inputs={inputs()} selectedOutputId={selectedOutputId()} selectedInputId={selectedInputId()} status={status()} onRefresh={refreshMidiOutputs} onClose={() => setIsMidiSetupOpen(false)} onOutputSelectionChange={selectOutput} onInputSelectionChange={selectInput} /></Show>
+  <Show when={isMidiSetupOpen()}><MidiSetupDialog connected={isConnected()} connecting={isConnecting()} outputs={outputs()} inputs={inputs()} hakenOutputId={hakenOutputId()} soundEngineOutputId={soundEngineOutputId()} hakenInputId={hakenInputId()} status={status()} onRefresh={refreshMidiOutputs} onClose={() => setIsMidiSetupOpen(false)} onHakenOutputSelectionChange={selectHakenOutput} onSoundEngineOutputSelectionChange={setSoundEngineOutputId} onHakenInputSelectionChange={selectHakenInput} /></Show>
   <Show when={isPresetBrowserOpen()}><PresetBrowserDialog presets={osmosePresets} selectedPreset={selectedPreset()} patchLoading={isPatchLoading()} patchstorageLoading={isPatchstorageLoading()} patchstoragePatches={patchstoragePatches()} patchstorageError={patchstorageError()} onClose={() => setIsPresetBrowserOpen(false)} onSelect={selectPreset} onPatchFileSelected={loadPatchFromFile} onPatchstorageTabOpen={openPatchstorageTab} onRefreshPatchstorage={refreshPatchstoragePatches} onSelectPatchstoragePatch={loadPatchFromPatchstorage} /></Show>
   </main>
 }
