@@ -7,6 +7,7 @@ export interface ScheduledMidiMessage {
 
 export interface MidiOutput {
   readonly id: string
+  readonly name: string
   readonly label: string
   send(messages: readonly MidiMessage[]): void
   sendScheduled(messages: readonly ScheduledMidiMessage[]): void
@@ -14,6 +15,7 @@ export interface MidiOutput {
 
 export interface MidiInput {
   readonly id: string
+  readonly name: string
   readonly label: string
   onMessage(listener: (message: MidiMessage) => void): () => void
 }

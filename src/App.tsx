@@ -11,12 +11,10 @@ import { findOsmosePresetByName, osmosePresets, type OsmosePreset, type OsmosePr
 import { loadPatchFile, requestCurrentPreset, setPreset } from './osmose/protocol'
 import { macroLabelsFromSnapshot, OsmoseSnapshotParser } from './osmose/snapshot'
 import { downloadPatchstorageMidiFile, listEaganMatrixPatches, type PatchstoragePatch } from './osmose/patchstorage'
+import { isHakenInput, isHakenOutput, isSoundEngineOutput } from './osmose/ports'
 
 type Status = { kind: StatusKind; message: string }
 const midi = new WebMidiService()
-const hakenOutputLabel = 'MIDIOUT5 (Osmose 49)'
-const soundEngineOutputLabel = 'MIDIOUT2 (Osmose 49)'
-const hakenInputLabel = 'MIDIIN5 (Osmose 49)'
 export default function App() {
   const [outputs, setOutputs] = createSignal<readonly MidiOutput[]>([])
   const [inputs, setInputs] = createSignal<readonly MidiInput[]>([])
@@ -47,7 +45,7 @@ export default function App() {
     setOutputs(nextOutputs)
     if (soundEngineOutputId() && !nextOutputs.some((output) => output.id === soundEngineOutputId())) setSoundEngineOutputId('')
     if (!soundEngineOutputId()) {
-      const soundEngine = nextOutputs.find((output) => output.label === soundEngineOutputLabel)
+      const soundEngine = nextOutputs.find((output) => isSoundEngineOutput(output.name))
       if (soundEngine) setSoundEngineOutputId(soundEngine.id)
     }
     if (hakenOutputId() && !nextOutputs.some((output) => output.id === hakenOutputId())) {
@@ -57,7 +55,7 @@ export default function App() {
     }
 
     if (!hakenOutputId()) {
-      const hakenOutput = nextOutputs.find((output) => output.label === hakenOutputLabel)
+      const hakenOutput = nextOutputs.find((output) => isHakenOutput(output.name))
       if (hakenOutput) {
         setHakenOutputId(hakenOutput.id)
         setIsMidiSetupOpen(false)
@@ -71,7 +69,7 @@ export default function App() {
       setStatus({ kind: 'error', message: 'The selected MIDI input was disconnected.' })
     }
     if (!hakenInputId()) {
-      const hakenInput = nextInputs.find((input) => input.label === hakenInputLabel)
+      const hakenInput = nextInputs.find((input) => isHakenInput(input.name))
       if (hakenInput) selectHakenInput(hakenInput.id)
     }
   })

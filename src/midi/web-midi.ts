@@ -4,6 +4,7 @@ class BrowserMidiOutput implements MidiOutput {
   constructor(private readonly port: MIDIOutput) {}
 
   get id() { return this.port.id }
+  get name() { return this.port.name ?? '' }
   get label() {
     const name = this.port.name ?? 'Unnamed MIDI output'
     return this.port.manufacturer ? `${this.port.manufacturer} — ${name}` : name
@@ -25,6 +26,7 @@ class BrowserMidiInput implements MidiInput {
   constructor(private readonly port: MIDIInput) {}
 
   get id() { return this.port.id }
+  get name() { return this.port.name ?? '' }
   get label() {
     const name = this.port.name ?? 'Unnamed MIDI input'
     return this.port.manufacturer ? `${this.port.manufacturer} — ${name}` : name

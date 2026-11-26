@@ -11,7 +11,7 @@ interface MidiInputSelectorProps {
 export function MidiInputSelector(props: MidiInputSelectorProps) {
   return (
     <section class="control-group" aria-labelledby="input-heading">
-      <div class="section-heading"><h2 id="input-heading">MIDI input</h2></div>
+      <div class="section-heading"><h2 id="input-heading">Haken input</h2></div>
       <label class="field-label" for="midi-input">Receive Osmose state from</label>
       <select
         id="midi-input"
@@ -19,11 +19,11 @@ export function MidiInputSelector(props: MidiInputSelectorProps) {
         onChange={(event) => props.onSelectionChange(event.currentTarget.value)}
         disabled={!props.connected || props.inputs.length === 0}
       >
-        <option value="">{props.connected ? 'Select a MIDI input' : 'MIDI access unavailable'}</option>
+        <option value="">{props.connected ? 'Select a Haken input' : 'MIDI access unavailable'}</option>
         <For each={props.inputs}>{(input) => <option value={input.id}>{input.label}</option>}</For>
       </select>
       <Show when={props.connected && props.inputs.length === 0}>
-        <p class="field-note">Connect the Osmose MIDI input, then refresh MIDI access.</p>
+        <p class="field-note">Connect the Osmose Haken input, then refresh MIDI access.</p>
       </Show>
     </section>
   )
